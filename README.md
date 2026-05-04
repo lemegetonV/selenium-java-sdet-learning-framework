@@ -7,7 +7,8 @@ Page Object Model, reporting, data-driven, Cucumber, and CI/CD framework.
 ## Current Status
 
 - Latest completed module: Module 01 - Java OOP Foundation
-- Next module: Module 02 - OOP for Selenium
+- Current module branch: Module 02 - OOP for Selenium
+- Next module: Module 03 - First Selenium Tests
 - Primary AUT for later framework modules: `https://www.saucedemo.com`
 - Selenium concept playground for later modules: `https://the-internet.herokuapp.com`
 
@@ -30,4 +31,6 @@ mvn compile
 mvn exec:java
 ```
 
-`mvn exec:java` runs the Module 01 Java demo.
+On the Module 02 branch, `mvn exec:java` runs the OOP for Selenium demo.
+At the Module 01 checkpoint, the same command runs the Java OOP foundation
+demo from that branch/tag.
