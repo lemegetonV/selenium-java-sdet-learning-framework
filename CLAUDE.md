@@ -57,10 +57,11 @@ find src -type f | sort
 
 ## Current Module
 
-**Module:** Module 01 - Java OOP Foundation
-**Branch:** `module-01-java-oops-foundation`
-**Status:** Complete
-**Next:** Module 02 - OOP for Selenium
+**Module:** Module 02 - OOP for Selenium
+**Branch:** `module-02-oops-for-selenium`
+**Status:** In Progress
+**Previous:** Module 01 - Java OOP Foundation
+**Next:** Module 03 - First Selenium Tests
 
 When the current module status is `Complete`, do not continue work on its
 branch. Start the `Next` module from `main` using the module lifecycle below.
