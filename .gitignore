@@ -1,0 +1,21 @@
+# Maven
+target/
+
+# Test output and reports generated during runs
+test-output/
+allure-results/
+allure-report/
+logs/
+*.log
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# OS files
+.DS_Store
+
+# Local environment files
+.env
+*.local
