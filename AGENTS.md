@@ -59,7 +59,7 @@ find src -type f | sort
 
 **Module:** Module 02 - OOP for Selenium
 **Branch:** `module-02-oops-for-selenium`
-**Status:** In Progress
+**Status:** Complete
 **Previous:** Module 01 - Java OOP Foundation
 **Next:** Module 03 - First Selenium Tests
 
