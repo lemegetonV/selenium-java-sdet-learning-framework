@@ -5,7 +5,7 @@ objects, wrapper methods, or retry logic yet.
 
 ## Exercise 1 - Wait For The Loading Message To Disappear
 
-In `_01_ExplicitWaitTest`, add an assertion that the loading indicator disappears.
+In `_07_ExplicitWaitTest`, add an assertion that the loading indicator disappears.
 
 Hint:
 
@@ -18,7 +18,7 @@ Expected outcome:
 
 ## Exercise 2 - Wait For The Input To Disable Again
 
-Extend `_02_DynamicControlsWaitTest` by clicking the input button again after
+Extend `_08_DynamicControlsWaitTest` by clicking the input button again after
 typing.
 
 Hint:
@@ -31,7 +31,7 @@ Expected outcome:
 
 ## Exercise 3 - Change FluentWait Polling
 
-Change the polling interval in `_03_FluentWaitTest` from 250 milliseconds to 500
+Change the polling interval in `_09_FluentWaitTest` from 250 milliseconds to 500
 milliseconds.
 
 Expected outcome:
@@ -68,3 +68,15 @@ Answer:
 1. Which one expresses browser state?
 2. Which one can return early when the page is ready?
 3. Which one is easier to debug when it fails?
+
+## Exercise 6 - Explain Stale Element Behavior
+
+Review `_10_ImplicitWaitAndTimeoutTest` and answer:
+
+1. Why does the original checkbox `WebElement` become stale?
+2. Why can the locator still be useful after the old object is stale?
+3. Why will wrapper methods later locate a fresh element instead of reusing
+   the old object?
+
+Expected outcome:
+- explain the difference between a locator and a saved `WebElement` reference.

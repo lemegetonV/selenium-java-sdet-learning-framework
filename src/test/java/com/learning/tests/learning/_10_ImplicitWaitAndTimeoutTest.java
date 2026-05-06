@@ -3,8 +3,10 @@ package com.learning.tests.learning;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,7 +17,7 @@ import org.testng.annotations.Test;
 /**
  * Demonstrates implicit wait setup and a controlled explicit wait timeout.
  */
-public class _04_ImplicitWaitAndTimeoutTest {
+public class _10_ImplicitWaitAndTimeoutTest {
 
     @Test
     public void usesShortImplicitWaitForElementLookup() {
@@ -49,6 +51,35 @@ public class _04_ImplicitWaitAndTimeoutTest {
             );
 
             Assert.assertTrue(timeout.getMessage().contains("Expected condition failed"));
+        } finally {
+            driver.quit();
+        }
+    }
+
+    @Test
+    public void observesStaleElementWhenDomNodeIsReplaced() {
+        WebDriver driver = createChromeDriver();
+
+        try {
+            driver.get("https://the-internet.herokuapp.com/dynamic_controls");
+
+            WebElement originalCheckbox = driver.findElement(By.cssSelector("#checkbox input"));
+            driver.findElement(By.cssSelector("#checkbox-example button")).click();
+
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+            /*
+             * stalenessOf waits until the saved WebElement no longer points to a
+             * live DOM node. The locator may be reusable, but this object reference
+             * is now stale.
+             */
+            Assert.assertTrue(wait.until(ExpectedConditions.stalenessOf(originalCheckbox)));
+
+            StaleElementReferenceException staleElement = Assert.expectThrows(
+                    StaleElementReferenceException.class,
+                    originalCheckbox::isSelected
+            );
+            Assert.assertNotNull(staleElement.getMessage());
         } finally {
             driver.quit();
         }

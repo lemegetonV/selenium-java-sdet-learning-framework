@@ -24,10 +24,10 @@ utilities are intentionally deferred until the framework wrapper module.
 | File | Status | Purpose |
 | --- | --- | --- |
 | `README.md` | changed | updates current module status |
-| `src/test/java/com/learning/tests/learning/_01_ExplicitWaitTest.java` | added | waits for hidden dynamic text to become visible |
-| `src/test/java/com/learning/tests/learning/_02_DynamicControlsWaitTest.java` | added | waits for checkbox removal/addition and input enablement |
-| `src/test/java/com/learning/tests/learning/_03_FluentWaitTest.java` | added | demonstrates custom timeout, polling, and ignored exceptions |
-| `src/test/java/com/learning/tests/learning/_04_ImplicitWaitAndTimeoutTest.java` | added | demonstrates implicit wait setup and controlled timeout assertion |
+| `src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java` | added | waits for hidden dynamic text to become visible |
+| `src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java` | added | waits for checkbox removal/addition and input enablement |
+| `src/test/java/com/learning/tests/learning/_09_FluentWaitTest.java` | added | demonstrates custom timeout, polling, and ignored exceptions |
+| `src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java` | added | demonstrates implicit wait setup, controlled timeout assertion, and stale element behavior |
 | `docs/module-05-waits-and-dynamic-elements/00-module-overview.md` | added | module map, file ownership, deferred scope, and quality gate |
 | `docs/module-05-waits-and-dynamic-elements/01-implicit-explicit-fluent-waits.md` | added | explains wait types and usage tradeoffs |
 | `docs/module-05-waits-and-dynamic-elements/02-expected-conditions.md` | added | explains conditions used in this module |
@@ -39,8 +39,8 @@ utilities are intentionally deferred until the framework wrapper module.
 Module 05 builds on raw browser and locator tests:
 
 - `src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java`
-- `src/test/java/com/learning/tests/learning/_01_LocatorStrategyTest.java`
-- `src/test/java/com/learning/tests/learning/_03_WebElementCommandTest.java`
+- `src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java`
+- `src/test/java/com/learning/tests/learning/_06_WebElementCommandTest.java`
 
 The new wait tests still duplicate driver creation and cleanup intentionally.
 
@@ -53,6 +53,10 @@ src/test/java/com/learning/tests/learning/
 ```
 
 These are raw learning tests, not framework wait utilities.
+
+Because this is the same shared package used by Modules 03 and 04, Module 05
+continues the global learning sequence with `_07_`, `_08_`, `_09_`, and
+`_10_`.
 
 ## Wait Flow
 
@@ -98,7 +102,9 @@ mvn test -Dheadless=false
 
 Expected outcome:
 
-- TestNG runs eleven Selenium tests.
+- TestNG runs fifteen Selenium tests.
 - dynamic loading and dynamic controls tests pass.
 - the controlled timeout test catches and asserts `TimeoutException`.
+- the stale element test demonstrates a saved `WebElement` becoming detached
+  after the DOM changes.
 - visible mode passes when `-Dheadless=false` is used.

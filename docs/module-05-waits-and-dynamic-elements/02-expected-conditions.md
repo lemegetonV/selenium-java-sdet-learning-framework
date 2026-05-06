@@ -22,8 +22,8 @@ wait.until(...)
 Used in:
 
 ```text
-src/test/java/com/learning/tests/learning/_01_ExplicitWaitTest.java
-src/test/java/com/learning/tests/learning/_02_DynamicControlsWaitTest.java
+src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java
+src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java
 ```
 
 Behavior:
@@ -42,7 +42,7 @@ Good use:
 Used in:
 
 ```text
-src/test/java/com/learning/tests/learning/_02_DynamicControlsWaitTest.java
+src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java
 ```
 
 Behavior:
@@ -64,7 +64,7 @@ Nuance:
 Used in:
 
 ```text
-src/test/java/com/learning/tests/learning/_02_DynamicControlsWaitTest.java
+src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java
 ```
 
 Behavior:
@@ -82,7 +82,7 @@ Good use:
 Used in:
 
 ```text
-src/test/java/com/learning/tests/learning/_02_DynamicControlsWaitTest.java
+src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java
 ```
 
 Behavior:
@@ -100,6 +100,35 @@ Nuance:
 - overlays, animations, scrolling, or intercepted clicks can still cause
   failures.
 - later wrapper methods will centralize safer click behavior.
+
+## `stalenessOf`
+
+Module 05 introduces `stalenessOf` in:
+
+```text
+src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java
+```
+
+The condition receives an already-located `WebElement` and waits until that
+specific object reference is detached from the DOM:
+
+```java
+wait.until(ExpectedConditions.stalenessOf(originalCheckbox));
+```
+
+Use it when:
+
+- an element is removed or replaced after an action.
+- the old `WebElement` should no longer be reused.
+- the test needs to prove the page moved from one DOM state to another.
+
+Nuance:
+
+- the locator may still be useful after the change.
+- the saved `WebElement` object may be stale even if a new matching element
+  appears later.
+- future wrapper methods can retry by locating a fresh element, but Module 05
+  keeps the behavior raw and visible.
 
 ## Common Beginner Mistakes
 

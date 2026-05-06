@@ -29,7 +29,7 @@ https://the-internet.herokuapp.com/dynamic_controls
 Module 05 uses:
 
 ```text
-src/test/java/com/learning/tests/learning/_02_DynamicControlsWaitTest.java
+src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java
 ```
 
 Important nuance:
@@ -61,7 +61,7 @@ When a wait condition never becomes true, Selenium throws
 Module 05 demonstrates this without leaving the test failing:
 
 ```text
-src/test/java/com/learning/tests/learning/_04_ImplicitWaitAndTimeoutTest.java
+src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java
 ```
 
 The test intentionally waits for an element that does not exist and asserts
@@ -88,12 +88,18 @@ Waits are better because they express what the test is waiting for.
 A stale element happens when a `WebElement` reference points to an element that
 is no longer attached to the current DOM.
 
-Module 05 avoids deep stale-element recovery, but dynamic controls prepare the
-concept:
+Module 05 demonstrates the stale reference in:
+
+```text
+src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java
+```
+
+The dynamic controls page prepares the concept:
 
 - the checkbox is removed.
-- the old element reference would no longer be safe.
-- the test waits and finds the element again after it is added.
+- the old `WebElement` reference is no longer safe.
+- `ExpectedConditions.stalenessOf(...)` waits for that old reference to detach.
+- the test intentionally verifies `StaleElementReferenceException`.
 
 Later modules will handle stale elements more directly when wrapper methods
 and retry behavior are introduced.

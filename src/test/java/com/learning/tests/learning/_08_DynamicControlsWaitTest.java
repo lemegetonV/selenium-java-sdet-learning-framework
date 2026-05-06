@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 /**
  * Demonstrates waits for elements being removed, added, and enabled.
  */
-public class _02_DynamicControlsWaitTest {
+public class _08_DynamicControlsWaitTest {
 
     @Test
     public void waitsForCheckboxRemovalAndInputEnablement() {
