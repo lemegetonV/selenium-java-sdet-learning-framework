@@ -108,14 +108,16 @@ module.
 
 ### Learning Class Ordering
 
-Early learning-only Java classes may use `_NN_` prefixes to make study order
-visible in the file tree, for example `_01_BrowserSession.java`.
+Early learning-only Java classes should use `_NN_` prefixes to make study
+order visible in the file tree, for example `_01_BrowserSession.java`.
 
 This rule applies only to:
 
-- `src/main/java/com/learning/examples/moduleXX/`.
+- `src/main/java/com/learning/examples/moduleXX/`, where numbering restarts
+  inside each module folder.
 - `src/test/java/com/learning/tests/learning/` while modules are still raw
-  Selenium concept tests.
+  Selenium concept tests, where numbering is global across the shared package
+  and must not restart per module.
 
 This is intentionally a learning aid, not production Java style. Do not use
 `_NN_` prefixes for real framework packages such as `pages`, `driver`,

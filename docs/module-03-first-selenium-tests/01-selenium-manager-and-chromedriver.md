@@ -26,6 +26,41 @@ Nuance:
 - It reduces beginner setup friction, but later framework modules will still
   teach browser selection and driver lifecycle clearly.
 
+## Selenium Manager vs WebDriverManager
+
+Many Selenium courses and interview discussions mention WebDriverManager. In
+most Java Selenium contexts that means the Bonigarcia WebDriverManager
+library, which became popular because older Selenium projects had to manage
+browser driver executables manually.
+
+This project uses Selenium Manager as the primary path because Selenium 4
+already includes it. There is no extra dependency to configure for Module 03:
+
+```java
+return new ChromeDriver(options);
+```
+
+When this line runs, Selenium can invoke Selenium Manager behind the scenes to
+resolve the matching ChromeDriver.
+
+The practical comparison is:
+
+| Topic | Selenium Manager | Bonigarcia WebDriverManager |
+| --- | --- | --- |
+| Where it comes from | built into Selenium 4 | separate Java dependency |
+| Beginner setup | no extra Maven dependency | add dependency and call setup API |
+| Typical modern use | default choice for simple Selenium 4 projects | useful when a project needs its richer configuration options |
+| This project | primary approach | explained for recognition, not installed now |
+
+Interview nuance:
+
+- WebDriverManager is still worth recognizing because many existing
+  frameworks and tutorials use it.
+- Selenium Manager is the modern default for this learning repo.
+- Driver lifecycle is still a framework responsibility. Selenium Manager helps
+  resolve the executable; it does not decide when to create, reuse, or quit
+  browser sessions.
+
 ## `WebDriver driver = new ChromeDriver(options)`
 
 The first test creates a browser like this:

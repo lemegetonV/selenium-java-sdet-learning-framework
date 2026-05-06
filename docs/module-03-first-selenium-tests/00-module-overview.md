@@ -50,7 +50,7 @@ until the logging module.
 | `src/test/java/com/learning/tests/learning/_02_NavigationTest.java` | added | demonstrates `get`, `navigate().to`, back, forward, and refresh |
 | `src/test/java/com/learning/tests/learning/_03_SauceDemoPageLoadTest.java` | added | opens SauceDemo and asserts page title/URL without locators |
 | `docs/module-03-first-selenium-tests/00-module-overview.md` | added | module map, file ownership, deferred scope, and quality gate |
-| `docs/module-03-first-selenium-tests/01-selenium-manager-and-chromedriver.md` | added | explains Selenium Manager, ChromeDriver, and headless mode |
+| `docs/module-03-first-selenium-tests/01-selenium-manager-and-chromedriver.md` | added | explains Selenium Manager, WebDriverManager comparison, ChromeDriver, and headless mode |
 | `docs/module-03-first-selenium-tests/02-testng-raw-test-structure.md` | added | explains minimal TestNG usage and intentional duplication |
 | `docs/module-03-first-selenium-tests/03-navigation-and-assertions.md` | added | explains browser navigation and assertions |
 | `docs/module-03-first-selenium-tests/exercises.md` | added | practice tasks with hints and expected outcomes |
@@ -80,6 +80,11 @@ src/test/java/com/learning/tests/learning/
 
 These are raw learning tests, not framework tests. They are intentionally
 duplicated and explicit.
+
+The `learning/` test package is shared by raw Selenium modules, so its class
+prefixes are global across the folder. Module 03 owns `_01_` through `_03_`;
+later raw Selenium modules continue that sequence instead of restarting at
+`_01_`.
 
 ## Test Flow
 

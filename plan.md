@@ -200,14 +200,16 @@ docs.
 
 ### Learning Class Ordering
 
-Early learning-only Java classes may use `_NN_` prefixes to show concept
+Early learning-only Java classes should use `_NN_` prefixes to show concept
 sequence in the file tree, for example `_01_BrowserSession.java`.
 
 This is allowed only for:
 
-- `src/main/java/com/learning/examples/moduleXX/`.
+- `src/main/java/com/learning/examples/moduleXX/`, where numbering restarts
+  inside each module folder.
 - `src/test/java/com/learning/tests/learning/` while modules are still raw
-  Selenium concept tests.
+  Selenium concept tests, where numbering is global across the shared package
+  and must not restart per module.
 
 This is a learning aid, not production Java style. Do not use `_NN_` prefixes
 for real framework packages/classes such as page objects, `BaseTest`,
@@ -280,6 +282,7 @@ Purpose:
 
 Concepts:
 - Selenium Manager.
+- Selenium Manager vs Bonigarcia WebDriverManager.
 - `ChromeDriver`.
 - `driver.get`.
 - title, URL, navigation.
@@ -304,9 +307,14 @@ Purpose:
 Concepts:
 - `By.id`, `By.name`, `By.className`, `By.tagName`, `By.linkText`,
   `By.partialLinkText`, `By.cssSelector`, `By.xpath`.
+- locator syntax templates for CSS and XPath.
+- locator best practices and stability tradeoffs.
+- chained/scoped locators.
+- XPath basics, dynamic XPath, chained XPath, and XPath axes.
 - `findElement` vs `findElements`.
 - `click`, `sendKeys`, `clear`, `getText`, `getAttribute`.
-- locator stability and readable selectors.
+- common locator exceptions such as `NoSuchElementException` and
+  `InvalidSelectorException`.
 
 AUTs:
 - The Internet.
@@ -314,7 +322,7 @@ AUTs:
 
 Implementation:
 - Raw Selenium locator examples.
-- Locator strategy doc.
+- Locator strategy, template, XPath, chained locator, and exception docs.
 
 ### Module 05 - Waits and Dynamic Elements
 
@@ -350,9 +358,14 @@ Purpose:
 
 Concepts:
 - inputs.
+- buttons.
+- textboxes and textareas.
+- hyperlinks and image elements.
 - checkboxes.
 - radio buttons.
 - dropdowns with Selenium `Select`.
+- HTML behind dropdowns.
+- common dropdown actions.
 - JavaScript alerts, confirms, prompts.
 - form authentication.
 
@@ -373,15 +386,20 @@ Purpose:
 Concepts:
 - windows and tabs.
 - frames and nested frames.
+- date picker and calendar widgets.
+- web tables: HTML structure, static tables, dynamic tables, and row actions.
 - file upload.
 - file download validation.
 - hovers.
 - key presses.
+- mouse actions.
+- keyboard actions.
 - drag and drop.
 - JavaScriptExecutor.
 - Shadow DOM.
 - sortable tables.
 - broken images and status-code checks where useful.
+- Selenium exceptions map for advanced browser mechanics.
 
 AUT:
 - The Internet.
