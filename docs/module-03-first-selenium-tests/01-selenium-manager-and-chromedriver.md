@@ -1,0 +1,94 @@
+# Selenium Manager and ChromeDriver
+
+## What Selenium Manager Does
+
+Selenium needs a browser driver executable to control a browser.
+
+For Chrome, that executable is ChromeDriver.
+
+Modern Selenium includes Selenium Manager. When a test creates a
+`ChromeDriver`, Selenium Manager can locate or download the matching driver so
+the learner does not manually manage driver binaries in this module.
+
+Module 03 uses this directly:
+
+```text
+src/test/java/com/learning/tests/learning/FirstBrowserTest.java
+```
+
+## `WebDriver driver = new ChromeDriver(options)`
+
+The first test creates a browser like this:
+
+```java
+WebDriver driver = createChromeDriver();
+```
+
+Inside `createChromeDriver()`:
+
+```java
+return new ChromeDriver(options);
+```
+
+This connects directly to Module 02:
+
+| Module 02 Example | Module 03 Selenium Code |
+| --- | --- |
+| `BrowserDriver` interface | `WebDriver` interface |
+| `ChromeBrowserDriver` class | `ChromeDriver` class |
+| `BrowserDriver browser = ...` | `WebDriver driver = ...` |
+| simulated `open(...)` method | real `driver.get(...)` method |
+
+## Chrome Options
+
+Each test creates `ChromeOptions`:
+
+```java
+ChromeOptions options = new ChromeOptions();
+```
+
+The option used most often in this module is headless mode.
+
+Headless mode runs Chrome without showing the browser window. That is useful
+for CI and for quick local test runs:
+
+```bash
+mvn test
+```
+
+To see the browser:
+
+```bash
+mvn test -Dheadless=false
+```
+
+## Why Setup Is Repeated
+
+Each Module 03 test class has its own `createChromeDriver()` method.
+
+That repetition is intentional.
+
+The learner should first see the raw cost of repeated setup:
+
+- every class creates options.
+- every class creates a driver.
+- every class must remember to call `quit()`.
+- every class chooses the same window size.
+
+Module 08 introduces `BaseTest` only after this duplication is visible.
+
+## Cleanup With `quit()`
+
+Every test uses `finally`:
+
+```java
+try {
+    driver.get("https://the-internet.herokuapp.com/");
+} finally {
+    driver.quit();
+}
+```
+
+The `finally` block matters because browser cleanup should happen even when an
+assertion fails. Later this cleanup moves into TestNG lifecycle methods such as
+`@AfterMethod`.
