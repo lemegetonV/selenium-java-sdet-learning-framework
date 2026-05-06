@@ -22,8 +22,8 @@ wait.until(...)
 Used in:
 
 ```text
-src/test/java/com/learning/tests/learning/ExplicitWaitTest.java
-src/test/java/com/learning/tests/learning/DynamicControlsWaitTest.java
+src/test/java/com/learning/tests/learning/_01_ExplicitWaitTest.java
+src/test/java/com/learning/tests/learning/_02_DynamicControlsWaitTest.java
 ```
 
 Behavior:
@@ -42,7 +42,7 @@ Good use:
 Used in:
 
 ```text
-src/test/java/com/learning/tests/learning/DynamicControlsWaitTest.java
+src/test/java/com/learning/tests/learning/_02_DynamicControlsWaitTest.java
 ```
 
 Behavior:
@@ -64,7 +64,7 @@ Nuance:
 Used in:
 
 ```text
-src/test/java/com/learning/tests/learning/DynamicControlsWaitTest.java
+src/test/java/com/learning/tests/learning/_02_DynamicControlsWaitTest.java
 ```
 
 Behavior:
@@ -82,7 +82,7 @@ Good use:
 Used in:
 
 ```text
-src/test/java/com/learning/tests/learning/DynamicControlsWaitTest.java
+src/test/java/com/learning/tests/learning/_02_DynamicControlsWaitTest.java
 ```
 
 Behavior:

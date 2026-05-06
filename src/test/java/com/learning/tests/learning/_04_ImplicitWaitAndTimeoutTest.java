@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 /**
  * Demonstrates implicit wait setup and a controlled explicit wait timeout.
  */
-public class ImplicitWaitAndTimeoutTest {
+public class _04_ImplicitWaitAndTimeoutTest {
 
     @Test
     public void usesShortImplicitWaitForElementLookup() {

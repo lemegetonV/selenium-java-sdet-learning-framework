@@ -5,7 +5,7 @@ objects, wrapper methods, or retry logic yet.
 
 ## Exercise 1 - Wait For The Loading Message To Disappear
 
-In `ExplicitWaitTest`, add an assertion that the loading indicator disappears.
+In `_01_ExplicitWaitTest`, add an assertion that the loading indicator disappears.
 
 Hint:
 
@@ -18,7 +18,7 @@ Expected outcome:
 
 ## Exercise 2 - Wait For The Input To Disable Again
 
-Extend `DynamicControlsWaitTest` by clicking the input button again after
+Extend `_02_DynamicControlsWaitTest` by clicking the input button again after
 typing.
 
 Hint:
@@ -31,7 +31,7 @@ Expected outcome:
 
 ## Exercise 3 - Change FluentWait Polling
 
-Change the polling interval in `FluentWaitTest` from 250 milliseconds to 500
+Change the polling interval in `_03_FluentWaitTest` from 250 milliseconds to 500
 milliseconds.
 
 Expected outcome:

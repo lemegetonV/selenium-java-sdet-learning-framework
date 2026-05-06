@@ -3,39 +3,38 @@ package com.learning.tests.learning;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
- * Demonstrates explicit waits on The Internet dynamic loading page.
- *
- * Explicit waits are introduced before framework wait utilities so the learner
- * can see the raw Selenium API and the timing problem it solves.
+ * Demonstrates FluentWait for customized polling behavior.
  */
-public class ExplicitWaitTest {
+public class _03_FluentWaitTest {
 
     @Test
-    public void waitsUntilHiddenTextBecomesVisible() {
+    public void usesCustomPollingForDynamicLoading() {
         WebDriver driver = createChromeDriver();
 
         try {
-            driver.get("https://the-internet.herokuapp.com/dynamic_loading/1");
-
+            driver.get("https://the-internet.herokuapp.com/dynamic_loading/2");
             driver.findElement(By.cssSelector("#start button")).click();
 
-            // WebDriverWait polls until the ExpectedCondition is true or the timeout expires.
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            // FluentWait lets the test choose timeout, polling interval, and ignored exceptions.
+            FluentWait<WebDriver> wait = new FluentWait<>(driver)
+                    .withTimeout(Duration.ofSeconds(10))
+                    .pollingEvery(Duration.ofMillis(250))
+                    .ignoring(NoSuchElementException.class);
 
-            // visibilityOfElementLocated finds the element and waits until it is displayed.
-            WebElement finishMessage = wait.until(
-                    ExpectedConditions.visibilityOfElementLocated(By.id("finish"))
-            );
+            WebElement finishMessage = wait.until(currentDriver -> {
+                WebElement element = currentDriver.findElement(By.id("finish"));
+                return element.isDisplayed() ? element : null;
+            });
 
             Assert.assertEquals(finishMessage.getText(), "Hello World!");
         } finally {
