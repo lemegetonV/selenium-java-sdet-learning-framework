@@ -1,21 +1,21 @@
 package com.learning.examples.module02;
 
 /**
- * Concrete learning test that specializes LearningTestTemplate.
+ * Concrete learning test that specializes _07_LearningTestTemplate.
  *
  * The parent class owns the lifecycle. This child class owns the specific
  * login behavior. That relationship prepares for future TestNG classes that
  * inherit shared setup from BaseTest.
  */
-public class SauceDemoLoginLearningTest extends LearningTestTemplate {
+public class _08_SauceDemoLoginLearningTest extends _07_LearningTestTemplate {
 
-    private final LoginCredentials credentials;
-    private final LoginPageModel loginPage;
+    private final _05_LoginCredentials credentials;
+    private final _06_LoginPageModel loginPage;
 
-    public SauceDemoLoginLearningTest(BrowserDriver browserDriver, String baseUrl, LoginCredentials credentials) {
+    public _08_SauceDemoLoginLearningTest(_01_BrowserDriver browserDriver, String baseUrl, _05_LoginCredentials credentials) {
         super(browserDriver, baseUrl);
         this.credentials = credentials;
-        this.loginPage = new LoginPageModel();
+        this.loginPage = new _06_LoginPageModel();
     }
 
     @Override

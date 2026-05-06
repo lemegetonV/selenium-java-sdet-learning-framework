@@ -1,13 +1,13 @@
 package com.learning.examples.module02;
 
 /**
- * Firefox-style implementation of the BrowserDriver learning interface.
+ * Firefox-style implementation of the _01_BrowserDriver learning interface.
  *
  * Having a second implementation makes polymorphism visible: the same demo can
- * work with ChromeBrowserDriver or FirefoxBrowserDriver through the shared
- * BrowserDriver type.
+ * work with _02_ChromeBrowserDriver or _03_FirefoxBrowserDriver through the shared
+ * _01_BrowserDriver type.
  */
-public class FirefoxBrowserDriver implements BrowserDriver {
+public class _03_FirefoxBrowserDriver implements _01_BrowserDriver {
 
     private boolean open;
     private String currentUrl;

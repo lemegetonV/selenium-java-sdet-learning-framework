@@ -9,7 +9,7 @@ import java.util.List;
  * keep page details private and expose a public action that describes what the
  * user wants to do.
  */
-public class LoginPageModel {
+public class _06_LoginPageModel {
 
     /*
      * These strings stand in for future Selenium locators. They are private
@@ -25,7 +25,7 @@ public class LoginPageModel {
      * Later this public method maps to a real LoginPage method that uses
      * WebDriver or wrapper methods internally.
      */
-    public List<String> loginWith(LoginCredentials credentials) {
+    public List<String> loginWith(_05_LoginCredentials credentials) {
         return List.of(
                 "Type " + credentials.getUsername() + " into " + usernameField,
                 "Type " + credentials.getMaskedPassword() + " into " + passwordField,

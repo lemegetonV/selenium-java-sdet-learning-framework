@@ -5,18 +5,18 @@ real Selenium dependency yet.
 
 ## Exercise 1 - Add Another Browser Implementation
 
-Create a new class named `EdgeBrowserDriver` under:
+Create a new class named `_10_EdgeBrowserDriver` under:
 
 ```text
 src/main/java/com/learning/examples/module02/
 ```
 
-Make it implement `BrowserDriver`.
+Make it implement `_01_BrowserDriver`.
 
 Hint:
-- follow the same structure as `ChromeBrowserDriver`.
+- follow the same structure as `_02_ChromeBrowserDriver`.
 - return `edge` from `getBrowserName()`.
-- add it to the browser list in `Module02Demo`.
+- add it to the browser list in `_09_Module02Demo`.
 
 Expected outcome:
 - `mvn exec:java` runs the learning test for Chrome, Firefox, and Edge-style
@@ -24,7 +24,7 @@ Expected outcome:
 
 ## Exercise 2 - Add A Login Page Action
 
-Add a method to `LoginPageModel`:
+Add a method to `_06_LoginPageModel`:
 
 ```java
 public List<String> clearLoginForm()
@@ -40,11 +40,11 @@ Expected outcome:
 
 ## Exercise 3 - Add A Negative Test Data Example
 
-Add another invalid credential scenario in `Module02Demo`.
+Add another invalid credential scenario in `_09_Module02Demo`.
 
 Hint:
 - try a blank username with a valid password.
-- catch `InvalidTestDataException`.
+- catch `_04_InvalidTestDataException`.
 
 Expected outcome:
 - the console output explains why the data was rejected.
@@ -54,12 +54,12 @@ Expected outcome:
 In your own words, explain this line from Module 02:
 
 ```java
-List<BrowserDriver> browsers = List.of(...);
+List<_01_BrowserDriver> browsers = List.of(...);
 ```
 
 Answer these questions:
 
-1. Why is the list type `BrowserDriver`?
+1. Why is the list type `_01_BrowserDriver`?
 2. Why can the list hold both Chrome and Firefox implementations?
 3. How does this prepare for `WebDriver driver = new ChromeDriver()`?
 
@@ -68,8 +68,8 @@ Answer these questions:
 Read:
 
 ```text
-src/main/java/com/learning/examples/module02/LearningTestTemplate.java
-src/main/java/com/learning/examples/module02/SauceDemoLoginLearningTest.java
+src/main/java/com/learning/examples/module02/_07_LearningTestTemplate.java
+src/main/java/com/learning/examples/module02/_08_SauceDemoLoginLearningTest.java
 ```
 
 Then answer:

@@ -45,15 +45,15 @@ patterns instead of understandable design.
 | --- | --- | --- |
 | `pom.xml` | changed | updates `mvn exec:java` to run the Module 02 demo |
 | `README.md` | changed | updates the current module status and commands |
-| `src/main/java/com/learning/examples/module02/BrowserDriver.java` | added | interface that models the future `WebDriver` abstraction |
-| `src/main/java/com/learning/examples/module02/ChromeBrowserDriver.java` | added | concrete browser implementation, similar in role to `ChromeDriver` |
-| `src/main/java/com/learning/examples/module02/FirefoxBrowserDriver.java` | added | second implementation to make polymorphism visible |
-| `src/main/java/com/learning/examples/module02/LoginCredentials.java` | added | encapsulated test data object with validation |
-| `src/main/java/com/learning/examples/module02/LoginPageModel.java` | added | page-style class that hides login mechanics behind public methods |
-| `src/main/java/com/learning/examples/module02/LearningTestTemplate.java` | added | small abstract template showing inheritance without building `BaseTest` yet |
-| `src/main/java/com/learning/examples/module02/SauceDemoLoginLearningTest.java` | added | concrete learning test that extends the template |
-| `src/main/java/com/learning/examples/module02/InvalidTestDataException.java` | added | custom exception for invalid learning test data |
-| `src/main/java/com/learning/examples/module02/Module02Demo.java` | added | runnable demo for interfaces, polymorphism, inheritance, exceptions, and collections |
+| `src/main/java/com/learning/examples/module02/_01_BrowserDriver.java` | added | interface that models the future `WebDriver` abstraction |
+| `src/main/java/com/learning/examples/module02/_02_ChromeBrowserDriver.java` | added | concrete browser implementation, similar in role to `ChromeDriver` |
+| `src/main/java/com/learning/examples/module02/_03_FirefoxBrowserDriver.java` | added | second implementation to make polymorphism visible |
+| `src/main/java/com/learning/examples/module02/_05_LoginCredentials.java` | added | encapsulated test data object with validation |
+| `src/main/java/com/learning/examples/module02/_06_LoginPageModel.java` | added | page-style class that hides login mechanics behind public methods |
+| `src/main/java/com/learning/examples/module02/_07_LearningTestTemplate.java` | added | small abstract template showing inheritance without building `BaseTest` yet |
+| `src/main/java/com/learning/examples/module02/_08_SauceDemoLoginLearningTest.java` | added | concrete learning test that extends the template |
+| `src/main/java/com/learning/examples/module02/_04_InvalidTestDataException.java` | added | custom exception for invalid learning test data |
+| `src/main/java/com/learning/examples/module02/_09_Module02Demo.java` | added | runnable demo for interfaces, polymorphism, inheritance, exceptions, and collections |
 | `docs/module-02-oops-for-selenium/00-module-overview.md` | added | module map, file ownership, deferred scope, and quality gate |
 | `docs/module-02-oops-for-selenium/01-encapsulation-and-abstraction.md` | added | explains private data and public actions in Selenium-style design |
 | `docs/module-02-oops-for-selenium/02-inheritance-interfaces-polymorphism.md` | added | explains Selenium's `WebDriver driver = new ChromeDriver()` pattern |
@@ -65,10 +65,10 @@ patterns instead of understandable design.
 Module 02 does not import Module 01 classes directly. It builds on the same
 concepts and keeps the old examples available for comparison:
 
-- `src/main/java/com/learning/examples/module01/BrowserSession.java`
-- `src/main/java/com/learning/examples/module01/LoginAttempt.java`
-- `src/main/java/com/learning/examples/module01/TestCaseSummary.java`
-- `src/main/java/com/learning/examples/module01/Module01Demo.java`
+- `src/main/java/com/learning/examples/module01/_01_BrowserSession.java`
+- `src/main/java/com/learning/examples/module01/_02_LoginAttempt.java`
+- `src/main/java/com/learning/examples/module01/_03_TestCaseSummary.java`
+- `src/main/java/com/learning/examples/module01/_04_Module01Demo.java`
 
 ## Source Ownership
 
@@ -86,33 +86,33 @@ curriculum reaches framework construction.
 
 ```mermaid
 classDiagram
-    class BrowserDriver {
+    class _01_BrowserDriver {
         <<interface>>
         +getBrowserName()
         +open(baseUrl)
         +close()
         +isOpen()
     }
-    class ChromeBrowserDriver
-    class FirefoxBrowserDriver
-    class LoginCredentials
-    class LoginPageModel
-    class LearningTestTemplate {
+    class _02_ChromeBrowserDriver
+    class _03_FirefoxBrowserDriver
+    class _05_LoginCredentials
+    class _06_LoginPageModel
+    class _07_LearningTestTemplate {
         <<abstract>>
         +run()
         #executeTest()
     }
-    class SauceDemoLoginLearningTest
-    class Module02Demo
+    class _08_SauceDemoLoginLearningTest
+    class _09_Module02Demo
 
-    BrowserDriver <|.. ChromeBrowserDriver
-    BrowserDriver <|.. FirefoxBrowserDriver
-    LearningTestTemplate <|-- SauceDemoLoginLearningTest
-    SauceDemoLoginLearningTest --> BrowserDriver
-    SauceDemoLoginLearningTest --> LoginCredentials
-    SauceDemoLoginLearningTest --> LoginPageModel
-    Module02Demo --> BrowserDriver
-    Module02Demo --> SauceDemoLoginLearningTest
+    _01_BrowserDriver <|.. _02_ChromeBrowserDriver
+    _01_BrowserDriver <|.. _03_FirefoxBrowserDriver
+    _07_LearningTestTemplate <|-- _08_SauceDemoLoginLearningTest
+    _08_SauceDemoLoginLearningTest --> _01_BrowserDriver
+    _08_SauceDemoLoginLearningTest --> _05_LoginCredentials
+    _08_SauceDemoLoginLearningTest --> _06_LoginPageModel
+    _09_Module02Demo --> _01_BrowserDriver
+    _09_Module02Demo --> _08_SauceDemoLoginLearningTest
 ```
 
 ## What Is Intentionally Deferred
@@ -141,6 +141,6 @@ mvn exec:java
 Expected outcome:
 
 - the project compiles with Java 21.
-- `mvn exec:java` runs `Module02Demo`.
+- `mvn exec:java` runs `_09_Module02Demo`.
 - the console output shows the same login learning flow executed through two
   different browser implementations.

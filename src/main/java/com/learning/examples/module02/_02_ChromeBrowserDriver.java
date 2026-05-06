@@ -1,13 +1,13 @@
 package com.learning.examples.module02;
 
 /**
- * Chrome-style implementation of the BrowserDriver learning interface.
+ * Chrome-style implementation of the _01_BrowserDriver learning interface.
  *
  * This class is not Selenium's ChromeDriver. It is a compileable learning
  * stand-in that lets Module 02 explain how a concrete browser class can be
  * handled through an interface reference.
  */
-public class ChromeBrowserDriver implements BrowserDriver {
+public class _02_ChromeBrowserDriver implements _01_BrowserDriver {
 
     private boolean open;
     private String currentUrl;

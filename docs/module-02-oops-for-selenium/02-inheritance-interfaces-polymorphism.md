@@ -19,10 +19,10 @@ is added.
 
 ## Interface
 
-`BrowserDriver` is the Module 02 learning interface:
+`_01_BrowserDriver` is the Module 02 learning interface:
 
 ```text
-src/main/java/com/learning/examples/module02/BrowserDriver.java
+src/main/java/com/learning/examples/module02/_01_BrowserDriver.java
 ```
 
 It says what browser-like objects must be able to do:
@@ -40,15 +40,15 @@ only defines the common contract.
 Two classes implement the interface:
 
 ```text
-src/main/java/com/learning/examples/module02/ChromeBrowserDriver.java
-src/main/java/com/learning/examples/module02/FirefoxBrowserDriver.java
+src/main/java/com/learning/examples/module02/_02_ChromeBrowserDriver.java
+src/main/java/com/learning/examples/module02/_03_FirefoxBrowserDriver.java
 ```
 
 They are intentionally simple. They do not launch real browsers. Their purpose
 is to make this design visible:
 
 ```java
-BrowserDriver browser = new ChromeBrowserDriver();
+_01_BrowserDriver browser = new _02_ChromeBrowserDriver();
 ```
 
 That maps directly to the future Selenium idea:
@@ -61,14 +61,14 @@ WebDriver driver = new ChromeDriver();
 
 Polymorphism means one reference type can point to different concrete objects.
 
-In `Module02Demo`, a list stores both browser implementations:
+In `_09_Module02Demo`, a list stores both browser implementations:
 
 ```text
-src/main/java/com/learning/examples/module02/Module02Demo.java
+src/main/java/com/learning/examples/module02/_09_Module02Demo.java
 ```
 
 The loop can run the same learning test against Chrome-style and
-Firefox-style drivers because both implement `BrowserDriver`.
+Firefox-style drivers because both implement `_01_BrowserDriver`.
 
 This is why framework code usually depends on `WebDriver`, not `ChromeDriver`
 directly. It keeps the test design flexible for multiple browsers.
@@ -81,17 +81,17 @@ class.
 Module 02 uses:
 
 ```text
-src/main/java/com/learning/examples/module02/LearningTestTemplate.java
-src/main/java/com/learning/examples/module02/SauceDemoLoginLearningTest.java
+src/main/java/com/learning/examples/module02/_07_LearningTestTemplate.java
+src/main/java/com/learning/examples/module02/_08_SauceDemoLoginLearningTest.java
 ```
 
-`LearningTestTemplate` owns the test sequence:
+`_07_LearningTestTemplate` owns the test sequence:
 
 1. setup.
 2. execute the test-specific behavior.
 3. cleanup.
 
-`SauceDemoLoginLearningTest` fills in the test-specific behavior.
+`_08_SauceDemoLoginLearningTest` fills in the test-specific behavior.
 
 This prepares for a future `BaseTest`, but it is not a real `BaseTest` yet.
 Module 08 introduces that after raw Selenium tests have shown the duplication

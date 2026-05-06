@@ -8,17 +8,17 @@ package com.learning.examples.module02;
  * files, but the OOP principle stays the same: data shape and validation
  * should be explicit.
  */
-public class LoginCredentials {
+public class _05_LoginCredentials {
 
     private final String username;
     private final String password;
 
-    public LoginCredentials(String username, String password) {
+    public _05_LoginCredentials(String username, String password) {
         if (isBlank(username)) {
-            throw new InvalidTestDataException("Username must not be blank");
+            throw new _04_InvalidTestDataException("Username must not be blank");
         }
         if (isBlank(password)) {
-            throw new InvalidTestDataException("Password must not be blank");
+            throw new _04_InvalidTestDataException("Password must not be blank");
         }
 
         this.username = username;

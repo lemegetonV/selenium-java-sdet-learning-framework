@@ -5,10 +5,10 @@
 Encapsulation means an object protects its internal data and exposes safe
 behavior through methods.
 
-In Module 02, `LoginCredentials` stores login test data:
+In Module 02, `_05_LoginCredentials` stores login test data:
 
 ```text
-src/main/java/com/learning/examples/module02/LoginCredentials.java
+src/main/java/com/learning/examples/module02/_05_LoginCredentials.java
 ```
 
 The username and password are private. Other classes cannot rewrite those
@@ -39,20 +39,20 @@ Module 02 uses this same idea in a beginner-friendly way:
 
 | Class | Encapsulated Detail | Public Behavior |
 | --- | --- | --- |
-| `LoginCredentials` | raw username and password | safe getters and masked password output |
-| `LoginPageModel` | simulated login field names and action order | `loginWith(...)` |
-| `LearningTestTemplate` | setup and cleanup sequence | `run()` |
+| `_05_LoginCredentials` | raw username and password | safe getters and masked password output |
+| `_06_LoginPageModel` | simulated login field names and action order | `loginWith(...)` |
+| `_07_LearningTestTemplate` | setup and cleanup sequence | `run()` |
 
 ## Abstraction
 
 Abstraction means callers work with meaningful actions instead of low-level
 steps.
 
-`LoginPageModel` is not a real Selenium page object yet, but it introduces the
+`_06_LoginPageModel` is not a real Selenium page object yet, but it introduces the
 same design idea:
 
 ```text
-src/main/java/com/learning/examples/module02/LoginPageModel.java
+src/main/java/com/learning/examples/module02/_06_LoginPageModel.java
 ```
 
 The demo does not ask callers to know every login step. It exposes:
@@ -76,8 +76,8 @@ interaction starts in Module 03 and Module 04.
 
 | Module 02 Learning Example | Future Selenium Framework Equivalent |
 | --- | --- |
-| `LoginCredentials` | test data object or DataProvider row |
-| `LoginPageModel` | `LoginPage` page object |
+| `_05_LoginCredentials` | test data object or DataProvider row |
+| `_06_LoginPageModel` | `LoginPage` page object |
 | private fields | private locators and private helper state |
 | public `loginWith(...)` method | public page action such as `loginAs(...)` |
 | masked password output | logging/reporting rule to avoid exposing secrets |

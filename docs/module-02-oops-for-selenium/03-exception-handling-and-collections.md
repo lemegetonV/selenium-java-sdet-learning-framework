@@ -10,16 +10,16 @@ browser failure later. It should fail near the real problem.
 Module 02 introduces this idea with:
 
 ```text
-src/main/java/com/learning/examples/module02/InvalidTestDataException.java
-src/main/java/com/learning/examples/module02/LoginCredentials.java
+src/main/java/com/learning/examples/module02/_04_InvalidTestDataException.java
+src/main/java/com/learning/examples/module02/_05_LoginCredentials.java
 ```
 
-`LoginCredentials` validates that username and password values are present. If
+`_05_LoginCredentials` validates that username and password values are present. If
 not, it throws a custom runtime exception.
 
 ## Custom Exception
 
-`InvalidTestDataException` gives invalid test data a specific name.
+`_04_InvalidTestDataException` gives invalid test data a specific name.
 
 That is more useful than throwing a generic exception everywhere because the
 failure message can communicate the category of problem:
@@ -34,11 +34,11 @@ browser names.
 
 ## Where Exceptions Are Handled
 
-`Module02Demo` includes a small invalid-data example so the learner can see
+`_09_Module02Demo` includes a small invalid-data example so the learner can see
 where an exception is caught and reported:
 
 ```text
-src/main/java/com/learning/examples/module02/Module02Demo.java
+src/main/java/com/learning/examples/module02/_09_Module02Demo.java
 ```
 
 This is still beginner code, so it prints a message to the console. Later,
@@ -56,20 +56,20 @@ Examples:
 - all login data rows in a DataProvider.
 - all steps attached to a report.
 
-Module 02 uses a `List<BrowserDriver>` so one loop can run the same learning
+Module 02 uses a `List<_01_BrowserDriver>` so one loop can run the same learning
 test with multiple browser implementations.
 
 That list demonstrates polymorphism and collections at the same time:
 
 ```java
-List<BrowserDriver> browsers = List.of(
-        new ChromeBrowserDriver(),
-        new FirefoxBrowserDriver()
+List<_01_BrowserDriver> browsers = List.of(
+        new _02_ChromeBrowserDriver(),
+        new _03_FirefoxBrowserDriver()
 );
 ```
 
 Each object is different, but the loop treats each one through the same
-`BrowserDriver` interface.
+`_01_BrowserDriver` interface.
 
 ## Why This Matters Later
 

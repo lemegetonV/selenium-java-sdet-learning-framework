@@ -7,12 +7,12 @@ package com.learning.examples.module02;
  * the real framework base class early. The goal is only to show how a parent
  * class can own a common setup, execution, and cleanup sequence.
  */
-public abstract class LearningTestTemplate {
+public abstract class _07_LearningTestTemplate {
 
-    protected final BrowserDriver browserDriver;
+    protected final _01_BrowserDriver browserDriver;
     private final String baseUrl;
 
-    protected LearningTestTemplate(BrowserDriver browserDriver, String baseUrl) {
+    protected _07_LearningTestTemplate(_01_BrowserDriver browserDriver, String baseUrl) {
         this.browserDriver = browserDriver;
         this.baseUrl = baseUrl;
     }

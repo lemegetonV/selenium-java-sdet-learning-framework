@@ -8,7 +8,7 @@ package com.learning.examples.module02;
  * does it. Module 02 uses this contract to make polymorphism visible before
  * real Selenium browser classes are introduced.
  */
-public interface BrowserDriver {
+public interface _01_BrowserDriver {
 
     /**
      * Returns the browser name used in demo output.

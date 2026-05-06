@@ -36,7 +36,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>${exec.maven.plugin.version}</version>
                 <configuration>
-                    <mainClass>com.learning.examples.module02.Module02Demo</mainClass>
+                    <mainClass>com.learning.examples.module02._09_Module02Demo</mainClass>
                 </configuration>
             </plugin>
         </plugins>
