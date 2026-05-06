@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
  * Module 04 keeps locator usage raw so the learner can see exactly how
  * WebDriver finds elements before page objects and wrapper methods exist.
  */
-public class LocatorStrategyTest {
+public class _01_LocatorStrategyTest {
 
     @Test
     public void findsSauceDemoElementsWithDifferentLocatorStrategies() {

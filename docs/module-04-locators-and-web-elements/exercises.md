@@ -5,7 +5,7 @@ page objects, wrapper methods, or `BaseTest` yet.
 
 ## Exercise 1 - Add A CSS Locator Assertion
 
-In `LocatorStrategyTest`, add a CSS locator for the password field.
+In `_01_LocatorStrategyTest`, add a CSS locator for the password field.
 
 Hint:
 
@@ -37,7 +37,7 @@ Expected outcome:
 
 ## Exercise 4 - Add Another WebElement Command Check
 
-Extend `WebElementCommandTest` by typing into the password input and reading:
+Extend `_03_WebElementCommandTest` by typing into the password input and reading:
 
 ```java
 passwordInput.getAttribute("value")

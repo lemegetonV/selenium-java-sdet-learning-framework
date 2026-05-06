@@ -19,8 +19,8 @@ WebElement element = driver.findElement(By.id("user-name"));
 Module 04 introduces locators in:
 
 ```text
-src/test/java/com/learning/tests/learning/LocatorStrategyTest.java
-src/test/java/com/learning/tests/learning/LinkLocatorTest.java
+src/test/java/com/learning/tests/learning/_01_LocatorStrategyTest.java
+src/test/java/com/learning/tests/learning/_02_LinkLocatorTest.java
 ```
 
 ## Locator Strategy Table

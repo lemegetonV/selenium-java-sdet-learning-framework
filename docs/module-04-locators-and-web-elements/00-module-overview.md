@@ -21,9 +21,9 @@ flowchart LR
 | File | Status | Purpose |
 | --- | --- | --- |
 | `README.md` | changed | updates current module status |
-| `src/test/java/com/learning/tests/learning/LocatorStrategyTest.java` | added | demonstrates `By.id`, `By.name`, `By.className`, `By.tagName`, CSS, XPath, `findElement`, and `findElements` |
-| `src/test/java/com/learning/tests/learning/LinkLocatorTest.java` | added | demonstrates `By.linkText`, `By.partialLinkText`, and click navigation |
-| `src/test/java/com/learning/tests/learning/WebElementCommandTest.java` | added | demonstrates `sendKeys`, `clear`, `click`, `getText`, and `getAttribute` |
+| `src/test/java/com/learning/tests/learning/_01_LocatorStrategyTest.java` | added | demonstrates `By.id`, `By.name`, `By.className`, `By.tagName`, CSS, XPath, `findElement`, and `findElements` |
+| `src/test/java/com/learning/tests/learning/_02_LinkLocatorTest.java` | added | demonstrates `By.linkText`, `By.partialLinkText`, and click navigation |
+| `src/test/java/com/learning/tests/learning/_03_WebElementCommandTest.java` | added | demonstrates `sendKeys`, `clear`, `click`, `getText`, and `getAttribute` |
 | `docs/module-04-locators-and-web-elements/00-module-overview.md` | added | module map, file ownership, deferred scope, and quality gate |
 | `docs/module-04-locators-and-web-elements/01-locator-strategies.md` | added | explains locator strategies and stability rules |
 | `docs/module-04-locators-and-web-elements/02-findelement-vs-findelements.md` | added | explains single vs list element lookup behavior |
@@ -34,9 +34,9 @@ flowchart LR
 
 Module 04 builds directly on the raw Selenium tests from Module 03:
 
-- `src/test/java/com/learning/tests/learning/FirstBrowserTest.java`
-- `src/test/java/com/learning/tests/learning/NavigationTest.java`
-- `src/test/java/com/learning/tests/learning/SauceDemoPageLoadTest.java`
+- `src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java`
+- `src/test/java/com/learning/tests/learning/_02_NavigationTest.java`
+- `src/test/java/com/learning/tests/learning/_03_SauceDemoPageLoadTest.java`
 
 The setup duplication remains intentional. This module still does not add a
 base class.

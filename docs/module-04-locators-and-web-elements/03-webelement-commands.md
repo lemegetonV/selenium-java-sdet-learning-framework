@@ -14,7 +14,7 @@ usernameInput.sendKeys("locked_out_user");
 Module 04 demonstrates this in:
 
 ```text
-src/test/java/com/learning/tests/learning/WebElementCommandTest.java
+src/test/java/com/learning/tests/learning/_03_WebElementCommandTest.java
 ```
 
 ## `sendKeys`

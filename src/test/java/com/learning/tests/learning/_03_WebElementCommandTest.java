@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 /**
  * Demonstrates first WebElement commands on the SauceDemo login page.
  */
-public class WebElementCommandTest {
+public class _03_WebElementCommandTest {
 
     @Test
     public void typesClearsClicksAndReadsElementState() {
