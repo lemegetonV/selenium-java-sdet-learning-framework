@@ -134,6 +134,31 @@ This is intentionally a learning aid, not production Java style. Do not use
   - Use for checkboxes, dropdowns, waits, alerts, frames, windows, upload,
     download, hovers, drag/drop, Shadow DOM, tables, and dynamic elements.
 
+## Pre-Framework Selenium Coverage Guardrail
+
+Before starting Module 08 and framework abstraction, make sure the raw
+learning modules have explicitly covered the Selenium agenda in `plan.md`.
+
+Required repairs/expansions before framework work:
+
+- Module 03 covers Selenium Manager and explains Bonigarcia WebDriverManager
+  as interview/reference terminology without adding that dependency.
+- Module 04 covers locator types, locator templates, best practices, chained
+  locators, XPath syntax, dynamic XPath, chained XPath, XPath axes, and common
+  locator exceptions.
+- Module 05 covers synchronization, implicit waits, explicit waits, fluent
+  waits, expected conditions, timeout behavior, and stale element basics.
+- Module 06 must cover buttons, textboxes/textareas, hyperlinks, image
+  elements, checkbox/radio actions, dropdown HTML and Selenium `Select`,
+  common dropdown actions, and alerts.
+- Module 07 must cover calendars/date pickers, web tables, frames, windows,
+  file upload/download, mouse actions, keyboard actions, JavaScriptExecutor,
+  Shadow DOM, and a Selenium exceptions map.
+
+Screenshots are intentionally not required in the raw learning phase; keep
+them in the later listener/reporting modules unless the user changes that
+scope.
+
 ## External Reference Repositories
 
 These repositories are references only. Do not vendor them, copy them
