@@ -57,11 +57,11 @@ find src -type f | sort
 
 ## Current Module
 
-**Module:** Module 03 - First Selenium Tests
-**Branch:** `module-03-first-selenium-tests`
-**Status:** Complete
-**Previous:** Module 02 - OOP for Selenium
-**Next:** Module 04 - Locators and Web Elements
+**Module:** Module 04 - Locators and Web Elements
+**Branch:** `module-04-locators-and-web-elements`
+**Status:** In Progress
+**Previous:** Module 03 - First Selenium Tests
+**Next:** Module 05 - Waits and Dynamic Elements
 
 When the current module status is `Complete`, do not continue work on its
 branch. Start the `Next` module from `main` using the module lifecycle below.
