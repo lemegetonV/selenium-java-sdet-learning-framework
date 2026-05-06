@@ -59,7 +59,7 @@ find src -type f | sort
 
 **Module:** Module 04 - Locators and Web Elements
 **Branch:** `module-04-locators-and-web-elements`
-**Status:** In Progress
+**Status:** Complete
 **Previous:** Module 03 - First Selenium Tests
 **Next:** Module 05 - Waits and Dynamic Elements
 
