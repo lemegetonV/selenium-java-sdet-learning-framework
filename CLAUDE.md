@@ -57,11 +57,11 @@ find src -type f | sort
 
 ## Current Module
 
-**Module:** Module 05 - Waits and Dynamic Elements
-**Branch:** `module-05-waits-and-dynamic-elements`
-**Status:** Complete
-**Previous:** Module 04 - Locators and Web Elements
-**Next:** Module 06 - Forms, Alerts, Dropdowns
+**Module:** Module 06 - Forms, Alerts, Dropdowns
+**Branch:** `module-06-forms-alerts-dropdowns`
+**Status:** In Progress
+**Previous:** Module 05 - Waits and Dynamic Elements
+**Next:** Module 07 - Windows, Frames, Files, Actions
 
 When the current module status is `Complete`, do not continue work on its
 branch. Start the `Next` module from `main` using the module lifecycle below.
