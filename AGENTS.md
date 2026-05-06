@@ -59,7 +59,7 @@ find src -type f | sort
 
 **Module:** Module 06 - Forms, Alerts, Dropdowns
 **Branch:** `module-06-forms-alerts-dropdowns`
-**Status:** In Progress
+**Status:** Complete
 **Previous:** Module 05 - Waits and Dynamic Elements
 **Next:** Module 07 - Windows, Frames, Files, Actions
 
