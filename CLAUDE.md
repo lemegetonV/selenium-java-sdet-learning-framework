@@ -59,7 +59,7 @@ find src -type f | sort
 
 **Module:** Module 03 - First Selenium Tests
 **Branch:** `module-03-first-selenium-tests`
-**Status:** In Progress
+**Status:** Complete
 **Previous:** Module 02 - OOP for Selenium
 **Next:** Module 04 - Locators and Web Elements
 
@@ -374,6 +374,30 @@ choices, especially:
 Keep comments readable in source form. Avoid HTML-style JavaDoc markup such as
 `<p>`. Avoid noise comments that restate obvious syntax, but err on the side of
 explaining concepts when a learner is seeing them for the first time.
+
+## Selenium API Teaching Rules
+
+Whenever a module introduces a Selenium command, class, interface, or browser
+concept for the first time, explain it in the docs and add a concise learning
+comment at the first meaningful code usage.
+
+Docs should cover:
+
+- what the Selenium API does.
+- when the command returns or what browser state it reads.
+- common beginner mistakes and gotchas.
+- nearby alternatives, such as `get()` vs `navigate().to()`.
+- how the API maps to Java/OOP and future framework design.
+- what is intentionally not being handled yet.
+
+Code comments should be local and brief:
+
+- comment the first introduction of a Selenium concept/API.
+- comment non-obvious lifecycle behavior such as `quit()`, waits, windows,
+  frames, alerts, file handling, screenshots, or driver creation.
+- avoid repeating the same Selenium explanation in every class after the
+  concept has been introduced.
+- keep the deeper explanation in docs.
 
 ## OOP Teaching Rules
 

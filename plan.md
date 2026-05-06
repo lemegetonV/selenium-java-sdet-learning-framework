@@ -721,6 +721,25 @@ Focused concept docs should include these sections where relevant:
 Do not mark a module complete until the learner can revise the topic from the
 docs without asking the agent to re-explain the basics.
 
+## Selenium API Teaching Standard
+
+Every new Selenium command, class, interface, or browser concept must be taught
+when it first appears.
+
+Docs should explain:
+
+- what the Selenium API does.
+- when the command returns or what browser state it reads.
+- common beginner mistakes and gotchas.
+- nearby alternatives, such as `get()` vs `navigate().to()`.
+- how the API maps to Java/OOP and future framework design.
+- what is intentionally deferred.
+
+Source code should include concise learning comments at the first meaningful
+usage of a Selenium concept/API. Do not repeat the same explanation everywhere;
+after first introduction, rely on docs and use comments only for non-obvious
+behavior.
+
 ## Learning Comment Standard
 
 This is a learning framework, so source files should be more explanatory than

@@ -6,8 +6,8 @@ Page Object Model, reporting, data-driven, Cucumber, and CI/CD framework.
 
 ## Current Status
 
-- Latest completed module: Module 02 - OOP for Selenium
-- Current module branch: Module 03 - First Selenium Tests
+- Latest completed module: Module 03 - First Selenium Tests
+- Current branch checkpoint: Module 03 complete
 - Next module: Module 04 - Locators and Web Elements
 - Primary AUT for later framework modules: `https://www.saucedemo.com`
 - Selenium concept playground for later modules: `https://the-internet.herokuapp.com`

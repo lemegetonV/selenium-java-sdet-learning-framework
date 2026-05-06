@@ -22,15 +22,18 @@ public class NavigationTest {
             driver.get("https://the-internet.herokuapp.com/");
             String homeUrl = driver.getCurrentUrl();
 
+            // navigate().to() is another way to load a URL and starts a browser-history entry.
             driver.navigate().to("https://the-internet.herokuapp.com/login");
             Assert.assertTrue(driver.getCurrentUrl().contains("/login"));
 
+            // back() and forward() use browser history, just like the browser toolbar buttons.
             driver.navigate().back();
             Assert.assertEquals(driver.getCurrentUrl(), homeUrl);
 
             driver.navigate().forward();
             Assert.assertTrue(driver.getCurrentUrl().contains("/login"));
 
+            // refresh() reloads the current page; it does not create a new test or browser session.
             driver.navigate().refresh();
             Assert.assertEquals(driver.getTitle(), "The Internet");
         } finally {
