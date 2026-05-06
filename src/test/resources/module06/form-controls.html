@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Module 06 Form Controls Fixture</title>
+</head>
+<body>
+    <main>
+        <h1>Module 06 Form Controls</h1>
+
+        <form id="profile-form">
+            <label for="display-name">Display name</label>
+            <input id="display-name" name="displayName" type="text" placeholder="Display name">
+
+            <label for="notes">Notes</label>
+            <textarea id="notes" name="notes" rows="4" cols="30"></textarea>
+
+            <fieldset>
+                <legend>Preferred contact</legend>
+                <label>
+                    <input id="contact-email" name="contact" type="radio" value="email">
+                    Email
+                </label>
+                <label>
+                    <input id="contact-phone" name="contact" type="radio" value="phone">
+                    Phone
+                </label>
+            </fieldset>
+
+            <button id="save-profile" type="button">Save profile</button>
+            <p id="save-result" aria-live="polite">Not saved</p>
+        </form>
+
+        <a id="details-link" href="#details">View details</a>
+        <section id="details">
+            <h2>Details Section</h2>
+        </section>
+
+        <img
+            id="sample-logo"
+            alt="Sample inline logo"
+            width="24"
+            height="24"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Crect width='24' height='24' fill='%23006c67'/%3E%3C/svg%3E">
+    </main>
+
+    <script>
+        document.getElementById('save-profile').addEventListener('click', function () {
+            const displayName = document.getElementById('display-name').value;
+            document.getElementById('save-result').textContent = 'Saved: ' + displayName;
+        });
+    </script>
+</body>
+</html>
