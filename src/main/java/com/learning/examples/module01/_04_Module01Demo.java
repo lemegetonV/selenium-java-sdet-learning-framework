@@ -12,27 +12,27 @@ import java.util.Map;
  * Later modules replace these simulated automation ideas with real Selenium
  * WebDriver code.
  */
-public class Module01Demo {
+public class _04_Module01Demo {
 
     public static void main(String[] args) {
         /*
-         * BrowserSession is an automation-style object, but not a real browser.
+         * _01_BrowserSession is an automation-style object, but not a real browser.
          * It prepares the mental model for WebDriver objects in Selenium.
          */
-        BrowserSession session = new BrowserSession("https://www.saucedemo.com");
+        _01_BrowserSession session = new _01_BrowserSession("https://www.saucedemo.com");
         session.open();
 
         /*
-         * LoginAttempt represents test input. Later this kind of data will flow
+         * _02_LoginAttempt represents test input. Later this kind of data will flow
          * into a LoginPage method instead of being printed by a demo.
          */
-        LoginAttempt loginAttempt = new LoginAttempt("standard_user", "secret_sauce");
+        _02_LoginAttempt loginAttempt = new _02_LoginAttempt("standard_user", "secret_sauce");
 
         /*
-         * TestCaseSummary shows an object owning a mutable list. The list is
+         * _03_TestCaseSummary shows an object owning a mutable list. The list is
          * updated through methods so the class controls its own state.
          */
-        TestCaseSummary testCase = new TestCaseSummary("valid login");
+        _03_TestCaseSummary testCase = new _03_TestCaseSummary("valid login");
         testCase.addStep("Open browser");
         testCase.addStep("Navigate to SauceDemo");
         testCase.addStep("Enter username and password");
@@ -50,12 +50,12 @@ public class Module01Demo {
          * base URL, and headless mode are read from outside the code.
          */
         Map<String, String> environment = new LinkedHashMap<>();
-        environment.put("browser", BrowserSession.DEFAULT_BROWSER);
+        environment.put("browser", _01_BrowserSession.DEFAULT_BROWSER);
         environment.put("baseUrl", "https://www.saucedemo.com");
 
         printSection("Browser Session");
         System.out.println(session.getSessionSummary());
-        System.out.println("Sessions created: " + BrowserSession.getCreatedSessionCount());
+        System.out.println("Sessions created: " + _01_BrowserSession.getCreatedSessionCount());
 
         printSection("Login Attempt");
         System.out.println("Username: " + loginAttempt.getUsername());

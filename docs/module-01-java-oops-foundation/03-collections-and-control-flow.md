@@ -4,7 +4,7 @@
 
 A `List` stores ordered values.
 
-In `Module01Demo`:
+In `_04_Module01Demo`:
 
 ```java
 List<String> smokeTests = List.of("valid login", "product list loads", "cart opens");
@@ -20,7 +20,7 @@ This is useful in test automation because we often work with groups of things:
 
 ## Mutable Lists
 
-`TestCaseSummary` uses an `ArrayList` because steps are added one by one:
+`_03_TestCaseSummary` uses an `ArrayList` because steps are added one by one:
 
 ```java
 private final List<String> steps;
@@ -42,11 +42,11 @@ That prevents outside code from directly changing the internal list.
 
 A `Map` stores key-value pairs.
 
-In `Module01Demo`:
+In `_04_Module01Demo`:
 
 ```java
 Map<String, String> environment = new LinkedHashMap<>();
-environment.put("browser", BrowserSession.DEFAULT_BROWSER);
+environment.put("browser", _01_BrowserSession.DEFAULT_BROWSER);
 environment.put("baseUrl", "https://www.saucedemo.com");
 ```
 
@@ -62,7 +62,7 @@ Later, this idea will become `config.properties` and `ConfigReader`.
 
 ## If Statements
 
-`LoginAttempt` uses if-style checks through boolean methods:
+`_02_LoginAttempt` uses if-style checks through boolean methods:
 
 ```java
 public boolean hasUsername() {
@@ -77,7 +77,7 @@ reading its text.
 
 ## Loops
 
-`Module01Demo` prints each step:
+`_04_Module01Demo` prints each step:
 
 ```java
 for (String step : testCase.getSteps()) {

@@ -8,10 +8,10 @@ package com.learning.examples.module01;
  * browser: state is stored in fields, behavior is exposed through methods, and
  * callers do not edit the fields directly.
  */
-public class BrowserSession {
+public class _01_BrowserSession {
 
     /**
-     * A class-level constant shared by every BrowserSession object.
+     * A class-level constant shared by every _01_BrowserSession object.
      *
      * Later modules use the same idea for default browser/config values
      * before the project introduces external configuration files.
@@ -20,7 +20,7 @@ public class BrowserSession {
 
     /*
      * Static state belongs to the class, not to one object. This counter is a
-     * beginner-friendly way to see that all BrowserSession instances share the
+     * beginner-friendly way to see that all _01_BrowserSession instances share the
      * same class-level value.
      */
     private static int createdSessionCount;
@@ -39,14 +39,14 @@ public class BrowserSession {
      * This mirrors a common framework design: simple defaults for most tests,
      * with a second constructor or config path when more control is needed.
      */
-    public BrowserSession(String baseUrl) {
+    public _01_BrowserSession(String baseUrl) {
         this(DEFAULT_BROWSER, baseUrl);
     }
 
     /**
      * Full constructor for callers that want to choose both browser and URL.
      */
-    public BrowserSession(String browserName, String baseUrl) {
+    public _01_BrowserSession(String browserName, String baseUrl) {
         this.browserName = browserName;
         this.baseUrl = baseUrl;
         this.open = false;

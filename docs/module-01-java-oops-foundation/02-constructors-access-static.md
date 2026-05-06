@@ -4,14 +4,14 @@
 
 A constructor prepares a new object.
 
-`BrowserSession` has two constructors:
+`_01_BrowserSession` has two constructors:
 
 ```java
-public BrowserSession(String baseUrl) {
+public _01_BrowserSession(String baseUrl) {
     this(DEFAULT_BROWSER, baseUrl);
 }
 
-public BrowserSession(String browserName, String baseUrl) {
+public _01_BrowserSession(String browserName, String baseUrl) {
     this.browserName = browserName;
     this.baseUrl = baseUrl;
     this.open = false;
@@ -54,7 +54,7 @@ Access modifiers control what other code can reach.
 | `public` | reachable from other classes |
 | `private` | reachable only inside the same class |
 
-In `LoginAttempt`:
+In `_02_LoginAttempt`:
 
 ```java
 private final String username;
@@ -78,14 +78,14 @@ offers controlled behavior.
 
 Static members belong to the class, not to one object.
 
-In `BrowserSession`:
+In `_01_BrowserSession`:
 
 ```java
 public static final String DEFAULT_BROWSER = "chrome";
 private static int createdSessionCount;
 ```
 
-`DEFAULT_BROWSER` is shared by all `BrowserSession` objects.
+`DEFAULT_BROWSER` is shared by all `_01_BrowserSession` objects.
 
 `createdSessionCount` tracks how many sessions have been created.
 

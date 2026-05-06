@@ -10,7 +10,7 @@ import java.util.List;
  * will use collections for web elements, product names, table rows, and
  * data-driven test records.
  */
-public class TestCaseSummary {
+public class _03_TestCaseSummary {
 
     /*
      * The object owns its internal list. Callers can add valid steps through a
@@ -23,7 +23,7 @@ public class TestCaseSummary {
      * Creates an empty summary. Steps are added one at a time to demonstrate a
      * mutable collection inside an otherwise focused object.
      */
-    public TestCaseSummary(String testName) {
+    public _03_TestCaseSummary(String testName) {
         this.testName = testName;
         this.steps = new ArrayList<>();
     }

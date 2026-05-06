@@ -105,6 +105,21 @@ Do not duplicate framework snapshots module-by-module. Once real framework
 code exists, evolve it in place and document which files changed for each
 module.
 
+### Learning Class Ordering
+
+Early learning-only Java classes may use `_NN_` prefixes to make study order
+visible in the file tree, for example `_01_BrowserSession.java`.
+
+This rule applies only to:
+
+- `src/main/java/com/learning/examples/moduleXX/`.
+- `src/test/java/com/learning/tests/learning/` while modules are still raw
+  Selenium concept tests.
+
+This is intentionally a learning aid, not production Java style. Do not use
+`_NN_` prefixes for real framework packages such as `pages`, `driver`,
+`config`, `core`, `utils`, `base`, `listeners`, or `dataproviders`.
+
 ## Test Targets
 
 - SauceDemo: `https://www.saucedemo.com`

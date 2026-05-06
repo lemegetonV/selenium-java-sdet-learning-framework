@@ -8,12 +8,12 @@ the object can perform.
 In this module:
 
 ```java
-public class BrowserSession {
+public class _01_BrowserSession {
     // fields and methods live here
 }
 ```
 
-`BrowserSession` is not a real browser. It is a Java model that helps explain
+`_01_BrowserSession` is not a real browser. It is a Java model that helps explain
 how a future Selenium browser session will be represented.
 
 ## Object
@@ -21,12 +21,12 @@ how a future Selenium browser session will be represented.
 An object is an instance of a class.
 
 ```java
-BrowserSession session = new BrowserSession("https://www.saucedemo.com");
+_01_BrowserSession session = new _01_BrowserSession("https://www.saucedemo.com");
 ```
 
 This line says:
 
-- use the `BrowserSession` blueprint.
+- use the `_01_BrowserSession` blueprint.
 - create a real object with `new`.
 - store that object in a variable named `session`.
 
@@ -42,7 +42,7 @@ The syntax is the same idea: create an object from a class.
 
 Fields store object state.
 
-In `BrowserSession`:
+In `_01_BrowserSession`:
 
 ```java
 private final String browserName;
@@ -60,7 +60,7 @@ These fields answer: what does this object know about itself?
 
 Methods define object behavior.
 
-In `BrowserSession`:
+In `_01_BrowserSession`:
 
 ```java
 public void open() {

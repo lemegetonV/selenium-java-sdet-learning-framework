@@ -4,13 +4,13 @@ Try these after reading the docs and running the demo.
 
 ## Exercise 1 - Add a Browser Name
 
-Create another `BrowserSession` in `Module01Demo` using the two-argument
+Create another `_01_BrowserSession` in `_04_Module01Demo` using the two-argument
 constructor.
 
 Hint:
 
 ```java
-BrowserSession firefoxSession = new BrowserSession("firefox", "https://the-internet.herokuapp.com");
+_01_BrowserSession firefoxSession = new _01_BrowserSession("firefox", "https://the-internet.herokuapp.com");
 ```
 
 Expected outcome:
@@ -19,7 +19,7 @@ Expected outcome:
 
 ## Exercise 2 - Add Another Login Validation
 
-Add a method to `LoginAttempt`:
+Add a method to `_02_LoginAttempt`:
 
 ```java
 public boolean isPasswordLongEnough()
@@ -31,11 +31,11 @@ Hint:
 - Reuse `hasPassword()` before checking length.
 
 Expected outcome:
-- You can print the result from `Module01Demo`.
+- You can print the result from `_04_Module01Demo`.
 
 ## Exercise 3 - Add More Test Steps
 
-Add two more steps to `TestCaseSummary` from `Module01Demo`.
+Add two more steps to `_03_TestCaseSummary` from `_04_Module01Demo`.
 
 Expected outcome:
 - `describe()` reports the new step count.

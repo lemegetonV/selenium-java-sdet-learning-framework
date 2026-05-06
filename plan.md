@@ -198,6 +198,22 @@ Do not duplicate framework snapshots for each module. Once a framework class
 exists, evolve that class in place and explain the change in that module's
 docs.
 
+### Learning Class Ordering
+
+Early learning-only Java classes may use `_NN_` prefixes to show concept
+sequence in the file tree, for example `_01_BrowserSession.java`.
+
+This is allowed only for:
+
+- `src/main/java/com/learning/examples/moduleXX/`.
+- `src/test/java/com/learning/tests/learning/` while modules are still raw
+  Selenium concept tests.
+
+This is a learning aid, not production Java style. Do not use `_NN_` prefixes
+for real framework packages/classes such as page objects, `BaseTest`,
+`DriverFactory`, `ElementActions`, config, utilities, listeners, or data
+providers.
+
 ## Module Map
 
 ### Module 01 - Java OOP Foundation

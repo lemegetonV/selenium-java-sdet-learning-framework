@@ -7,11 +7,11 @@ package com.learning.examples.module01;
  * future test data and page object methods where username/password values are
  * passed into a login workflow.
  */
-public class LoginAttempt {
+public class _02_LoginAttempt {
 
     /*
      * The fields are private and final to show encapsulation and immutability:
-     * after a LoginAttempt is created, outside code can read safe values through
+     * after a _02_LoginAttempt is created, outside code can read safe values through
      * methods but cannot rewrite the stored credentials.
      */
     private final String username;
@@ -20,7 +20,7 @@ public class LoginAttempt {
     /**
      * Creates one login attempt with the values a test would submit.
      */
-    public LoginAttempt(String username, String password) {
+    public _02_LoginAttempt(String username, String password) {
         this.username = username;
         this.password = password;
     }

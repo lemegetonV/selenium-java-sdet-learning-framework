@@ -8,10 +8,10 @@ the Java concepts needed before Selenium appears.
 The code is intentionally small. It models automation ideas without using
 Selenium yet:
 
-- `BrowserSession` represents a future browser session.
-- `LoginAttempt` represents user input for a login form.
-- `TestCaseSummary` represents a simple test case and its steps.
-- `Module01Demo` runs the examples and shows collections, loops, objects, and
+- `_01_BrowserSession` represents a future browser session.
+- `_02_LoginAttempt` represents user input for a login form.
+- `_03_TestCaseSummary` represents a simple test case and its steps.
+- `_04_Module01Demo` runs the examples and shows collections, loops, objects, and
   method calls.
 
 ## Why We Start Here
@@ -41,14 +41,14 @@ flowchart TD
 | Concept | Where to Study |
 | --- | --- |
 | Maven project structure | `pom.xml` |
-| Class and object | `BrowserSession`, `LoginAttempt` |
+| Class and object | `_01_BrowserSession`, `_02_LoginAttempt` |
 | Fields and methods | all Module 01 classes |
-| Constructor | `BrowserSession`, `LoginAttempt`, `TestCaseSummary` |
+| Constructor | `_01_BrowserSession`, `_02_LoginAttempt`, `_03_TestCaseSummary` |
 | Access modifiers | private fields and public methods |
-| `static` | `BrowserSession.DEFAULT_BROWSER`, `createdSessionCount` |
-| Lists | `TestCaseSummary`, `Module01Demo` |
-| Maps | `Module01Demo` |
-| Loops | `Module01Demo` |
+| `static` | `_01_BrowserSession.DEFAULT_BROWSER`, `createdSessionCount` |
+| Lists | `_03_TestCaseSummary`, `_04_Module01Demo` |
+| Maps | `_04_Module01Demo` |
+| Loops | `_04_Module01Demo` |
 
 ## Files Added Or Changed
 
@@ -56,10 +56,10 @@ flowchart TD
 | --- | --- | --- |
 | `pom.xml` | added | Java 21 Maven project setup and `exec:java` entrypoint |
 | `README.md` | added | Project entrypoint and current module commands |
-| `src/main/java/com/learning/examples/module01/BrowserSession.java` | added | class, fields, constructors, static members |
-| `src/main/java/com/learning/examples/module01/LoginAttempt.java` | added | form-style object with simple validation methods |
-| `src/main/java/com/learning/examples/module01/TestCaseSummary.java` | added | list usage and defensive copy |
-| `src/main/java/com/learning/examples/module01/Module01Demo.java` | added | runnable demo for objects, collections, and loops |
+| `src/main/java/com/learning/examples/module01/_01_BrowserSession.java` | added | class, fields, constructors, static members |
+| `src/main/java/com/learning/examples/module01/_02_LoginAttempt.java` | added | form-style object with simple validation methods |
+| `src/main/java/com/learning/examples/module01/_03_TestCaseSummary.java` | added | list usage and defensive copy |
+| `src/main/java/com/learning/examples/module01/_04_Module01Demo.java` | added | runnable demo for objects, collections, and loops |
 
 ## Source Organization Note
 
