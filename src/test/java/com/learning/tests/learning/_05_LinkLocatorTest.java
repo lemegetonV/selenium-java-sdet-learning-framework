@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 /**
  * Demonstrates link text locators on The Internet home page.
  */
-public class _02_LinkLocatorTest {
+public class _05_LinkLocatorTest {
 
     @Test
     public void findsLinksByExactAndPartialText() {

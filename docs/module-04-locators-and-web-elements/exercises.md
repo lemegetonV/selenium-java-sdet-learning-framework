@@ -5,7 +5,7 @@ page objects, wrapper methods, or `BaseTest` yet.
 
 ## Exercise 1 - Add A CSS Locator Assertion
 
-In `_01_LocatorStrategyTest`, add a CSS locator for the password field.
+In `_04_LocatorStrategyTest`, add a CSS locator for the password field.
 
 Hint:
 
@@ -37,7 +37,7 @@ Expected outcome:
 
 ## Exercise 4 - Add Another WebElement Command Check
 
-Extend `_03_WebElementCommandTest` by typing into the password input and reading:
+Extend `_06_WebElementCommandTest` by typing into the password input and reading:
 
 ```java
 passwordInput.getAttribute("value")
@@ -54,3 +54,29 @@ Pick one locator from Module 04 and answer:
 2. Why is it stable or unstable?
 3. What alternative locator could work?
 4. Which one would you keep and why?
+
+## Exercise 6 - Practice A Scoped Locator
+
+In `_04_LocatorStrategyTest`, first locate the SauceDemo login container and
+then find the login button from inside that container.
+
+Hint:
+
+```java
+WebElement loginContainer = driver.findElement(By.id("login_button_container"));
+loginContainer.findElement(By.cssSelector("input[data-test='login-button']"));
+```
+
+Expected outcome:
+- assert the button value is `Login`.
+- explain why the child lookup is scoped.
+
+## Exercise 7 - Practice An XPath Axis
+
+On The Internet tables page, write an XPath that starts from a known last name
+cell and moves to another cell in the same row.
+
+Expected outcome:
+- use an axis such as `following-sibling::` or `ancestor::`.
+- assert the related cell text.
+- do not introduce table helper methods yet.

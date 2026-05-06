@@ -19,8 +19,8 @@ Behavior:
 Module 04 uses it in:
 
 ```text
-src/test/java/com/learning/tests/learning/_01_LocatorStrategyTest.java
-src/test/java/com/learning/tests/learning/_03_WebElementCommandTest.java
+src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java
+src/test/java/com/learning/tests/learning/_06_WebElementCommandTest.java
 ```
 
 ## `findElements`
