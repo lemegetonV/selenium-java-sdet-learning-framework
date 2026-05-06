@@ -9,10 +9,10 @@ import org.testng.annotations.Test;
 /**
  * Demonstrates basic browser navigation commands.
  *
- * The duplication with FirstBrowserTest is intentional. Later modules will
+ * The duplication with _01_FirstBrowserTest is intentional. Later modules will
  * remove this repetition only after the learner has seen why it hurts.
  */
-public class NavigationTest {
+public class _02_NavigationTest {
 
     @Test
     public void navigatesBackAndForwardBetweenPages() {

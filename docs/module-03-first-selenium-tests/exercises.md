@@ -18,7 +18,7 @@ The Internet
 ```
 
 Hint:
-- use the same setup/try/finally pattern as `FirstBrowserTest`.
+- use the same setup/try/finally pattern as `_01_FirstBrowserTest`.
 
 Expected outcome:
 - `mvn test` runs one additional Selenium test.
@@ -38,7 +38,7 @@ Expected outcome:
 
 ## Exercise 3 - Add A Current URL Assertion
 
-Extend `NavigationTest` with one more assertion after `refresh()`.
+Extend `_02_NavigationTest` with one more assertion after `refresh()`.
 
 Hint:
 - read the current URL with `driver.getCurrentUrl()`.
@@ -66,9 +66,9 @@ Answer:
 Compare:
 
 ```text
-src/test/java/com/learning/tests/learning/FirstBrowserTest.java
-src/test/java/com/learning/tests/learning/NavigationTest.java
-src/test/java/com/learning/tests/learning/SauceDemoPageLoadTest.java
+src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java
+src/test/java/com/learning/tests/learning/_02_NavigationTest.java
+src/test/java/com/learning/tests/learning/_03_SauceDemoPageLoadTest.java
 ```
 
 List the duplicated setup and cleanup code.

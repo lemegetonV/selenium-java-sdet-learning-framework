@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
  * Module 03 only proves that Selenium can launch a browser and load SauceDemo.
  * Locator-based login interactions are intentionally deferred to Module 04.
  */
-public class SauceDemoPageLoadTest {
+public class _03_SauceDemoPageLoadTest {
 
     @Test
     public void opensSauceDemoLoginPage() {

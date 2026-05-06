@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
  * make the raw WebDriver lifecycle visible before Module 08 extracts shared
  * setup into BaseTest.
  */
-public class FirstBrowserTest {
+public class _01_FirstBrowserTest {
 
     @Test
     public void opensTheInternetHomePage() {

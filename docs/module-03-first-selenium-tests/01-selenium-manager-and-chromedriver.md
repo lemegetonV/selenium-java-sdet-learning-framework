@@ -13,7 +13,7 @@ the learner does not manually manage driver binaries in this module.
 Module 03 uses this directly:
 
 ```text
-src/test/java/com/learning/tests/learning/FirstBrowserTest.java
+src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java
 ```
 
 Nuance:
@@ -44,9 +44,9 @@ This connects directly to Module 02:
 
 | Module 02 Example | Module 03 Selenium Code |
 | --- | --- |
-| `BrowserDriver` interface | `WebDriver` interface |
-| `ChromeBrowserDriver` class | `ChromeDriver` class |
-| `BrowserDriver browser = ...` | `WebDriver driver = ...` |
+| `_01_BrowserDriver` interface | `WebDriver` interface |
+| `_02_ChromeBrowserDriver` class | `ChromeDriver` class |
+| `_01_BrowserDriver browser = ...` | `WebDriver driver = ...` |
 | simulated `open(...)` method | real `driver.get(...)` method |
 
 Important nuance:

@@ -7,7 +7,7 @@ Module 03 introduces real Selenium WebDriver and minimal TestNG tests.
 Module 02 used compileable learning objects to explain this OOP shape:
 
 ```java
-BrowserDriver browser = new ChromeBrowserDriver();
+_01_BrowserDriver browser = new _02_ChromeBrowserDriver();
 ```
 
 Module 03 now uses the real Selenium shape:
@@ -46,9 +46,9 @@ until the logging module.
 | --- | --- | --- |
 | `pom.xml` | changed | adds Selenium, TestNG, Surefire, and test-scope SLF4J provider |
 | `README.md` | changed | updates current module status and Selenium test commands |
-| `src/test/java/com/learning/tests/learning/FirstBrowserTest.java` | added | first raw ChromeDriver test using The Internet |
-| `src/test/java/com/learning/tests/learning/NavigationTest.java` | added | demonstrates `get`, `navigate().to`, back, forward, and refresh |
-| `src/test/java/com/learning/tests/learning/SauceDemoPageLoadTest.java` | added | opens SauceDemo and asserts page title/URL without locators |
+| `src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java` | added | first raw ChromeDriver test using The Internet |
+| `src/test/java/com/learning/tests/learning/_02_NavigationTest.java` | added | demonstrates `get`, `navigate().to`, back, forward, and refresh |
+| `src/test/java/com/learning/tests/learning/_03_SauceDemoPageLoadTest.java` | added | opens SauceDemo and asserts page title/URL without locators |
 | `docs/module-03-first-selenium-tests/00-module-overview.md` | added | module map, file ownership, deferred scope, and quality gate |
 | `docs/module-03-first-selenium-tests/01-selenium-manager-and-chromedriver.md` | added | explains Selenium Manager, ChromeDriver, and headless mode |
 | `docs/module-03-first-selenium-tests/02-testng-raw-test-structure.md` | added | explains minimal TestNG usage and intentional duplication |
