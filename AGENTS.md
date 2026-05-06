@@ -59,7 +59,7 @@ find src -type f | sort
 
 **Module:** Module 05 - Waits and Dynamic Elements
 **Branch:** `module-05-waits-and-dynamic-elements`
-**Status:** In Progress
+**Status:** Complete
 **Previous:** Module 04 - Locators and Web Elements
 **Next:** Module 06 - Forms, Alerts, Dropdowns
 
