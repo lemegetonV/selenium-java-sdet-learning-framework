@@ -1,0 +1,115 @@
+# Module 06 - Forms, Alerts, Dropdowns
+
+## What This Module Adds
+
+Module 06 expands raw Selenium from locating elements to handling common
+interactive controls.
+
+Module 04 introduced `WebElement` commands. Module 05 introduced waits for
+dynamic page state. Module 06 now applies those ideas to form controls,
+dropdowns, alerts, and a login form:
+
+```mermaid
+flowchart LR
+    A["Module 04: locate and act on elements"] --> B["Module 05: wait for state"]
+    B --> C["Module 06: forms, dropdowns, alerts"]
+    C --> D["Module 07: frames, windows, files, actions"]
+```
+
+The tests are still raw Selenium learning tests. There is no `BaseTest`,
+page object, driver factory, or wrapper method yet.
+
+## Files Added Or Changed
+
+| File | Status | Purpose |
+| --- | --- | --- |
+| `src/test/resources/module06/form-controls.html` | added | local HTML fixture for textbox, textarea, radio, image, hyperlink, and button examples |
+| `src/test/java/com/learning/tests/learning/_11_TextboxTextareaButtonTest.java` | added | demonstrates textbox, textarea, button click, and reading updated page text |
+| `src/test/java/com/learning/tests/learning/_12_RadioImageHyperlinkTest.java` | added | demonstrates radio buttons, image attributes, and hyperlink navigation |
+| `src/test/java/com/learning/tests/learning/_13_CheckboxDropdownTest.java` | added | demonstrates checkbox state and Selenium `Select` dropdown actions |
+| `src/test/java/com/learning/tests/learning/_14_AlertsAndAuthenticationTest.java` | added | demonstrates JavaScript alerts, confirms, prompts, and form authentication |
+| `docs/module-06-forms-alerts-dropdowns/00-module-overview.md` | added | module map, file ownership, deferred scope, and quality gate |
+| `docs/module-06-forms-alerts-dropdowns/01-textbox-textarea-buttons.md` | added | explains input, textarea, and button actions |
+| `docs/module-06-forms-alerts-dropdowns/02-checkbox-radio-links-images.md` | added | explains selected state, radio groups, hyperlinks, and images |
+| `docs/module-06-forms-alerts-dropdowns/03-dropdowns-select.md` | added | explains HTML dropdowns and Selenium `Select` |
+| `docs/module-06-forms-alerts-dropdowns/04-alerts-and-authentication.md` | added | explains alert handling and login form flow |
+| `docs/module-06-forms-alerts-dropdowns/exercises.md` | added | practice tasks with hints and expected outcomes |
+
+## Previous Module Files Reused
+
+Module 06 builds on these raw learning examples:
+
+- `src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java`
+- `src/test/java/com/learning/tests/learning/_06_WebElementCommandTest.java`
+- `src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java`
+- `src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java`
+
+The shared `learning/` package continues its global sequence. Module 06 owns
+`_11_` through `_14_`.
+
+## Source Ownership
+
+Module 06 tests live under:
+
+```text
+src/test/java/com/learning/tests/learning/
+```
+
+They are raw Selenium concept tests, not framework tests.
+
+The local fixture lives under:
+
+```text
+src/test/resources/module06/form-controls.html
+```
+
+It is test data/fixture HTML for learning controls that are not conveniently
+available on The Internet.
+
+## Interaction Flow
+
+```mermaid
+sequenceDiagram
+    participant Test as Test method
+    participant Element as WebElement
+    participant Browser as Browser page
+    participant Alert as Alert dialog
+
+    Test->>Element: sendKeys / click / isSelected
+    Element->>Browser: update control state
+    Test->>Browser: assert text, value, URL, attribute
+    Test->>Alert: switchTo().alert()
+    Test->>Alert: accept / dismiss / sendKeys
+```
+
+## What Is Intentionally Deferred
+
+Module 06 does not add:
+
+- page objects.
+- reusable form helpers.
+- custom dropdown wrappers.
+- alert utility classes.
+- JavaScriptExecutor.
+- screenshots.
+- logging.
+- data-driven credential sets.
+- retry or click fallback logic.
+
+Those appear after raw control behavior is clear.
+
+## Quality Gate
+
+Run:
+
+```bash
+mvn test
+mvn test -Dheadless=false
+```
+
+Expected outcome:
+
+- TestNG runs twenty-five Selenium tests.
+- local fixture tests pass from `src/test/resources/module06/form-controls.html`.
+- The Internet checkbox, dropdown, alert, and login tests pass.
+- visible mode passes when `-Dheadless=false` is used.
