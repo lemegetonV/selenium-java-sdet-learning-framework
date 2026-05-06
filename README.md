@@ -7,8 +7,8 @@ Page Object Model, reporting, data-driven, Cucumber, and CI/CD framework.
 ## Current Status
 
 - Latest completed module: Module 03 - First Selenium Tests
-- Current branch checkpoint: Module 03 complete
-- Next module: Module 04 - Locators and Web Elements
+- Current module branch: Module 04 - Locators and Web Elements
+- Next module: Module 05 - Waits and Dynamic Elements
 - Primary AUT for later framework modules: `https://www.saucedemo.com`
 - Selenium concept playground for later modules: `https://the-internet.herokuapp.com`
 
@@ -31,5 +31,6 @@ mvn test
 mvn test -Dheadless=false
 ```
 
-On the Module 03 branch, `mvn test` runs the first raw Selenium/TestNG tests.
-Use `-Dheadless=false` when you want to see the Chrome browser window.
+On the Module 04 branch, `mvn test` runs the raw Selenium/TestNG browser,
+locator, and WebElement tests. Use `-Dheadless=false` when you want to see the
+Chrome browser window.
