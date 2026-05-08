@@ -57,6 +57,7 @@ drag state, selected date text, selected-row highlighting, and sort status.
 | `docs/module-07-windows-frames-files-actions/02-files-actions-shadow-dom.md` | added | explains file upload/download, mouse/keyboard actions, drag/drop, and Shadow DOM |
 | `docs/module-07-windows-frames-files-actions/03-calendars-tables-javascript.md` | added | explains date pickers, web tables, sortable tables, JavaScriptExecutor, and broken images |
 | `docs/module-07-windows-frames-files-actions/04-selenium-exceptions-map.md` | added | maps advanced Selenium exceptions to causes and later framework handling |
+| `docs/module-07-windows-frames-files-actions/99-interview-review.md` | added | interview-ready final raw Selenium mechanics review before framework modules |
 | `docs/module-07-windows-frames-files-actions/exercises.md` | added | practice tasks with hints and expected outcomes |
 
 ## Previous Module Files Reused
@@ -144,3 +145,21 @@ Expected outcome:
 - the download test creates and validates `module07-download.txt`.
 - window, frame, action, table, Shadow DOM, JavaScript, and exception tests
   pass.
+
+## Pre-Framework Readiness Standard
+
+Before starting Module 08, a learner should be able to explain:
+
+- why windows, frames, alerts, and Shadow DOM require context changes.
+- how file upload differs from OS file-picker automation.
+- why downloads are validated through browser preferences and file-system
+  checks.
+- when to use `Actions` and `Keys`.
+- why calendars and custom widgets do not have one universal Selenium API.
+- how table row filtering with streams works.
+- why JavaScriptExecutor is powerful but should be selective.
+- how the raw Selenium exception map informs future wrapper, logging, and
+  screenshot design.
+
+If these points are unclear, the framework phase will feel like abstraction
+without foundation. Use `99-interview-review.md` as the final checkpoint.

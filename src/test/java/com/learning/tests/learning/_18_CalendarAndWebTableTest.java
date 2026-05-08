@@ -29,7 +29,8 @@ public class _18_CalendarAndWebTableTest {
             /*
              * Native date inputs store ISO dates, but typing can be interpreted
              * through the browser locale. JavaScriptExecutor makes the stored ISO
-             * value explicit for this learning fixture.
+             * value explicit for this learning fixture. arguments[0] is the
+             * dateInput WebElement passed after the script string.
              */
             ((JavascriptExecutor) driver).executeScript(
                     "arguments[0].value = '2026-05-08'; arguments[0].dispatchEvent(new Event('change'));",
@@ -59,6 +60,10 @@ public class _18_CalendarAndWebTableTest {
         try {
             driver.get("https://the-internet.herokuapp.com/tables");
 
+            /*
+             * findElements returns a list and does not fail when multiple rows are
+             * present. The next stream filters this list down to the needed record.
+             */
             List<WebElement> rows = driver.findElements(By.cssSelector("#table1 tbody tr"));
             Assert.assertEquals(rows.size(), 4);
 
@@ -81,6 +86,11 @@ public class _18_CalendarAndWebTableTest {
             driver.get(module07FixtureUrl("advanced-interactions.html"));
 
             List<WebElement> rows = driver.findElements(By.cssSelector("#people-table tbody tr"));
+
+            /*
+             * The lambda keeps rows whose visible text contains Doe. This is a raw
+             * table-search pattern that later framework helpers can wrap.
+             */
             WebElement doeRow = rows.stream()
                     .filter(row -> row.getText().contains("Doe"))
                     .findFirst()
@@ -89,6 +99,7 @@ public class _18_CalendarAndWebTableTest {
             /*
              * The Internet table has edit/delete links, but this local fixture makes
              * the row-action result visible so the beginner assertion is explicit.
+             * Searching from doeRow keeps the button lookup scoped to the matched row.
              */
             doeRow.findElement(By.cssSelector("button.select-person")).click();
             Assert.assertTrue(doeRow.getAttribute("class").contains("selected-row"));
@@ -107,6 +118,10 @@ public class _18_CalendarAndWebTableTest {
 
             driver.findElement(By.id("sort-by-name")).click();
 
+            /*
+             * map(WebElement::getText) converts each first-column cell element into
+             * its visible text so the assertion can compare list order directly.
+             */
             List<String> names = driver.findElements(By.cssSelector("#sortable-table tbody tr td:first-child"))
                     .stream()
                     .map(WebElement::getText)

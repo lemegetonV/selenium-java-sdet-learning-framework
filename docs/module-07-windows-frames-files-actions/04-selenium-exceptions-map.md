@@ -49,3 +49,59 @@ failure category before wrappers are introduced.
 - switching frames/windows without proving the target exists.
 - using JavaScript click to hide `ElementNotInteractableException` before
   understanding why the element cannot be used.
+
+## Diagnostic Decision Guide
+
+When a Selenium exception appears, diagnose in this order:
+
+1. **Context:** Am I in the correct window, frame, or shadow root?
+2. **Locator:** Is the selector valid, stable, and searching the right scope?
+3. **Timing:** Does the element/page state appear after a delay?
+4. **Interactability:** Is the element visible, enabled, unobstructed, and the
+   right target for the action?
+5. **Freshness:** Did I save a `WebElement` before the DOM was rebuilt?
+
+This order prevents a common beginner habit: adding longer waits before
+checking whether Selenium is searching the wrong context.
+
+## Java Syntax To Notice
+
+```java
+Assert.expectThrows(
+        NoSuchFrameException.class,
+        () -> driver.switchTo().frame("missing-frame")
+);
+```
+
+`Assert.expectThrows` verifies that a specific exception type is thrown. The
+`() -> ...` part is a lambda expression: it delays the action so TestNG can run
+it inside the assertion and inspect the thrown exception.
+
+This pattern is only used here as a learning exercise. Normal test code should
+usually assert application behavior, not intentionally trigger Selenium
+failures.
+
+## Interview Readiness
+
+**Question: Should framework code catch and hide Selenium exceptions?**
+
+No. Framework code should add useful context and diagnostics, then either let
+the failure surface or throw a clearer framework-level exception. Swallowing
+exceptions creates false confidence.
+
+**Question: What should you check when you see `NoSuchFrameException`?**
+
+Check whether the frame exists in the current context, whether the page has
+loaded it yet, and whether Selenium is already inside the correct parent frame.
+
+**Question: What should you check when you see `ElementNotInteractableException`?**
+
+Check visibility, enabled state, overlays, scrolling, timing, and whether the
+test is trying to interact with the wrong element.
+
+## Revision Checklist
+
+- Can you map every exception in this file to a likely root cause?
+- Can you explain which exceptions are timing-related and which are context or
+  syntax problems?
+- Can you explain how screenshots and logs will improve diagnosis later?

@@ -28,6 +28,10 @@ public class _16_FileUploadDownloadTest {
         try {
             driver.get("https://the-internet.herokuapp.com/upload");
 
+            /*
+             * File inputs need a path the browser process can resolve. Keeping the
+             * path absolute avoids ambiguity about the test runner's working directory.
+             */
             Path uploadFile = Path.of("src/test/resources/module07/upload-sample.txt").toAbsolutePath();
             WebElement fileInput = driver.findElement(By.id("file-upload"));
 
@@ -40,6 +44,11 @@ public class _16_FileUploadDownloadTest {
             driver.findElement(By.id("file-submit")).click();
 
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+            /*
+             * This lambda is a small custom wait condition. Selenium polls it until
+             * the uploaded-files element is found or the timeout expires.
+             */
             WebElement uploadedFile = wait.until(currentDriver ->
                     currentDriver.findElement(By.id("uploaded-files")));
 
@@ -93,6 +102,10 @@ public class _16_FileUploadDownloadTest {
         options.addArguments("--window-size=1440,900");
 
         if (downloadDirectory != null) {
+            /*
+             * Chrome download preferences must be attached before the driver starts
+             * because they configure the browser profile used by this session.
+             */
             Map<String, Object> preferences = new HashMap<>();
             preferences.put("download.default_directory", downloadDirectory.toString());
             preferences.put("download.prompt_for_download", false);
@@ -103,6 +116,7 @@ public class _16_FileUploadDownloadTest {
     }
 
     private void deleteIfExists(Path path) throws IOException {
+        // Clean the temporary download artifacts so repeated test runs stay isolated.
         if (Files.exists(path)) {
             Files.delete(path);
         }

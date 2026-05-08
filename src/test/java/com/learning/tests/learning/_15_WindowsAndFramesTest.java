@@ -26,6 +26,12 @@ public class _15_WindowsAndFramesTest {
             driver.get("https://the-internet.herokuapp.com/windows");
 
             String originalWindow = driver.getWindowHandle();
+
+            /*
+             * getWindowHandles returns all known top-level browser contexts.
+             * Capturing the set before the click lets the test identify only the
+             * handle that appears after the new window opens.
+             */
             Set<String> windowsBeforeClick = driver.getWindowHandles();
 
             driver.findElement(By.linkText("Click Here")).click();
@@ -33,6 +39,11 @@ public class _15_WindowsAndFramesTest {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.numberOfWindowsToBe(windowsBeforeClick.size() + 1));
 
+            /*
+             * The stream keeps the handle that was not present before the click.
+             * orElseThrow is deliberate because the test cannot continue without
+             * a new window context.
+             */
             String newWindow = driver.getWindowHandles().stream()
                     .filter(windowHandle -> !windowsBeforeClick.contains(windowHandle))
                     .findFirst()
@@ -46,6 +57,10 @@ public class _15_WindowsAndFramesTest {
             driver.switchTo().window(newWindow);
             Assert.assertEquals(driver.findElement(By.tagName("h3")).getText(), "New Window");
 
+            /*
+             * close() closes the selected window only. The original window still
+             * exists, so Selenium must switch back before the next assertion.
+             */
             driver.close();
             driver.switchTo().window(originalWindow);
             Assert.assertTrue(driver.getCurrentUrl().contains("/windows"));
@@ -71,10 +86,15 @@ public class _15_WindowsAndFramesTest {
             wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("frame-left"));
             Assert.assertEquals(driver.findElement(By.tagName("body")).getText().trim(), "LEFT");
 
+            /*
+             * parentFrame moves one level up from frame-left to frame-top. It is
+             * different from defaultContent, which returns to the top page.
+             */
             driver.switchTo().parentFrame();
             wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("frame-middle"));
             Assert.assertEquals(driver.findElement(By.id("content")).getText().trim(), "MIDDLE");
 
+            // Return to the top-level page before making page-level assertions.
             driver.switchTo().defaultContent();
             Assert.assertTrue(driver.getCurrentUrl().contains("/nested_frames"));
         } finally {

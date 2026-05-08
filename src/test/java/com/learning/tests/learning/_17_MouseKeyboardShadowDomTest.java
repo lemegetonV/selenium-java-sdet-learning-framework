@@ -27,7 +27,10 @@ public class _17_MouseKeyboardShadowDomTest {
 
             WebElement hoverCard = driver.findElement(By.cssSelector(".figure"));
 
-            // Actions builds user-like mouse and keyboard gestures.
+            /*
+             * Actions builds a browser gesture. perform() is the execution step;
+             * without it, Selenium has only described the hover.
+             */
             new Actions(driver).moveToElement(hoverCard).perform();
 
             Assert.assertTrue(driver.findElement(By.cssSelector(".figcaption h5")).isDisplayed());
@@ -51,6 +54,11 @@ public class _17_MouseKeyboardShadowDomTest {
              * framework code may wrap this, but the raw API is visible here.
              */
             keyboardInput.sendKeys("abc");
+
+            /*
+             * Keys exposes non-text keyboard inputs as named constants. This is
+             * clearer than trying to type a raw escape character.
+             */
             keyboardInput.sendKeys(Keys.ESCAPE);
 
             Assert.assertEquals(keyboardInput.getAttribute("value"), "abc");
@@ -70,6 +78,10 @@ public class _17_MouseKeyboardShadowDomTest {
             WebElement source = driver.findElement(By.id("drag-source"));
             WebElement target = driver.findElement(By.id("drop-target"));
 
+            /*
+             * This chained sequence holds the source, moves to the target, releases
+             * the mouse, then sends the whole gesture with perform().
+             */
             new Actions(driver)
                     .clickAndHold(source)
                     .moveToElement(target)
@@ -95,7 +107,8 @@ public class _17_MouseKeyboardShadowDomTest {
             /*
              * Elements inside Shadow DOM are not found by normal page-level
              * findElement calls. For an open shadow root, Selenium can enter the
-             * shadow root and search from there.
+             * shadow root and search from there. SearchContext means "a searchable
+             * area"; it is not a separate WebDriver session.
              */
             SearchContext shadowRoot = shadowHost.getShadowRoot();
             shadowRoot.findElement(By.id("shadow-button")).click();
