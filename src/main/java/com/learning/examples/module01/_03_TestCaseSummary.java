@@ -25,6 +25,12 @@ public class _03_TestCaseSummary {
      */
     public _03_TestCaseSummary(String testName) {
         this.testName = testName;
+        /*
+         * The field type is List<String>, the interface. The concrete object is
+         * ArrayList because this class needs to add steps over time. Coding to
+         * the interface keeps callers focused on list behavior, not the exact
+         * implementation.
+         */
         this.steps = new ArrayList<>();
     }
 
@@ -60,6 +66,11 @@ public class _03_TestCaseSummary {
      * object's private list.
      */
     public List<String> getSteps() {
+        /*
+         * Returning steps directly would expose the private mutable ArrayList.
+         * List.copyOf creates a read-only snapshot so the object keeps ownership
+         * of its internal state.
+         */
         return List.copyOf(steps);
     }
 }

@@ -29,6 +29,11 @@ public class _02_LoginAttempt {
      * Keeps the username validation rule in one place.
      */
     public boolean hasUsername() {
+        /*
+         * Check null before isBlank(). Calling a method on null would throw
+         * NullPointerException, so defensive validation starts with the null
+         * check and only then inspects the string contents.
+         */
         return username != null && !username.isBlank();
     }
 
@@ -60,6 +65,11 @@ public class _02_LoginAttempt {
         if (!hasPassword()) {
             return "";
         }
+        /*
+         * repeat(...) creates one mask character per password character. The
+         * real value stays private, which previews later logging/reporting rules
+         * where secrets must not appear in output.
+         */
         return "*".repeat(password.length());
     }
 

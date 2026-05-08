@@ -60,6 +60,7 @@ flowchart TD
 | `src/main/java/com/learning/examples/module01/_02_LoginAttempt.java` | added | form-style object with simple validation methods |
 | `src/main/java/com/learning/examples/module01/_03_TestCaseSummary.java` | added | list usage and defensive copy |
 | `src/main/java/com/learning/examples/module01/_04_Module01Demo.java` | added | runnable demo for objects, collections, and loops |
+| `docs/module-01-java-oops-foundation/99-interview-review.md` | added | interview-ready Java/OOP revision notes for this module |
 
 ## Source Organization Note
 
@@ -90,3 +91,19 @@ mvn exec:java
 ```
 
 Both commands should complete successfully.
+
+## Readiness Standard
+
+Before moving beyond this module, a learner should be able to explain these
+ideas without memorizing code:
+
+- why Java code is organized into classes and packages.
+- how an object differs from a class.
+- why fields are usually private and methods are public.
+- what a constructor does before an object can be used.
+- how `this`, `static`, `final`, `List`, `Map`, and loops appear in real test
+  automation code.
+- why these simple examples prepare for `WebDriver`, page objects, config
+  readers, and test data classes later.
+
+Use `99-interview-review.md` as the final revision pass for this module.

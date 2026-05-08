@@ -64,16 +64,30 @@ public class _04_Module01Demo {
 
         printSection("Test Case");
         System.out.println(testCase.describe());
+        /*
+         * Enhanced for loops read naturally when every item should be handled.
+         * Later Selenium tests use the same shape for lists of WebElement values
+         * such as product names or table rows.
+         */
         for (String step : testCase.getSteps()) {
             System.out.println("- " + step);
         }
 
         printSection("Smoke Tests");
+        /*
+         * Index-based loops are useful when the position matters. Here the demo
+         * prints human-friendly numbering; later tests may use the index to
+         * compare sorted UI rows with an expected order.
+         */
         for (int index = 0; index < smokeTests.size(); index++) {
             System.out.println((index + 1) + ". " + smokeTests.get(index));
         }
 
         printSection("Environment");
+        /*
+         * Map.Entry represents one key-value pair. Reading entrySet() is the
+         * standard way to loop through a map when both the key and value matter.
+         */
         for (Map.Entry<String, String> entry : environment.entrySet()) {
             System.out.println(entry.getKey() + " = " + entry.getValue());
         }

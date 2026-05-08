@@ -322,6 +322,58 @@ Focused concept docs should reference the exact files they explain. If a doc
 discusses a class, method, package, config file, or test, include the current
 path so learners can jump from explanation to implementation without guessing.
 
+### Learning Depth Gate
+
+Passing tests is not enough to complete a module. This repository is for deep
+SDET learning and interview preparation, so a module is incomplete if its docs
+or comments are shallow.
+
+Every module must teach at four levels:
+
+- concept model: what the feature is, why it exists, and the problem it solves.
+- code model: how the Java syntax, Selenium API, TestNG API, or framework class
+  works in the exact source files.
+- nuance model: common mistakes, timing issues, browser behavior, edge cases,
+  and tradeoffs a learner must know before using the concept in real projects.
+- interview model: likely questions, strong answer framing, and vocabulary the
+  learner should be ready to explain.
+
+Focused docs should include these sections where relevant:
+
+- `Mental Model`
+- `Code Walkthrough`
+- `Java Syntax To Notice`
+- `Selenium Or Framework Nuances`
+- `Common Mistakes`
+- `Interview Readiness`
+- `How This Connects To Later Framework Design`
+- `Revision Checklist`
+
+Do not write thin docs that only summarize files. Do not mark a module complete
+until a learner can revise the topic from the docs without needing the agent to
+re-explain it.
+
+### Code Comment Depth
+
+This learning repo intentionally uses richer comments than a normal production
+repo. Comments should explain first introductions and non-obvious design
+choices, especially:
+
+- constructors, access modifiers, `final`, `static`, records, enums, and
+  collection types.
+- interfaces, inheritance, polymorphism, encapsulation, abstraction, and
+  exception handling.
+- generics, lambdas, method references, streams, `Optional`, and assertions.
+- `try/finally`, resource cleanup, browser lifecycle, and driver ownership.
+- Selenium commands, waits, locators, WebElement state, alerts, frames,
+  windows, files, JavaScriptExecutor, Shadow DOM, and Actions.
+- framework links such as why duplication exists now and what later modules
+  will centralize.
+
+Keep comments readable in source form. Avoid HTML-style JavaDoc markup such as
+`<p>`. Avoid noise comments that restate obvious syntax, but err on the side of
+explaining concepts when a learner is seeing them for the first time.
+
 ## OOP Teaching Rules
 
 Always explain Java OOP where it appears:

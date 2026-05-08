@@ -40,6 +40,11 @@ public class _01_BrowserSession {
      * with a second constructor or config path when more control is needed.
      */
     public _01_BrowserSession(String baseUrl) {
+        /*
+         * this(...) calls another constructor in the same class. It must be the
+         * first statement, and it keeps the default-browser setup in one path
+         * instead of duplicating assignment logic.
+         */
         this(DEFAULT_BROWSER, baseUrl);
     }
 
@@ -47,9 +52,19 @@ public class _01_BrowserSession {
      * Full constructor for callers that want to choose both browser and URL.
      */
     public _01_BrowserSession(String browserName, String baseUrl) {
+        /*
+         * this.browserName means "the field on this object". browserName without
+         * this is the constructor parameter. The names intentionally match so the
+         * learner sees why this is common Java constructor syntax.
+         */
         this.browserName = browserName;
         this.baseUrl = baseUrl;
         this.open = false;
+        /*
+         * createdSessionCount is static, so every new object updates the same
+         * class-level counter. The individual open/baseUrl fields above are
+         * instance state and belong to one session object.
+         */
         createdSessionCount++;
     }
 
@@ -76,6 +91,10 @@ public class _01_BrowserSession {
      * Returns a readable summary for the demo output.
      */
     public String getSessionSummary() {
+        /*
+         * This ternary expression is a compact if/else:
+         * condition ? valueWhenTrue : valueWhenFalse.
+         */
         String status = open ? "open" : "closed";
         return browserName + " session for " + baseUrl + " is " + status;
     }

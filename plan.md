@@ -693,6 +693,34 @@ Each module overview should include:
 Focused concept docs should reference the exact source files, classes,
 methods, tests, config, or test data they explain.
 
+### Learning Depth Gate
+
+Passing tests is not enough to complete a module. The curriculum is meant for
+deep SDET learning and interview readiness, so each module must teach at four
+levels:
+
+- concept model: what the feature is, why it exists, and the problem it solves.
+- code model: how the Java syntax, Selenium API, TestNG API, or framework class
+  works in the exact source files.
+- nuance model: common mistakes, browser behavior, timing issues, edge cases,
+  and design tradeoffs.
+- interview model: likely questions, strong answer framing, and vocabulary the
+  learner should be ready to explain.
+
+Focused concept docs should include these sections where relevant:
+
+- `Mental Model`
+- `Code Walkthrough`
+- `Java Syntax To Notice`
+- `Selenium Or Framework Nuances`
+- `Common Mistakes`
+- `Interview Readiness`
+- `How This Connects To Later Framework Design`
+- `Revision Checklist`
+
+Do not mark a module complete until the learner can revise the topic from the
+docs without asking the agent to re-explain the basics.
+
 ## Learning Comment Standard
 
 This is a learning framework, so source files should be more explanatory than
@@ -706,6 +734,12 @@ Use comments to teach:
 - why important design choices were made, such as encapsulation, inheritance,
   abstraction, defensive copies, waits, driver lifecycle, retry behavior, and
   reporting attachments.
+- first-time Java syntax such as constructors, access modifiers, `final`,
+  `static`, records, generics, lambdas, method references, streams,
+  `try/finally`, assertions, and exceptions.
+- first-time Selenium concepts such as locators, WebElement state, waits,
+  alerts, frames, windows, file handling, JavaScriptExecutor, Shadow DOM,
+  Actions, screenshots, and driver cleanup.
 
 Prefer concise JavaDoc on classes and important methods. Avoid noisy comments
 that only repeat the syntax. Keep Java comments readable in source form and
