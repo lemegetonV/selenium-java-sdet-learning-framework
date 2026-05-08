@@ -54,10 +54,12 @@ Nuance:
 - checkboxes support multiple independent selections.
 - radio groups usually allow one selected option per `name`.
 - `isSelected()` works for both checkboxes and radio buttons.
+- The Internet is not used here because it does not provide a simple radio
+  group page for this beginner module.
 
 ## Hyperlink Actions
 
-The fixture hyperlink is:
+The fixture hyperlink is intentionally simple:
 
 ```html
 <a id="details-link" href="#details">View details</a>
@@ -73,7 +75,7 @@ Clicking a hyperlink follows its `href` just like a user click.
 
 ## Image Actions
 
-The fixture image is:
+The fixture image is intentionally inline and stable:
 
 ```html
 <img id="sample-logo" alt="Sample inline logo" src="data:image/svg+xml,...">
@@ -92,4 +94,5 @@ What is intentionally not handled yet:
 - visual image comparison.
 - JavaScript-based natural width checks.
 
-Those are deeper validation topics and are not required for this module.
+Those are deeper validation topics. Module 07 introduces broken image
+behavior separately.

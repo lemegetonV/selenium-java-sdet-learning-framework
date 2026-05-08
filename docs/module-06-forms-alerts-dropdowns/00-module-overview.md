@@ -19,11 +19,27 @@ flowchart LR
 The tests are still raw Selenium learning tests. There is no `BaseTest`,
 page object, driver factory, or wrapper method yet.
 
+## Why A Local Fixture Exists
+
+The module uses The Internet wherever that playground has a clear page for the
+topic:
+
+- checkboxes: `https://the-internet.herokuapp.com/checkboxes`.
+- dropdowns: `https://the-internet.herokuapp.com/dropdown`.
+- alerts: `https://the-internet.herokuapp.com/javascript_alerts`.
+- form authentication: `https://the-internet.herokuapp.com/login`.
+
+The local fixture exists only for controls that The Internet does not provide
+as a compact, stable teaching page in this module: textarea, radio group,
+image attribute reading, hyperlink fragment navigation, and a simple button
+that updates visible text. The fixture is intentionally a complete learning
+page with headings, labels, visible results, and HTML comments.
+
 ## Files Added Or Changed
 
 | File | Status | Purpose |
 | --- | --- | --- |
-| `src/test/resources/module06/form-controls.html` | added | local HTML fixture for textbox, textarea, radio, image, hyperlink, and button examples |
+| `src/test/resources/module06/form-controls.html` | added | complete local learning fixture for textarea, radio, image, hyperlink, and button examples that are not cleanly covered by The Internet |
 | `src/test/java/com/learning/tests/learning/_11_TextboxTextareaButtonTest.java` | added | demonstrates textbox, textarea, button click, and reading updated page text |
 | `src/test/java/com/learning/tests/learning/_12_RadioImageHyperlinkTest.java` | added | demonstrates radio buttons, image attributes, and hyperlink navigation |
 | `src/test/java/com/learning/tests/learning/_13_CheckboxDropdownTest.java` | added | demonstrates checkbox state and Selenium `Select` dropdown actions |
@@ -63,8 +79,9 @@ The local fixture lives under:
 src/test/resources/module06/form-controls.html
 ```
 
-It is test data/fixture HTML for learning controls that are not conveniently
-available on The Internet.
+It is a complete learning fixture for controls that are not conveniently
+available on The Internet. It is not framework code and it is not the AUT for
+the final framework.
 
 ## Interaction Flow
 

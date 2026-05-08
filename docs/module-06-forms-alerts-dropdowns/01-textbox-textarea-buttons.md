@@ -7,7 +7,11 @@ src/test/resources/module06/form-controls.html
 src/test/java/com/learning/tests/learning/_11_TextboxTextareaButtonTest.java
 ```
 
-The HTML fixture includes:
+This local fixture is used because The Internet does not provide a compact
+textarea/radio/image/button page for this module. The module still uses The
+Internet for checkboxes, dropdowns, alerts, and login.
+
+The HTML fixture includes clearly labeled controls:
 
 ```html
 <input id="display-name" name="displayName" type="text">

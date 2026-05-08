@@ -134,6 +134,24 @@ This is intentionally a learning aid, not production Java style. Do not use
   - Use for checkboxes, dropdowns, waits, alerts, frames, windows, upload,
     download, hovers, drag/drop, Shadow DOM, tables, and dynamic elements.
 
+## Local Fixture Rules
+
+Use public Selenium playground pages first, especially The Internet, whenever
+they provide a stable and clear page for the concept.
+
+Add local HTML fixtures only when:
+
+- the concept is missing from the public playground.
+- the public page is known to be flaky for the Selenium API being taught.
+- the lesson needs exact, inspectable HTML that docs can reference directly.
+
+Local fixtures must be complete learning pages, not throwaway snippets. They
+should include clear headings, labels, visible result areas, and comments that
+explain which Selenium concept each section supports.
+
+Every module that introduces a local fixture must document why the fixture is
+needed and which external pages are still used.
+
 ## Pre-Framework Selenium Coverage Guardrail
 
 Before starting Module 08 and framework abstraction, make sure the raw

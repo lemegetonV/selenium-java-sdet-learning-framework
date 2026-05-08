@@ -2,20 +2,84 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Module 06 Form Controls Fixture</title>
+    <title>Module 06 Learning Fixture - Form Controls</title>
+    <style>
+        body {
+            color: #1f2933;
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+            margin: 32px;
+            max-width: 900px;
+        }
+
+        .fixture-note {
+            background: #eef6ff;
+            border-left: 4px solid #2563eb;
+            margin: 16px 0 24px;
+            padding: 12px 16px;
+        }
+
+        .control-group {
+            border: 1px solid #cbd5e1;
+            margin: 16px 0;
+            padding: 16px;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            margin-top: 12px;
+        }
+
+        input[type="text"],
+        textarea {
+            box-sizing: border-box;
+            display: block;
+            margin-top: 4px;
+            max-width: 420px;
+            padding: 8px;
+            width: 100%;
+        }
+
+        button,
+        a {
+            display: inline-block;
+            margin-top: 12px;
+        }
+
+        .result {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            margin-top: 12px;
+            padding: 8px;
+        }
+    </style>
 </head>
 <body>
     <main>
-        <h1>Module 06 Form Controls</h1>
+        <h1>Module 06 Learning Fixture - Form Controls</h1>
+
+        <p class="fixture-note">
+            This local page exists because The Internet does not provide one
+            compact, stable page for textarea, radio group, image attribute,
+            hyperlink, and button-state examples. Module 06 still uses The
+            Internet for checkboxes, dropdowns, alerts, and login.
+        </p>
 
         <form id="profile-form">
-            <label for="display-name">Display name</label>
-            <input id="display-name" name="displayName" type="text" placeholder="Display name">
+            <!-- Textbox and textarea controls for sendKeys, clear, and value assertions. -->
+            <section class="control-group" aria-labelledby="text-controls-heading">
+                <h2 id="text-controls-heading">Textbox And Textarea</h2>
 
-            <label for="notes">Notes</label>
-            <textarea id="notes" name="notes" rows="4" cols="30"></textarea>
+                <label for="display-name">Display name</label>
+                <input id="display-name" name="displayName" type="text" placeholder="Display name">
 
-            <fieldset>
+                <label for="notes">Notes</label>
+                <textarea id="notes" name="notes" rows="4" cols="30"></textarea>
+            </section>
+
+            <!-- Radio buttons share the same name to demonstrate one-selected-option behavior. -->
+            <fieldset class="control-group">
                 <legend>Preferred contact</legend>
                 <label>
                     <input id="contact-email" name="contact" type="radio" value="email">
@@ -27,21 +91,27 @@
                 </label>
             </fieldset>
 
+            <!-- Button click updates visible page text so Selenium can assert the result. -->
             <button id="save-profile" type="button">Save profile</button>
-            <p id="save-result" aria-live="polite">Not saved</p>
+            <p id="save-result" class="result" aria-live="polite">Not saved</p>
         </form>
 
-        <a id="details-link" href="#details">View details</a>
-        <section id="details">
-            <h2>Details Section</h2>
+        <section id="details" class="control-group">
+            <h2>Hyperlink Target</h2>
+            <p>The link below navigates to this section by changing the URL fragment.</p>
+            <a id="details-link" href="#details">View details</a>
         </section>
 
-        <img
-            id="sample-logo"
-            alt="Sample inline logo"
-            width="24"
-            height="24"
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Crect width='24' height='24' fill='%23006c67'/%3E%3C/svg%3E">
+        <section class="control-group" aria-labelledby="image-heading">
+            <h2 id="image-heading">Image Element</h2>
+            <p>Selenium reads image attributes such as <code>alt</code> and <code>src</code>.</p>
+            <img
+                id="sample-logo"
+                alt="Sample inline logo"
+                width="24"
+                height="24"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Crect width='24' height='24' fill='%23006c67'/%3E%3C/svg%3E">
+        </section>
     </main>
 
     <script>
