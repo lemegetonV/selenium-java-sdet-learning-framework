@@ -8,6 +8,18 @@ src/test/java/com/learning/tests/learning/_19_JavaScriptAndExceptionsTest.java
 src/test/resources/module07/advanced-interactions.html
 ```
 
+This topic uses The Internet for web table reading, JavaScript page-state
+reading, and broken images:
+
+```text
+https://the-internet.herokuapp.com/tables
+https://the-internet.herokuapp.com/
+https://the-internet.herokuapp.com/broken_images
+```
+
+The local fixture remains for calendar/date-picker behavior, visible row
+actions, and deterministic sorting.
+
 ## Calendar And Date Picker Widgets
 
 Calendars are not one Selenium API. They are usually one of these:
@@ -16,7 +28,8 @@ Calendars are not one Selenium API. They are usually one of these:
 - custom HTML widgets with buttons/cells.
 - third-party JavaScript components.
 
-Module 07 shows two strategies.
+Module 07 uses a local fixture here because The Internet does not provide a
+calendar/date-picker page for this lesson. The fixture shows two strategies.
 
 For a native date input, the test sets the stored ISO value explicitly:
 
@@ -39,20 +52,26 @@ driver.findElement(By.id("date-2026-05-08")).click();
 
 ## Web Tables
 
-Module 07 introduces table extraction:
+Module 07 introduces table extraction on The Internet:
 
 ```java
-List<WebElement> rows = driver.findElements(By.cssSelector("#people-table tbody tr"));
+List<WebElement> rows = driver.findElements(By.cssSelector("#table1 tbody tr"));
 ```
 
-Then it finds a row by cell text and clicks an action in the same row:
+Then it finds a row by cell text:
 
 ```java
 WebElement doeRow = rows.stream()
         .filter(row -> row.getText().contains("Doe"))
         .findFirst()
         .orElseThrow();
+```
 
+The Internet table is good for reading cells, but its row actions do not
+produce a beginner-friendly visible result. The local fixture adds a visible
+row action result:
+
+```java
 doeRow.findElement(By.cssSelector("button.select-person")).click();
 ```
 
@@ -78,7 +97,8 @@ This prepares for later collection and assertion patterns in framework tests.
 
 ## JavaScriptExecutor
 
-`JavascriptExecutor` runs script inside the current page:
+`JavascriptExecutor` runs script inside the current page. Module 07 reads
+simple browser state from The Internet:
 
 ```java
 JavascriptExecutor javascript = (JavascriptExecutor) driver;
@@ -99,8 +119,9 @@ user interaction problems.
 
 ## Broken Images
 
-Selenium can locate an image and read attributes. To check whether the browser
-loaded it, Module 07 reads browser image properties:
+Selenium can locate an image and read attributes. Module 07 uses The Internet
+broken images page. To check whether the browser loaded the image, the test
+reads browser image properties:
 
 ```java
 return arguments[0].complete && arguments[0].naturalWidth === 0;

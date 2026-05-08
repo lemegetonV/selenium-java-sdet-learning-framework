@@ -23,14 +23,14 @@ public class _17_MouseKeyboardShadowDomTest {
         WebDriver driver = createChromeDriver();
 
         try {
-            driver.get(module07FixtureUrl("advanced-interactions.html"));
+            driver.get("https://the-internet.herokuapp.com/hovers");
 
-            WebElement hoverCard = driver.findElement(By.id("hover-card"));
+            WebElement hoverCard = driver.findElement(By.cssSelector(".figure"));
 
             // Actions builds user-like mouse and keyboard gestures.
             new Actions(driver).moveToElement(hoverCard).perform();
 
-            Assert.assertEquals(driver.findElement(By.id("hover-result")).getText(), "Hover detected");
+            Assert.assertTrue(driver.findElement(By.cssSelector(".figcaption h5")).isDisplayed());
         } finally {
             driver.quit();
         }
@@ -41,9 +41,9 @@ public class _17_MouseKeyboardShadowDomTest {
         WebDriver driver = createChromeDriver();
 
         try {
-            driver.get(module07FixtureUrl("advanced-interactions.html"));
+            driver.get("https://the-internet.herokuapp.com/key_presses");
 
-            WebElement keyboardInput = driver.findElement(By.id("keyboard-input"));
+            WebElement keyboardInput = driver.findElement(By.id("target"));
             keyboardInput.click();
 
             /*
@@ -54,7 +54,7 @@ public class _17_MouseKeyboardShadowDomTest {
             keyboardInput.sendKeys(Keys.ESCAPE);
 
             Assert.assertEquals(keyboardInput.getAttribute("value"), "abc");
-            Assert.assertEquals(driver.findElement(By.id("keyboard-result")).getText(), "Last key: Escape");
+            Assert.assertEquals(driver.findElement(By.id("result")).getText(), "You entered: ESCAPE");
         } finally {
             driver.quit();
         }

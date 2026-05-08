@@ -9,6 +9,17 @@ src/test/resources/module07/advanced-interactions.html
 src/test/resources/module07/upload-sample.txt
 ```
 
+This topic uses The Internet for upload, hover, and key presses:
+
+```text
+https://the-internet.herokuapp.com/upload
+https://the-internet.herokuapp.com/hovers
+https://the-internet.herokuapp.com/key_presses
+```
+
+The local fixture remains for exact download content, reliable drag/drop, and
+open Shadow DOM click behavior.
+
 ## File Upload
 
 Selenium uploads a file by sending an absolute path to an
@@ -27,9 +38,16 @@ Good upload test flow:
 2. Send an absolute file path.
 3. Assert the page displays or processes the uploaded file.
 
+Module 07 uses The Internet for this because its upload page is stable and
+clear.
+
 ## File Download
 
-Module 07 configures Chrome with a temporary download directory:
+Module 07 uses a local fixture for download because The Internet has download
+links, but this repo does not own their exact content. The local link lets the
+test validate a known file name and known file content.
+
+The test configures Chrome with a temporary download directory:
 
 ```java
 preferences.put("download.default_directory", downloadDirectory.toString());
@@ -47,7 +65,8 @@ the file after the click has returned.
 
 ## Mouse Actions
 
-Selenium's `Actions` class builds user-like gestures:
+The hover example uses The Internet. Selenium's `Actions` class builds
+user-like gestures:
 
 ```java
 new Actions(driver).moveToElement(hoverCard).perform();
@@ -64,7 +83,8 @@ Do not use Actions when a normal `click()` or `sendKeys()` is enough.
 
 ## Keyboard Actions
 
-Module 07 sends normal text and a special key:
+The keyboard example uses The Internet key presses page. Module 07 sends
+normal text and a special key:
 
 ```java
 keyboardInput.sendKeys("abc");
@@ -76,7 +96,7 @@ may centralize keyboard actions, but this module keeps the raw API visible.
 
 ## Drag And Drop
 
-The fixture uses mouse events so the learner can see the gesture:
+The local fixture uses mouse events so the learner can see the gesture:
 
 ```java
 new Actions(driver)
@@ -86,13 +106,14 @@ new Actions(driver)
         .perform();
 ```
 
-Real drag/drop widgets can be harder because some applications use custom
-JavaScript, HTML5 drag events, or canvas. Module 07 teaches the Selenium API
-shape without adding JavaScript fallbacks yet.
+The Internet has a drag/drop page, but HTML5 drag/drop is often inconsistent
+with beginner Selenium `Actions` examples. Module 07 uses a deterministic
+fixture for the first raw Actions lesson and defers JavaScript fallbacks.
 
 ## Shadow DOM
 
-Shadow DOM hides internal elements behind a shadow host:
+The local fixture uses an open shadow root with a clickable button. Shadow DOM
+hides internal elements behind a shadow host:
 
 ```java
 WebElement shadowHost = driver.findElement(By.id("shadow-host"));

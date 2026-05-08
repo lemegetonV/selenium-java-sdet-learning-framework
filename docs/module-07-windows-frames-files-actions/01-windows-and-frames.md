@@ -4,10 +4,14 @@
 
 ```text
 src/test/java/com/learning/tests/learning/_15_WindowsAndFramesTest.java
-src/test/resources/module07/advanced-interactions.html
-src/test/resources/module07/window-target.html
-src/test/resources/module07/frame-child.html
-src/test/resources/module07/frame-grandchild.html
+```
+
+This topic uses The Internet because it has clean public pages for windows
+and nested frames:
+
+```text
+https://the-internet.herokuapp.com/windows
+https://the-internet.herokuapp.com/nested_frames
 ```
 
 ## Window Handles
@@ -19,7 +23,8 @@ String originalWindow = driver.getWindowHandle();
 Set<String> windowsBeforeClick = driver.getWindowHandles();
 ```
 
-After clicking a `target="_blank"` link, the test waits for a second window:
+The test opens The Internet windows page and clicks `Click Here`. After that,
+it waits for a second window:
 
 ```java
 wait.until(ExpectedConditions.numberOfWindowsToBe(windowsBeforeClick.size() + 1));
@@ -46,7 +51,7 @@ frame are not visible to page-level `findElement` calls.
 Module 07 uses:
 
 ```java
-wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("profile-frame")));
+wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("frame-top"));
 ```
 
 This waits for the frame and switches into it.
@@ -56,8 +61,8 @@ This waits for the frame and switches into it.
 Nested frames require step-by-step switching:
 
 ```java
-driver.switchTo().frame("profile-frame");
-driver.switchTo().frame("nested-frame");
+driver.switchTo().frame("frame-top");
+driver.switchTo().frame("frame-left");
 ```
 
 To return to the top page:

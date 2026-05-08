@@ -26,10 +26,10 @@ public class _16_FileUploadDownloadTest {
         WebDriver driver = createChromeDriver();
 
         try {
-            driver.get(module07FixtureUrl("advanced-interactions.html"));
+            driver.get("https://the-internet.herokuapp.com/upload");
 
             Path uploadFile = Path.of("src/test/resources/module07/upload-sample.txt").toAbsolutePath();
-            WebElement fileInput = driver.findElement(By.id("upload-file"));
+            WebElement fileInput = driver.findElement(By.id("file-upload"));
 
             /*
              * Selenium uploads files by sending the absolute file path to an
@@ -37,7 +37,13 @@ public class _16_FileUploadDownloadTest {
              */
             fileInput.sendKeys(uploadFile.toString());
 
-            Assert.assertEquals(driver.findElement(By.id("uploaded-file-name")).getText(), "upload-sample.txt");
+            driver.findElement(By.id("file-submit")).click();
+
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebElement uploadedFile = wait.until(currentDriver ->
+                    currentDriver.findElement(By.id("uploaded-files")));
+
+            Assert.assertEquals(uploadedFile.getText(), "upload-sample.txt");
         } finally {
             driver.quit();
         }

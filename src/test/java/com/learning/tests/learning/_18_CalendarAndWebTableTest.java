@@ -52,25 +52,42 @@ public class _18_CalendarAndWebTableTest {
     }
 
     @Test
-    public void readsTableRowsAndClicksActionInMatchingRow() {
+    public void readsRowsFromTheInternetTable() {
         WebDriver driver = createChromeDriver();
 
         try {
-            driver.get(module07FixtureUrl("advanced-interactions.html"));
+            driver.get("https://the-internet.herokuapp.com/tables");
 
-            List<WebElement> rows = driver.findElements(By.cssSelector("#people-table tbody tr"));
-            Assert.assertEquals(rows.size(), 2);
+            List<WebElement> rows = driver.findElements(By.cssSelector("#table1 tbody tr"));
+            Assert.assertEquals(rows.size(), 4);
 
             WebElement doeRow = rows.stream()
                     .filter(row -> row.getText().contains("Doe"))
                     .findFirst()
                     .orElseThrow();
 
-            Assert.assertTrue(doeRow.getText().contains("jdoe@example.com"));
+            Assert.assertTrue(doeRow.getText().contains("jdoe@hotmail.com"));
+        } finally {
+            driver.quit();
+        }
+    }
+
+    @Test
+    public void clicksActionInMatchingFixtureRow() {
+        WebDriver driver = createChromeDriver();
+
+        try {
+            driver.get(module07FixtureUrl("advanced-interactions.html"));
+
+            List<WebElement> rows = driver.findElements(By.cssSelector("#people-table tbody tr"));
+            WebElement doeRow = rows.stream()
+                    .filter(row -> row.getText().contains("Doe"))
+                    .findFirst()
+                    .orElseThrow();
 
             /*
-             * This pattern appears often in real tests: find the row by cell text,
-             * then click an action button in that same row.
+             * The Internet table has edit/delete links, but this local fixture makes
+             * the row-action result visible so the beginner assertion is explicit.
              */
             doeRow.findElement(By.cssSelector("button.select-person")).click();
             Assert.assertEquals(driver.findElement(By.id("selected-person")).getText(), "Jane Doe");

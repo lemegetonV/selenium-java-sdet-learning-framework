@@ -21,14 +21,29 @@ flowchart LR
 The tests are still raw learning tests. The duplication is intentional because
 Module 08 will make the need for `BaseTest` visible.
 
+## Why A Local Fixture Still Exists
+
+Module 07 now uses The Internet first wherever it has a clear page:
+
+- windows/tabs: `https://the-internet.herokuapp.com/windows`.
+- nested frames: `https://the-internet.herokuapp.com/nested_frames`.
+- file upload: `https://the-internet.herokuapp.com/upload`.
+- hovers: `https://the-internet.herokuapp.com/hovers`.
+- key presses: `https://the-internet.herokuapp.com/key_presses`.
+- web table reading: `https://the-internet.herokuapp.com/tables`.
+- broken images: `https://the-internet.herokuapp.com/broken_images`.
+
+The local fixture remains only for gaps where the public playground is missing,
+too broad, or not deterministic enough for a beginner lesson: exact download
+content, reliable drag/drop, open Shadow DOM click behavior, calendar/date
+picker examples, visible row action output, deterministic sorting, and a
+hidden element for exception teaching.
+
 ## Files Added Or Changed
 
 | File | Status | Purpose |
 | --- | --- | --- |
-| `src/test/resources/module07/advanced-interactions.html` | added | local fixture for windows, frames, upload/download, actions, calendar, tables, Shadow DOM, images, and exception triggers |
-| `src/test/resources/module07/window-target.html` | added | target page opened in a new window/tab |
-| `src/test/resources/module07/frame-child.html` | added | child frame fixture |
-| `src/test/resources/module07/frame-grandchild.html` | added | nested frame fixture |
+| `src/test/resources/module07/advanced-interactions.html` | added | complete local learning fixture for exact download content, drag/drop, calendar, row actions, sorting, Shadow DOM, and controlled exceptions |
 | `src/test/resources/module07/upload-sample.txt` | added | file uploaded through `<input type="file">` |
 | `src/test/java/com/learning/tests/learning/_15_WindowsAndFramesTest.java` | added | demonstrates window handles and nested frame switching |
 | `src/test/java/com/learning/tests/learning/_16_FileUploadDownloadTest.java` | added | demonstrates file upload and download validation |
@@ -71,8 +86,9 @@ Module 07 fixture files live under:
 src/test/resources/module07/
 ```
 
-They are local test pages used to make advanced browser mechanics stable and
-inspectable.
+They are local test pages used only where The Internet does not provide a
+clear or deterministic teaching page. They are not framework code and they are
+not the final AUT.
 
 ## Context Switching Map
 
@@ -116,9 +132,12 @@ mvn test -Dheadless=false
 
 Expected outcome:
 
-- TestNG runs thirty-nine Selenium tests.
-- Module 07 local fixture tests pass.
-- the file upload test reads `upload-sample.txt`.
+- TestNG runs forty Selenium tests.
+- The Internet window, frame, upload, hover, key press, table, and broken image
+  tests pass.
+- Module 07 local fixture tests pass for exact download, drag/drop, calendar,
+  row action, sorting, Shadow DOM, and controlled exceptions.
+- the file upload test sends `upload-sample.txt`.
 - the download test creates and validates `module07-download.txt`.
 - window, frame, action, table, Shadow DOM, JavaScript, and exception tests
   pass.

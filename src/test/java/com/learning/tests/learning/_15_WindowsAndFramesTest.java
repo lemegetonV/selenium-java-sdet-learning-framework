@@ -1,6 +1,5 @@
 package com.learning.tests.learning;
 
-import java.nio.file.Path;
 import java.time.Duration;
 import java.util.Set;
 
@@ -24,12 +23,12 @@ public class _15_WindowsAndFramesTest {
         WebDriver driver = createChromeDriver();
 
         try {
-            driver.get(module07FixtureUrl("advanced-interactions.html"));
+            driver.get("https://the-internet.herokuapp.com/windows");
 
             String originalWindow = driver.getWindowHandle();
             Set<String> windowsBeforeClick = driver.getWindowHandles();
 
-            driver.findElement(By.id("new-window-link")).click();
+            driver.findElement(By.linkText("Click Here")).click();
 
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.numberOfWindowsToBe(windowsBeforeClick.size() + 1));
@@ -45,11 +44,11 @@ public class _15_WindowsAndFramesTest {
              * new browser context active.
              */
             driver.switchTo().window(newWindow);
-            Assert.assertEquals(driver.findElement(By.id("window-heading")).getText(), "New Window Loaded");
+            Assert.assertEquals(driver.findElement(By.tagName("h3")).getText(), "New Window");
 
             driver.close();
             driver.switchTo().window(originalWindow);
-            Assert.assertEquals(driver.findElement(By.tagName("h1")).getText(), "Module 07 Advanced Interactions");
+            Assert.assertTrue(driver.getCurrentUrl().contains("/windows"));
         } finally {
             driver.quit();
         }
@@ -60,7 +59,7 @@ public class _15_WindowsAndFramesTest {
         WebDriver driver = createChromeDriver();
 
         try {
-            driver.get(module07FixtureUrl("advanced-interactions.html"));
+            driver.get("https://the-internet.herokuapp.com/nested_frames");
 
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -68,21 +67,19 @@ public class _15_WindowsAndFramesTest {
              * A frame is its own browsing context. Elements inside it are not
              * searchable until Selenium switches into that frame.
              */
-            wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("profile-frame")));
-            Assert.assertEquals(driver.findElement(By.id("frame-heading")).getText(), "Inside child frame");
+            wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("frame-top"));
+            wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("frame-left"));
+            Assert.assertEquals(driver.findElement(By.tagName("body")).getText().trim(), "LEFT");
 
-            wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("nested-frame")));
-            Assert.assertEquals(driver.findElement(By.id("nested-frame-message")).getText(), "Inside nested frame");
+            driver.switchTo().parentFrame();
+            wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("frame-middle"));
+            Assert.assertEquals(driver.findElement(By.id("content")).getText().trim(), "MIDDLE");
 
             driver.switchTo().defaultContent();
-            Assert.assertEquals(driver.findElement(By.tagName("h1")).getText(), "Module 07 Advanced Interactions");
+            Assert.assertTrue(driver.getCurrentUrl().contains("/nested_frames"));
         } finally {
             driver.quit();
         }
-    }
-
-    private String module07FixtureUrl(String fileName) {
-        return Path.of("src/test/resources/module07", fileName).toUri().toString();
     }
 
     private WebDriver createChromeDriver() {

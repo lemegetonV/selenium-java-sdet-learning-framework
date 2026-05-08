@@ -24,7 +24,7 @@ public class _19_JavaScriptAndExceptionsTest {
         WebDriver driver = createChromeDriver();
 
         try {
-            driver.get(module07FixtureUrl("advanced-interactions.html"));
+            driver.get("https://the-internet.herokuapp.com/");
 
             JavascriptExecutor javascript = (JavascriptExecutor) driver;
 
@@ -34,10 +34,10 @@ public class _19_JavaScriptAndExceptionsTest {
              * browser state you need.
              */
             String title = (String) javascript.executeScript("return document.title;");
-            Long sectionCount = (Long) javascript.executeScript("return document.querySelectorAll('section').length;");
+            Long linkCount = (Long) javascript.executeScript("return document.querySelectorAll('a').length;");
 
-            Assert.assertEquals(title, "Module 07 Advanced Interactions");
-            Assert.assertTrue(sectionCount >= 8);
+            Assert.assertEquals(title, "The Internet");
+            Assert.assertTrue(linkCount > 20);
         } finally {
             driver.quit();
         }
@@ -48,9 +48,9 @@ public class _19_JavaScriptAndExceptionsTest {
         WebDriver driver = createChromeDriver();
 
         try {
-            driver.get(module07FixtureUrl("advanced-interactions.html"));
+            driver.get("https://the-internet.herokuapp.com/broken_images");
 
-            WebElement brokenImage = driver.findElement(By.id("broken-image"));
+            WebElement brokenImage = driver.findElements(By.cssSelector(".example img")).get(0);
             JavascriptExecutor javascript = (JavascriptExecutor) driver;
 
             Boolean isBroken = (Boolean) javascript.executeScript(
