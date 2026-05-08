@@ -88,3 +88,55 @@ interaction starts in Module 03 and Module 04.
 - Abstraction gives callers a simple action name.
 - Page objects are not magic; they are classes that apply these two OOP ideas.
 - Module 02 teaches the shape before Module 03 adds real WebDriver code.
+
+## Java Syntax To Notice
+
+```java
+private final String usernameField = "username field";
+```
+
+The field is private because callers should not depend on page internals.
+Later, this idea becomes private Selenium locators such as:
+
+```java
+private final By usernameInput = By.id("user-name");
+```
+
+```java
+public List<String> loginWith(_05_LoginCredentials credentials)
+```
+
+The method is public because it represents a page action the test is allowed to
+perform. The return type is `List<String>` because this module is still
+simulating steps instead of driving a real browser.
+
+## Nuances For Page Object Design
+
+- A page object should expose user-intent methods, not every tiny Selenium
+  command. `loginWith(credentials)` is easier to understand than separate test
+  calls for username field, password field, and button internals.
+- Encapsulation does not mean hiding everything from the learner. It means the
+  class owns details that should change together.
+- Abstraction should not arrive before the learner understands the lower-level
+  actions. That is why real page objects are deferred until after raw Selenium
+  modules.
+
+## Interview Readiness
+
+**Question: What is encapsulation in a Selenium framework?**
+
+Encapsulation means keeping page details such as locators and low-level actions
+inside page or framework classes, while tests call clear public methods such as
+`loginWith(...)` or `addProductToCart(...)`.
+
+**Question: What is abstraction in page objects?**
+
+Abstraction means exposing meaningful business actions and hiding mechanical
+steps. A test should read like behavior, not like a sequence of DOM operations.
+
+## Revision Checklist
+
+- Can you explain why the simulated fields in `_06_LoginPageModel` are private?
+- Can you explain why `loginWith(...)` is public?
+- Can you explain what would be premature if we created a real page object in
+  Module 02?

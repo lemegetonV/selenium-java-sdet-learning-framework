@@ -58,6 +58,7 @@ patterns instead of understandable design.
 | `docs/module-02-oops-for-selenium/01-encapsulation-and-abstraction.md` | added | explains private data and public actions in Selenium-style design |
 | `docs/module-02-oops-for-selenium/02-inheritance-interfaces-polymorphism.md` | added | explains Selenium's `WebDriver driver = new ChromeDriver()` pattern |
 | `docs/module-02-oops-for-selenium/03-exception-handling-and-collections.md` | added | explains validation, custom exceptions, and lists in automation |
+| `docs/module-02-oops-for-selenium/99-interview-review.md` | added | interview-ready OOP and Selenium-design revision notes |
 | `docs/module-02-oops-for-selenium/exercises.md` | added | practice tasks with hints and expected outcomes |
 
 ## Previous Module Files Reused
@@ -144,3 +145,19 @@ Expected outcome:
 - `mvn exec:java` runs `_09_Module02Demo`.
 - the console output shows the same login learning flow executed through two
   different browser implementations.
+
+## Readiness Standard
+
+Before Module 03 introduces real Selenium WebDriver, a learner should be able
+to explain why this module created fake browser drivers first:
+
+- interfaces let code depend on behavior instead of one implementation.
+- polymorphism is the reason `WebDriver driver = new ChromeDriver()` works.
+- inheritance can share lifecycle steps, but it should not become a dumping
+  ground for unrelated utilities.
+- encapsulation is the reason page-style classes expose actions instead of
+  page internals.
+- custom exceptions make invalid test data fail with a meaningful message.
+
+Use `99-interview-review.md` to revise these points before starting the first
+real Selenium tests.

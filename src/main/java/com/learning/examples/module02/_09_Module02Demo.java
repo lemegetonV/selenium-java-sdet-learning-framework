@@ -28,6 +28,11 @@ public class _09_Module02Demo {
 
         for (_01_BrowserDriver browser : browsers) {
             printSection("Learning test on " + browser.getBrowserName());
+            /*
+             * The constructor receives the interface type, not a concrete Chrome
+             * or Firefox type. That is dependency inversion in a beginner form:
+             * the test depends on browser behavior, not one implementation.
+             */
             _08_SauceDemoLoginLearningTest learningTest =
                     new _08_SauceDemoLoginLearningTest(browser, SAUCE_DEMO_URL, credentials);
             learningTest.run();
@@ -41,6 +46,11 @@ public class _09_Module02Demo {
         try {
             new _05_LoginCredentials("standard_user", "");
         } catch (_04_InvalidTestDataException exception) {
+            /*
+             * This catch exists only to demonstrate the exception message. In a
+             * real test, invalid setup data should usually fail the test instead
+             * of being swallowed.
+             */
             System.out.println("Rejected invalid login data: " + exception.getMessage());
         }
     }

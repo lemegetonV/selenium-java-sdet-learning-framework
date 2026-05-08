@@ -14,6 +14,11 @@ public class _05_LoginCredentials {
     private final String password;
 
     public _05_LoginCredentials(String username, String password) {
+        /*
+         * Validate in the constructor so a credentials object cannot exist in an
+         * invalid state. Later framework config and test-data readers should use
+         * the same fail-fast idea.
+         */
         if (isBlank(username)) {
             throw new _04_InvalidTestDataException("Username must not be blank");
         }
@@ -37,6 +42,10 @@ public class _05_LoginCredentials {
     }
 
     private boolean isBlank(String value) {
+        /*
+         * Keep the null check before isBlank(). This avoids NullPointerException
+         * and gives the class one reusable definition of "blank input".
+         */
         return value == null || value.isBlank();
     }
 }

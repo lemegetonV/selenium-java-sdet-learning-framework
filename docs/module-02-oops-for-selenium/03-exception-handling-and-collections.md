@@ -90,3 +90,60 @@ In a mature framework, the same ideas become:
   elements.
 - Module 02 keeps this simple so later framework utilities have a clear
   foundation.
+
+## Java Syntax To Notice
+
+```java
+throw new _04_InvalidTestDataException("Password must not be blank");
+```
+
+`throw` stops normal execution and creates a failure object with a clear
+message. The goal is to fail at the real cause, not later in an unrelated
+browser step.
+
+```java
+try {
+    new _05_LoginCredentials("standard_user", "");
+} catch (_04_InvalidTestDataException exception) {
+    System.out.println("Rejected invalid login data: " + exception.getMessage());
+}
+```
+
+`try/catch` is used when the code can handle the failure meaningfully. Here the
+demo catches the exception only to show the learner the message. Later tests
+usually let invalid setup fail the test.
+
+```java
+List<_01_BrowserDriver> browsers = List.of(...);
+```
+
+This combines generics and polymorphism: every item in the list must behave
+like `_01_BrowserDriver`, even though the concrete objects are different.
+
+## Interview Readiness
+
+**Question: Why create custom exceptions in a framework?**
+
+Custom exceptions make failure categories explicit. `InvalidTestDataException`
+or `InvalidBrowserException` tells the reader what kind of problem occurred
+before they inspect the stack trace.
+
+**Question: Should automation code catch every exception?**
+
+No. Catch an exception only when you can add useful context, recover safely, or
+perform required cleanup. Blind catching hides real failures and creates false
+passes.
+
+**Question: Why are collections important for cross-browser testing?**
+
+A browser matrix is a collection of configurations. The same test logic can run
+against each configuration when the framework depends on common behavior such
+as the `WebDriver` interface.
+
+## Revision Checklist
+
+- Can you explain where invalid login data fails in Module 02?
+- Can you explain why the exception message is better than a later generic
+  browser failure?
+- Can you explain how `List<_01_BrowserDriver>` demonstrates both collections
+  and polymorphism?

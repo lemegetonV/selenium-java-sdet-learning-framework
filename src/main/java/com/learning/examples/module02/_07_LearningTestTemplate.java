@@ -20,6 +20,9 @@ public abstract class _07_LearningTestTemplate {
     /**
      * Template method: parent controls the lifecycle, child supplies the test
      * behavior through executeTest().
+     *
+     * final is intentional here. A child class can customize executeTest(), but
+     * it cannot skip setup or cleanup by replacing the lifecycle method.
      */
     public final void run() {
         beforeTest();
@@ -27,6 +30,11 @@ public abstract class _07_LearningTestTemplate {
         afterTest();
     }
 
+    /*
+     * protected means subclasses can implement this method, while unrelated
+     * outside code cannot call it directly. abstract means this class defines
+     * the required hook but leaves the concrete behavior to child classes.
+     */
     protected abstract void executeTest();
 
     protected void beforeTest() {

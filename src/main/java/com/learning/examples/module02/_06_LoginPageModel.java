@@ -26,6 +26,11 @@ public class _06_LoginPageModel {
      * WebDriver or wrapper methods internally.
      */
     public List<String> loginWith(_05_LoginCredentials credentials) {
+        /*
+         * The method returns steps because this module is still simulated. In a
+         * real page object, the same public method would call Selenium or wrapper
+         * methods internally and the test would not know the locator details.
+         */
         return List.of(
                 "Type " + credentials.getUsername() + " into " + usernameField,
                 "Type " + credentials.getMaskedPassword() + " into " + passwordField,

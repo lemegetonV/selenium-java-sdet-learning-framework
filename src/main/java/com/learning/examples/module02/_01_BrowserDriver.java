@@ -12,6 +12,9 @@ public interface _01_BrowserDriver {
 
     /**
      * Returns the browser name used in demo output.
+     *
+     * Interface methods are public by default. The implementation class decides
+     * what value to return, while callers depend only on this contract.
      */
     String getBrowserName();
 
