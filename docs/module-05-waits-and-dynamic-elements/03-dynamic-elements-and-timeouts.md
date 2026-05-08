@@ -103,3 +103,49 @@ The dynamic controls page prepares the concept:
 
 Later modules will handle stale elements more directly when wrapper methods
 and retry behavior are introduced.
+
+## Java Syntax To Notice
+
+```java
+TimeoutException timeout = Assert.expectThrows(
+        TimeoutException.class,
+        () -> wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("does-not-exist")))
+);
+```
+
+The `() -> ...` part is a lambda. It delays running the wait until TestNG is
+ready to observe the expected exception. Without the lambda, the exception
+would be thrown before `expectThrows` could assert it.
+
+```java
+originalCheckbox::isSelected
+```
+
+This is a method reference. It points to the `isSelected` method on the saved
+`WebElement` object. TestNG calls it and expects the stale element exception.
+
+## Interview Readiness
+
+**Question: What causes stale element reference?**
+
+The page changed after Selenium found an element. The saved `WebElement`
+reference points to a DOM node that no longer exists in the current page
+state. The solution is usually to locate the element again after the DOM
+change, not reuse the old object.
+
+**Question: What information should a wait timeout failure provide?**
+
+It should say what condition was being waited for, which locator or element was
+involved, and how long the wait lasted. Later framework utilities will improve
+these diagnostics.
+
+**Question: Why is `Thread.sleep` considered a bad synchronization strategy?**
+
+It waits for time, not state. It can be too short on slow runs and too long on
+fast runs, causing both flakiness and wasted time.
+
+## Revision Checklist
+
+- Can you explain why dynamic pages can change DOM shape?
+- Can you explain what the lambda in `expectThrows` is doing?
+- Can you explain how stale elements connect to future retry and wrapper logic?

@@ -25,13 +25,22 @@ public class _09_FluentWaitTest {
             driver.get("https://the-internet.herokuapp.com/dynamic_loading/2");
             driver.findElement(By.cssSelector("#start button")).click();
 
-            // FluentWait lets the test choose timeout, polling interval, and ignored exceptions.
+            /*
+             * FluentWait is the configurable parent concept behind WebDriverWait.
+             * This example customizes polling and ignores NoSuchElementException
+             * while the dynamic element is not in the DOM yet.
+             */
             FluentWait<WebDriver> wait = new FluentWait<>(driver)
                     .withTimeout(Duration.ofSeconds(10))
                     .pollingEvery(Duration.ofMillis(250))
                     .ignoring(NoSuchElementException.class);
 
             WebElement finishMessage = wait.until(currentDriver -> {
+                /*
+                 * This lambda is the custom wait condition. Returning the element
+                 * means success; returning null means "keep polling" until the
+                 * timeout is reached.
+                 */
                 WebElement element = currentDriver.findElement(By.id("finish"));
                 return element.isDisplayed() ? element : null;
             });

@@ -24,7 +24,11 @@ public class _10_ImplicitWaitAndTimeoutTest {
         WebDriver driver = createChromeDriver();
 
         try {
-            // Implicit wait applies to future findElement/findElements calls for this driver.
+            /*
+             * Implicit wait is global driver state for future element lookups.
+             * The module keeps it short because long implicit waits can make
+             * framework timing hard to diagnose when explicit waits are also used.
+             */
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
 
             driver.get("https://the-internet.herokuapp.com/");
@@ -44,7 +48,11 @@ public class _10_ImplicitWaitAndTimeoutTest {
 
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 
-            // This test catches TimeoutException intentionally to teach timeout behavior.
+            /*
+             * The lambda delays the wait call so TestNG's expectThrows can verify
+             * the TimeoutException. The test is intentionally green while still
+             * teaching what a timeout failure looks like.
+             */
             TimeoutException timeout = Assert.expectThrows(
                     TimeoutException.class,
                     () -> wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("does-not-exist")))
@@ -77,6 +85,11 @@ public class _10_ImplicitWaitAndTimeoutTest {
 
             StaleElementReferenceException staleElement = Assert.expectThrows(
                     StaleElementReferenceException.class,
+                    /*
+                     * Method reference syntax points to isSelected on the old
+                     * WebElement. Calling it after removal demonstrates that the
+                     * saved object is stale even though a locator may work later.
+                     */
                     originalCheckbox::isSelected
             );
             Assert.assertNotNull(staleElement.getMessage());

@@ -29,10 +29,18 @@ public class _07_ExplicitWaitTest {
 
             driver.findElement(By.cssSelector("#start button")).click();
 
-            // WebDriverWait polls until the ExpectedCondition is true or the timeout expires.
+            /*
+             * WebDriverWait polls the browser until the ExpectedCondition returns
+             * a successful value or the timeout expires. This is state-based
+             * synchronization, not a fixed sleep.
+             */
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-            // visibilityOfElementLocated finds the element and waits until it is displayed.
+            /*
+             * visibilityOfElementLocated returns the WebElement after it both
+             * exists and is displayed. The returned element can be asserted
+             * immediately because the condition already proved visibility.
+             */
             WebElement finishMessage = wait.until(
                     ExpectedConditions.visibilityOfElementLocated(By.id("finish"))
             );

@@ -136,3 +136,30 @@ Nuance:
 - waiting for clickability when the test only needs to assert presence.
 - using one generic wait everywhere without thinking about the condition.
 - using `Thread.sleep(...)` instead of waiting for browser state.
+
+## Interview Readiness
+
+**Question: What is the difference between presence and visibility?**
+
+Presence means the element exists in the DOM. Visibility means it is displayed
+to the user with non-zero rendered size. A test should wait for the state it
+actually needs.
+
+**Question: Does `elementToBeClickable` guarantee the click will always work?**
+
+No. It checks visibility and enabled state. Overlays, animations, scrolling, or
+intercepted clicks can still cause click failures. Later wrapper methods can
+add stronger diagnostics and fallback strategy.
+
+**Question: What does `stalenessOf` wait for?**
+
+It waits until a previously found `WebElement` reference is detached from the
+DOM. The locator may still find a new element later, but the old object is no
+longer safe.
+
+## Revision Checklist
+
+- Can you choose between visibility, invisibility, text, clickability, and
+  staleness conditions?
+- Can you explain what each condition returns?
+- Can you explain why the wrong condition can create flaky or misleading tests?

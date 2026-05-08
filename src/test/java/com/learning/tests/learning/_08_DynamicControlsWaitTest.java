@@ -25,6 +25,11 @@ public class _08_DynamicControlsWaitTest {
             driver.get("https://the-internet.herokuapp.com/dynamic_controls");
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
+            /*
+             * The first checkbox locator intentionally uses only the id. This
+             * page changes the DOM shape after remove/add, so a shape-dependent
+             * selector such as #checkbox input would not survive both states.
+             */
             By checkbox = By.id("checkbox");
             By checkboxButton = By.cssSelector("#checkbox-example button");
             driver.findElement(checkboxButton).click();
@@ -44,7 +49,11 @@ public class _08_DynamicControlsWaitTest {
             By inputField = By.cssSelector("#input-example input");
             driver.findElement(By.cssSelector("#input-example button")).click();
 
-            // elementToBeClickable waits for visibility and enabled state before typing.
+            /*
+             * elementToBeClickable means visible and enabled. It is enough for
+             * this input example, but real click wrappers may need extra handling
+             * for overlays, scrolling, or intercepted clicks.
+             */
             WebElement enabledInput = wait.until(ExpectedConditions.elementToBeClickable(inputField));
             enabledInput.sendKeys("waited value");
 

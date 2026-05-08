@@ -32,6 +32,7 @@ utilities are intentionally deferred until the framework wrapper module.
 | `docs/module-05-waits-and-dynamic-elements/01-implicit-explicit-fluent-waits.md` | added | explains wait types and usage tradeoffs |
 | `docs/module-05-waits-and-dynamic-elements/02-expected-conditions.md` | added | explains conditions used in this module |
 | `docs/module-05-waits-and-dynamic-elements/03-dynamic-elements-and-timeouts.md` | added | explains dynamic UI, changing DOM shape, and timeout failures |
+| `docs/module-05-waits-and-dynamic-elements/99-interview-review.md` | added | interview-ready revision for synchronization, waits, timeouts, and stale elements |
 | `docs/module-05-waits-and-dynamic-elements/exercises.md` | added | practice tasks with hints and expected outcomes |
 
 ## Previous Module Files Reused
@@ -108,3 +109,18 @@ Expected outcome:
 - the stale element test demonstrates a saved `WebElement` becoming detached
   after the DOM changes.
 - visible mode passes when `-Dheadless=false` is used.
+
+## Readiness Standard
+
+Before Module 06 adds more form controls, a learner should be able to explain:
+
+- what synchronization means in Selenium.
+- why waits should target browser state instead of sleeping.
+- implicit vs explicit vs fluent waits.
+- why long implicit waits make framework timing harder to reason about.
+- how expected conditions map to visibility, invisibility, text, clickability,
+  and stale element state.
+- what `TimeoutException` and `StaleElementReferenceException` mean.
+- why later modules centralize wait behavior only after raw waits are clear.
+
+Use `99-interview-review.md` before moving into richer interactions.
