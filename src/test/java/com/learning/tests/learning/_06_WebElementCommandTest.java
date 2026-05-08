@@ -24,7 +24,11 @@ public class _06_WebElementCommandTest {
             WebElement passwordInput = driver.findElement(By.id("password"));
             WebElement loginButton = driver.findElement(By.id("login-button"));
 
-            // sendKeys types into an editable element, similar to real keyboard input.
+            /*
+             * sendKeys appends text to the current value. The first assertion
+             * reads the input's value attribute because input text is stored as
+             * value, not as visible child text for getText().
+             */
             usernameInput.sendKeys("temporary_user");
             Assert.assertEquals(usernameInput.getAttribute("value"), "temporary_user");
 
@@ -34,7 +38,11 @@ public class _06_WebElementCommandTest {
 
             passwordInput.sendKeys("secret_sauce");
 
-            // click performs the element's default click action.
+            /*
+             * click asks the browser to perform the element's normal click
+             * behavior. It does not guarantee that the next page state is ready;
+             * Module 05 adds waits for timing-sensitive results.
+             */
             loginButton.click();
 
             WebElement errorMessage = driver.findElement(By.cssSelector("[data-test='error']"));

@@ -27,7 +27,11 @@ public class _04_LocatorStrategyTest {
         try {
             driver.get("https://www.saucedemo.com/");
 
-            // By.id is usually the strongest beginner locator when the id is stable and unique.
+            /*
+             * By.id is usually the strongest beginner locator when the id is
+             * stable and unique. The locator strategy is "id"; the locator value
+             * is "user-name".
+             */
             WebElement usernameInput = driver.findElement(By.id("user-name"));
             Assert.assertEquals(usernameInput.getAttribute("placeholder"), "Username");
 
@@ -39,7 +43,11 @@ public class _04_LocatorStrategyTest {
             WebElement loginLogo = driver.findElement(By.className("login_logo"));
             Assert.assertEquals(loginLogo.getText(), "Swag Labs");
 
-            // findElements returns a list and does not fail when no elements match.
+            /*
+             * findElements returns List<WebElement>. Unlike findElement, it
+             * returns an empty list when there are no matches, which makes it
+             * useful for count and absence checks.
+             */
             List<WebElement> inputElements = driver.findElements(By.tagName("input"));
             Assert.assertTrue(inputElements.size() >= 3, "SauceDemo login page should have at least three inputs");
 
@@ -114,14 +122,21 @@ public class _04_LocatorStrategyTest {
         try {
             driver.get("https://www.saucedemo.com/");
 
-            // NoSuchElementException means the locator was valid, but matched no element.
+            /*
+             * expectThrows lets the test document an expected Selenium failure.
+             * NoSuchElementException means the locator syntax was valid, but
+             * Selenium found no matching element in the current page context.
+             */
             NoSuchElementException missingElement = Assert.expectThrows(
                     NoSuchElementException.class,
                     () -> driver.findElement(By.id("missing-login-field"))
             );
             Assert.assertNotNull(missingElement.getMessage());
 
-            // InvalidSelectorException means the selector syntax itself is not valid.
+            /*
+             * InvalidSelectorException is different: Selenium cannot parse the
+             * selector, so it fails before a real page search can succeed.
+             */
             InvalidSelectorException invalidSelector = Assert.expectThrows(
                     InvalidSelectorException.class,
                     () -> driver.findElement(By.xpath("//*["))

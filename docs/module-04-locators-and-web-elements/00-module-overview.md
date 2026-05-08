@@ -29,6 +29,7 @@ flowchart LR
 | `docs/module-04-locators-and-web-elements/02-findelement-vs-findelements.md` | added | explains single vs list element lookup behavior |
 | `docs/module-04-locators-and-web-elements/03-webelement-commands.md` | added | explains first element commands and gotchas |
 | `docs/module-04-locators-and-web-elements/04-xpath-chained-locators-and-exceptions.md` | added | explains XPath syntax, chained XPath, axes, scoped lookups, and locator exceptions |
+| `docs/module-04-locators-and-web-elements/99-interview-review.md` | added | interview-ready revision for locator and WebElement concepts |
 | `docs/module-04-locators-and-web-elements/exercises.md` | added | practice tasks with hints and expected outcomes |
 
 ## Previous Module Files Reused
@@ -101,3 +102,17 @@ Expected outcome:
 - Module 03 browser tests still pass.
 - Module 04 locator and WebElement tests pass.
 - Chrome opens visibly when `-Dheadless=false` is used.
+
+## Readiness Standard
+
+Before Module 05 adds waits, a learner should be able to explain:
+
+- how `By` represents locator strategy plus locator value.
+- why locator stability matters more than copying whatever dev tools gives.
+- the difference between `findElement` and `findElements`.
+- how scoped lookup from a parent `WebElement` reduces ambiguity.
+- why XPath axes are useful for tables and related DOM structures.
+- what `NoSuchElementException` and `InvalidSelectorException` mean.
+- why raw locators are visible now before page objects centralize them later.
+
+Use `99-interview-review.md` for final revision before dynamic waits.

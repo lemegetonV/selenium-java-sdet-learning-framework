@@ -135,3 +135,46 @@ Common causes:
 Module 05 handles timing-related lookup failures with waits. Module 04 only
 teaches the difference between a valid locator that matches nothing and an
 invalid locator that Selenium cannot execute.
+
+## Java And Selenium Syntax To Notice
+
+```java
+By.xpath("//table[@id='table1']//td[normalize-space()='Smith']/ancestor::tr")
+```
+
+This locator starts from a known cell and walks up to the containing row. That
+pattern is common in table automation: find the row by a stable cell value,
+then interact with another cell or action inside the same row.
+
+```java
+NoSuchElementException missingElement = Assert.expectThrows(...);
+```
+
+`Assert.expectThrows` is a TestNG assertion for expected failures. Module 04
+uses it to teach exception categories without causing the whole test suite to
+fail.
+
+## Interview Readiness
+
+**Question: When should you use XPath axes?**
+
+Use axes when the target element has no stable locator but a nearby related
+element does. Tables, cards, labels, and row-level actions often need this.
+
+**Question: What is the difference between `NoSuchElementException` and
+`InvalidSelectorException`?**
+
+`NoSuchElementException` means the locator syntax was valid but matched no
+element in the current context. `InvalidSelectorException` means Selenium could
+not parse the selector itself.
+
+**Question: Why are chained locators useful?**
+
+They reduce ambiguity by searching inside a known parent element instead of the
+whole page. This is important for repeated cards, rows, and forms.
+
+## Revision Checklist
+
+- Can you read the table XPath axes out loud from left to right?
+- Can you explain when a locator problem is syntax vs no match?
+- Can you explain how scoped lookup prepares for page components?

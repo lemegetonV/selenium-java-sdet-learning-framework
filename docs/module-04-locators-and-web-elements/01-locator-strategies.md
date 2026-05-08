@@ -149,3 +149,45 @@ rows, or multiple forms with similar child elements.
 - choosing an XPath copied from browser dev tools without checking stability.
 - using visible text that changes across environments or translations.
 - treating locator choice as a framework abstraction too early.
+
+## Java And Selenium Syntax To Notice
+
+```java
+WebElement usernameInput = driver.findElement(By.id("user-name"));
+```
+
+`By.id("user-name")` creates a locator object. `findElement(...)` sends that
+locator to the browser session and returns a `WebElement` reference for the
+first matching element.
+
+```java
+List<WebElement> inputElements = driver.findElements(By.tagName("input"));
+```
+
+The return type is `List<WebElement>` because the page may contain many
+matching elements. This is the first bridge from Java generics to Selenium
+element collections.
+
+## Interview Readiness
+
+**Question: Which locator is best in Selenium?**
+
+There is no universal best locator. Prefer stable, unique, app-owned attributes
+such as `id` or `data-test`. Use CSS for readable attribute relationships. Use
+XPath when DOM relationships, text, or axes make the intent clearer.
+
+**Question: Why should we avoid absolute XPath?**
+
+Absolute XPath depends on exact DOM nesting. Small layout changes can break it
+even when the user-facing behavior is unchanged.
+
+**Question: What makes a locator maintainable?**
+
+It should be stable, readable, unique enough, scoped to the behavior under
+test, and resistant to cosmetic UI changes.
+
+## Revision Checklist
+
+- Can you explain every locator strategy in `_04_LocatorStrategyTest`?
+- Can you explain why `data-test` is automation-friendly?
+- Can you explain when XPath is justified instead of CSS?

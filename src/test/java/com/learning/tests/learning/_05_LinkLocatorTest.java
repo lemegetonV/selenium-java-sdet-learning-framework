@@ -20,7 +20,10 @@ public class _05_LinkLocatorTest {
         try {
             driver.get("https://the-internet.herokuapp.com/");
 
-            // linkText must match the full visible link text.
+            /*
+             * linkText matches the complete visible text of an anchor element.
+             * It is readable, but it couples the test to user-facing copy.
+             */
             WebElement checkboxesLink = driver.findElement(By.linkText("Checkboxes"));
             Assert.assertEquals(checkboxesLink.getText(), "Checkboxes");
             checkboxesLink.click();
@@ -28,7 +31,11 @@ public class _05_LinkLocatorTest {
 
             driver.navigate().back();
 
-            // partialLinkText can match part of the visible link text, but it can become ambiguous.
+            /*
+             * partialLinkText is convenient for demos, but it can become
+             * ambiguous if multiple links contain the same word. Mature tests
+             * should prefer more stable locators when ambiguity is possible.
+             */
             WebElement dropdownLink = driver.findElement(By.partialLinkText("Dropdown"));
             dropdownLink.click();
             Assert.assertTrue(driver.getCurrentUrl().contains("/dropdown"));

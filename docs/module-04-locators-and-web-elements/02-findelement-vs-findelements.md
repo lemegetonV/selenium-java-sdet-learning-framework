@@ -64,3 +64,28 @@ This difference becomes important later for:
   match.
 
 Module 05 will add waits. In Module 04, lookups happen immediately.
+
+## Interview Readiness
+
+**Question: What is the difference between `findElement` and `findElements`?**
+
+`findElement` returns the first matching element and throws
+`NoSuchElementException` if none is found. `findElements` returns a list of all
+matches and returns an empty list when none are found.
+
+**Question: Does `findElement` prove the locator is unique?**
+
+No. It returns the first matching element. If uniqueness matters, use a more
+specific locator or assert the size from `findElements`.
+
+**Question: When is `findElements` useful?**
+
+Use it for collections such as product cards, table rows, dropdown options, or
+checking that zero matching elements are present.
+
+## Revision Checklist
+
+- Can you explain why `findElements(...).isEmpty()` is safer than
+  `findElement(...)` for absence checks?
+- Can you explain why list size should be checked before `.get(0)`?
+- Can you explain why waits will change lookup timing in Module 05?

@@ -98,3 +98,46 @@ Nuance:
 
 Module 04 keeps each example narrow so the Selenium command behavior is easy
 to see.
+
+## Java And Selenium Syntax To Notice
+
+```java
+usernameInput.sendKeys("temporary_user");
+usernameInput.clear();
+usernameInput.sendKeys("locked_out_user");
+```
+
+The order matters. `sendKeys` appends, so `clear` is needed when the test wants
+the field to contain only the final value.
+
+```java
+Assert.assertEquals(usernameInput.getAttribute("value"), "temporary_user");
+```
+
+For text inputs, the typed value is stored in the element's value
+attribute/property. It is not visible child text, so `getText()` is the wrong
+API for this assertion.
+
+## Interview Readiness
+
+**Question: What is a WebElement?**
+
+A `WebElement` is Selenium's representation of an element found in the current
+browser context. It lets the test interact with or read state from that element.
+
+**Question: What is the difference between `getText()` and `getAttribute()`?**
+
+`getText()` reads visible rendered text. `getAttribute(name)` reads a specific
+attribute or property value. For input fields, use `getAttribute("value")` to
+read typed text.
+
+**Question: Why can `click()` fail even when the element exists?**
+
+The element may be hidden, disabled, covered by an overlay, outside the current
+interactable state, or not ready yet. Module 05 introduces waits for readiness.
+
+## Revision Checklist
+
+- Can you explain why `sendKeys` plus `clear` appears in the test?
+- Can you explain why the locked-out login creates an error message?
+- Can you explain which commands read state and which commands change state?
