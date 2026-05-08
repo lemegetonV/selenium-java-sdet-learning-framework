@@ -81,3 +81,58 @@ The tests do not add framework logging.
 
 Maven and TestNG print the test run summary. Log4j2 is intentionally deferred
 until the logging module.
+
+## Java And TestNG Syntax To Notice
+
+```java
+@Test
+public void opensTheInternetHomePage()
+```
+
+`@Test` is a TestNG annotation. It tells TestNG that this method is a test
+method. The method is `public` so the framework can discover and invoke it.
+
+```java
+try {
+    driver.get("https://the-internet.herokuapp.com/");
+} finally {
+    driver.quit();
+}
+```
+
+`finally` runs whether the assertion passes or fails. This is the first cleanup
+pattern in the project. Later modules move the cleanup into TestNG lifecycle
+methods, but the reason stays the same: browser sessions must be closed.
+
+```java
+Assert.assertTrue(condition, "message");
+```
+
+The message should explain the behavior expected by the test. It should help
+the learner diagnose a failure without rereading the whole method.
+
+## Interview Readiness
+
+**Question: Why introduce TestNG before building a framework?**
+
+TestNG gives the project a test runner, assertions, and later lifecycle hooks.
+Module 03 uses only the smallest part first so WebDriver behavior stays visible.
+
+**Question: Why is setup duplicated in Module 03?**
+
+The duplication is intentional. Learners should see the repeated driver
+creation and cleanup before Module 08 extracts it into `BaseTest`.
+
+**Question: What is the difference between a failed assertion and a Selenium
+exception?**
+
+A failed assertion means Selenium gathered browser state but the state did not
+match the expected result. A Selenium exception usually means the browser
+command itself could not complete, such as a missing element or invalid
+selector in later modules.
+
+## Revision Checklist
+
+- Can you explain what `@Test` does?
+- Can you explain why `finally` is used before `@AfterMethod` is introduced?
+- Can you explain what TestNG assertions add beyond printing values?

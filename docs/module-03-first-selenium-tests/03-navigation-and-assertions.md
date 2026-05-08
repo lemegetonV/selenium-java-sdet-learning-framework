@@ -144,3 +144,41 @@ Module 04 teaches element locators and interactions in a dedicated module.
 - `getTitle()` and `getCurrentUrl()` are simple first browser observations.
 - assertions turn observations into pass/fail test results.
 - keeping locators out of Module 03 preserves the learning progression.
+
+## Selenium Nuances
+
+- `driver.get(...)` and `driver.navigate().to(...)` both navigate to a URL in
+  these examples, but `navigate()` exposes the history API family: `back`,
+  `forward`, and `refresh`.
+- Page-load completion is not the same as application readiness. A single-page
+  application can load the document and then render important content later.
+- URL assertions should allow for redirects or trailing slash differences when
+  the exact URL is not the behavior being tested.
+- Title assertions are useful smoke checks, but they are not strong enough for
+  functional validation after Module 04 introduces elements.
+
+## Interview Readiness
+
+**Question: What is the difference between `get()` and `navigate().to()`?**
+
+Both can load a URL. `get()` is commonly used for opening a page directly.
+`navigate().to()` belongs to the navigation API, which also includes back,
+forward, and refresh. In many simple cases they look similar, but the API
+choice communicates intent.
+
+**Question: Does `driver.get()` wait for the whole page to be ready?**
+
+It waits for the browser's normal page-load completion signal. It does not
+guarantee that every dynamic element, API-driven widget, or delayed state is
+ready. That is why waits are introduced later.
+
+**Question: Why start with title and URL assertions?**
+
+They let the learner verify browser automation before adding locator
+complexity. They are smoke-level assertions, not complete functional coverage.
+
+## Revision Checklist
+
+- Can you explain what browser state `getTitle()` and `getCurrentUrl()` read?
+- Can you explain why navigation history matters for `back()` and `forward()`?
+- Can you explain why Module 03 avoids element locators?

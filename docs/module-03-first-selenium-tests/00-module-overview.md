@@ -53,6 +53,7 @@ until the logging module.
 | `docs/module-03-first-selenium-tests/01-selenium-manager-and-chromedriver.md` | added | explains Selenium Manager, WebDriverManager comparison, ChromeDriver, and headless mode |
 | `docs/module-03-first-selenium-tests/02-testng-raw-test-structure.md` | added | explains minimal TestNG usage and intentional duplication |
 | `docs/module-03-first-selenium-tests/03-navigation-and-assertions.md` | added | explains browser navigation and assertions |
+| `docs/module-03-first-selenium-tests/99-interview-review.md` | added | interview-ready revision for first WebDriver, TestNG, and lifecycle concepts |
 | `docs/module-03-first-selenium-tests/exercises.md` | added | practice tasks with hints and expected outcomes |
 
 ## Previous Module Files Reused
@@ -137,3 +138,17 @@ Expected outcome:
 - tests pass against The Internet and SauceDemo.
 
 Use `-Dheadless=false` only when you want to see the browser window.
+
+## Readiness Standard
+
+Before Module 04 adds locators, a learner should be able to explain:
+
+- what WebDriver is and why the variable type is the interface.
+- what ChromeDriver is responsible for.
+- what Selenium Manager solves and what it does not solve.
+- why every test uses `try/finally` and `quit()`.
+- the difference between browser-level assertions and element-level assertions.
+- why setup duplication is intentional before `BaseTest`.
+
+Use `99-interview-review.md` as the revision checklist before moving to
+locators and WebElement commands.

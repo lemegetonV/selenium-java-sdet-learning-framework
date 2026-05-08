@@ -166,3 +166,58 @@ Common beginner mistakes:
 `quit()` ends the entire WebDriver session. `close()` closes the current
 browser window. If more windows exist, the session may still be alive. For
 beginner tests with one driver per test, `quit()` is the safer cleanup habit.
+
+## Java Syntax To Notice
+
+```java
+WebDriver driver = createChromeDriver();
+```
+
+The variable type is `WebDriver`, the Selenium interface. The object returned
+from the helper is a `ChromeDriver`. This is the real Selenium version of the
+polymorphism learned in Module 02.
+
+```java
+ChromeOptions options = new ChromeOptions();
+```
+
+`ChromeOptions` is a configuration object. It must be configured before the
+driver is created because browser startup settings cannot all be changed after
+Chrome is already running.
+
+```java
+Boolean.parseBoolean(System.getProperty("headless", "true"))
+```
+
+This reads a Maven/system property. If the property is missing, `"true"` is
+used as the default. That is why `mvn test` runs headless, while
+`mvn test -Dheadless=false` shows the browser.
+
+## Interview Readiness
+
+**Question: What is Selenium WebDriver?**
+
+WebDriver is Selenium's browser automation API and also the main Java
+interface used by tests. It lets test code send commands to a browser session,
+such as opening URLs, finding elements, reading browser state, and quitting the
+session.
+
+**Question: What does Selenium Manager do?**
+
+Selenium Manager helps Selenium locate or obtain the correct browser driver
+binary. It does not design the framework, manage test lifecycle, choose
+browsers for parallel execution, or replace `quit()`.
+
+**Question: Why is `quit()` important?**
+
+`quit()` ends the whole WebDriver session and releases browser/driver
+resources. Without it, local machines and CI agents can accumulate orphaned
+browser processes.
+
+## Revision Checklist
+
+- Can you explain the difference between Selenium Manager, ChromeDriver, and
+  WebDriver?
+- Can you explain why options are created before the driver?
+- Can you explain why Module 03 repeats `createChromeDriver()` instead of
+  hiding it in a base class?

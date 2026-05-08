@@ -21,6 +21,11 @@ public class _03_SauceDemoPageLoadTest {
         try {
             driver.get("https://www.saucedemo.com/");
 
+            /*
+             * Module 03 uses browser-level observations only. The title and URL
+             * prove the application loaded, while element-level login assertions
+             * are deliberately saved for the locator module.
+             */
             Assert.assertEquals(driver.getTitle(), "Swag Labs");
             Assert.assertTrue(
                     driver.getCurrentUrl().contains("saucedemo.com"),

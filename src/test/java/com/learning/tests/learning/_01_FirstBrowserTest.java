@@ -17,7 +17,12 @@ public class _01_FirstBrowserTest {
 
     @Test
     public void opensTheInternetHomePage() {
-        // WebDriver is the Selenium interface; ChromeDriver is the concrete browser implementation.
+        /*
+         * WebDriver is the Selenium interface, just like Module 02's
+         * _01_BrowserDriver interface. The actual object created inside the
+         * helper is ChromeDriver, but the test talks through common browser
+         * behavior.
+         */
         WebDriver driver = createChromeDriver();
 
         try {
@@ -31,7 +36,11 @@ public class _01_FirstBrowserTest {
                     "The browser should stay on The Internet test site"
             );
         } finally {
-            // quit() ends the whole browser session, even if the assertion above fails.
+            /*
+             * quit() ends the whole browser session even if an assertion fails.
+             * This is the raw version of cleanup that later moves into TestNG
+             * @AfterMethod.
+             */
             driver.quit();
         }
     }
@@ -47,7 +56,10 @@ public class _01_FirstBrowserTest {
         ChromeOptions options = new ChromeOptions();
 
         if (Boolean.parseBoolean(System.getProperty("headless", "true"))) {
-            // Headless mode runs Chrome without a visible window; useful for fast local and CI runs.
+            /*
+             * System.getProperty reads the -Dheadless value from Maven. The
+             * default is true so normal test runs are fast and CI-friendly.
+             */
             options.addArguments("--headless=new");
         }
 
