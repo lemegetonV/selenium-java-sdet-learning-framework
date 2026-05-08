@@ -59,7 +59,7 @@ find src -type f | sort
 
 **Module:** Module 07 - Windows, Frames, Files, Actions
 **Branch:** `module-07-windows-frames-files-actions`
-**Status:** In Progress
+**Status:** Complete
 **Previous:** Module 06 - Forms, Alerts, Dropdowns
 **Next:** Module 08 - TestNG Framework Foundation
 

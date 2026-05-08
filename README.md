@@ -6,9 +6,9 @@ Page Object Model, reporting, data-driven, Cucumber, and CI/CD framework.
 
 ## Current Status
 
-- Latest completed module: Module 06 - Forms, Alerts, Dropdowns
-- Current branch checkpoint: Module 07 in progress
-- Active module: Module 07 - Windows, Frames, Files, Actions
+- Latest completed module: Module 07 - Windows, Frames, Files, Actions
+- Current branch checkpoint: Module 07 complete
+- Next module: Module 08 - TestNG Framework Foundation
 - Primary AUT for later framework modules: `https://www.saucedemo.com`
 - Selenium concept playground for later modules: `https://the-internet.herokuapp.com`
 
@@ -31,7 +31,7 @@ mvn test
 mvn test -Dheadless=false
 ```
 
-On the Module 07 branch, `mvn test` runs the raw Selenium/TestNG browser,
+At the Module 07 checkpoint, `mvn test` runs the raw Selenium/TestNG browser,
 locator, WebElement, wait, dynamic element, form, dropdown, alert, window,
 frame, file, action, table, Shadow DOM, JavaScript, and exception tests. Use
 `-Dheadless=false` when you want to see the Chrome browser window.
