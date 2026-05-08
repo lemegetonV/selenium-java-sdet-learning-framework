@@ -37,13 +37,15 @@ The local fixture remains only for gaps where the public playground is missing,
 too broad, or not deterministic enough for a beginner lesson: exact download
 content, reliable drag/drop, open Shadow DOM click behavior, calendar/date
 picker examples, visible row action output, deterministic sorting, and a
-hidden element for exception teaching.
+hidden element for exception teaching. The local fixture must be usable by a
+human learner too, so these examples include visible action feedback such as
+drag state, selected date text, selected-row highlighting, and sort status.
 
 ## Files Added Or Changed
 
 | File | Status | Purpose |
 | --- | --- | --- |
-| `src/test/resources/module07/advanced-interactions.html` | added | complete local learning fixture for exact download content, drag/drop, calendar, row actions, sorting, Shadow DOM, and controlled exceptions |
+| `src/test/resources/module07/advanced-interactions.html` | added | complete local learning fixture for exact download content, visible drag/drop, calendar feedback, row selection, sorting status, Shadow DOM, and controlled exceptions |
 | `src/test/resources/module07/upload-sample.txt` | added | file uploaded through `<input type="file">` |
 | `src/test/java/com/learning/tests/learning/_15_WindowsAndFramesTest.java` | added | demonstrates window handles and nested frame switching |
 | `src/test/java/com/learning/tests/learning/_16_FileUploadDownloadTest.java` | added | demonstrates file upload and download validation |
@@ -135,8 +137,9 @@ Expected outcome:
 - TestNG runs forty Selenium tests.
 - The Internet window, frame, upload, hover, key press, table, and broken image
   tests pass.
-- Module 07 local fixture tests pass for exact download, drag/drop, calendar,
-  row action, sorting, Shadow DOM, and controlled exceptions.
+- Module 07 local fixture tests pass for exact download, visible drag/drop,
+  calendar feedback, row action selection, sorting status, Shadow DOM, and
+  controlled exceptions.
 - the file upload test sends `upload-sample.txt`.
 - the download test creates and validates `module07-download.txt`.
 - window, frame, action, table, Shadow DOM, JavaScript, and exception tests

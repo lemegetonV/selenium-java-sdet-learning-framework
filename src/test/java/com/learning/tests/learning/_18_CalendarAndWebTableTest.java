@@ -36,6 +36,7 @@ public class _18_CalendarAndWebTableTest {
                     dateInput
             );
             Assert.assertEquals(dateInput.getAttribute("value"), "2026-05-08");
+            Assert.assertEquals(driver.findElement(By.id("selected-date")).getText(), "Selected date: 2026-05-08");
 
             /*
              * Many real applications use custom calendar widgets, so this test also
@@ -45,7 +46,7 @@ public class _18_CalendarAndWebTableTest {
             driver.findElement(By.id("date-2026-05-08")).click();
 
             Assert.assertEquals(dateInput.getAttribute("value"), "2026-05-08");
-            Assert.assertEquals(driver.findElement(By.id("selected-date")).getText(), "2026-05-08");
+            Assert.assertEquals(driver.findElement(By.id("selected-date")).getText(), "Selected date: 2026-05-08");
         } finally {
             driver.quit();
         }
@@ -90,7 +91,8 @@ public class _18_CalendarAndWebTableTest {
              * the row-action result visible so the beginner assertion is explicit.
              */
             doeRow.findElement(By.cssSelector("button.select-person")).click();
-            Assert.assertEquals(driver.findElement(By.id("selected-person")).getText(), "Jane Doe");
+            Assert.assertTrue(doeRow.getAttribute("class").contains("selected-row"));
+            Assert.assertEquals(driver.findElement(By.id("selected-person")).getText(), "Selected person: Jane Doe");
         } finally {
             driver.quit();
         }
@@ -111,6 +113,8 @@ public class _18_CalendarAndWebTableTest {
                     .toList();
 
             Assert.assertEquals(names, List.of("Alice", "Bob", "Charlie"));
+            Assert.assertEquals(driver.findElement(By.id("sort-result")).getText(), "Sorted by name: ascending");
+            Assert.assertEquals(driver.findElement(By.id("sort-by-name")).getAttribute("aria-sort"), "ascending");
         } finally {
             driver.quit();
         }

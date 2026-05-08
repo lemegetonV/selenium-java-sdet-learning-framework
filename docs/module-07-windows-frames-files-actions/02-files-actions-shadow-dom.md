@@ -17,7 +17,7 @@ https://the-internet.herokuapp.com/hovers
 https://the-internet.herokuapp.com/key_presses
 ```
 
-The local fixture remains for exact download content, reliable drag/drop, and
+The local fixture remains for exact download content, visible drag/drop, and
 open Shadow DOM click behavior.
 
 ## File Upload
@@ -96,7 +96,9 @@ may centralize keyboard actions, but this module keeps the raw API visible.
 
 ## Drag And Drop
 
-The local fixture uses mouse events so the learner can see the gesture:
+The local fixture uses both HTML drag events and a mouse-event fallback so the
+learner can see the gesture and the beginner Selenium `Actions` sequence stays
+deterministic:
 
 ```java
 new Actions(driver)
@@ -109,6 +111,17 @@ new Actions(driver)
 The Internet has a drag/drop page, but HTML5 drag/drop is often inconsistent
 with beginner Selenium `Actions` examples. Module 07 uses a deterministic
 fixture for the first raw Actions lesson and defers JavaScript fallbacks.
+
+The fixture reports the gesture through visible state:
+
+```java
+Assert.assertEquals(driver.findElement(By.id("drag-result")).getText(), "Dropped: Drag source");
+Assert.assertTrue(driver.findElement(By.id("drop-target")).getAttribute("class").contains("drop-ready"));
+```
+
+This is intentionally more visible than a hidden assertion-only fixture. A
+learner opening the page manually can see the source enter dragging state and
+the drop target turn ready after the drop.
 
 ## Shadow DOM
 

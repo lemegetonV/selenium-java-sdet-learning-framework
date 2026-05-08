@@ -18,7 +18,8 @@ https://the-internet.herokuapp.com/broken_images
 ```
 
 The local fixture remains for calendar/date-picker behavior, visible row
-actions, and deterministic sorting.
+actions, selected-row highlighting, and deterministic sorting with visible sort
+status.
 
 ## Calendar And Date Picker Widgets
 
@@ -50,6 +51,15 @@ For a custom calendar control, the test clicks a visible date button:
 driver.findElement(By.id("date-2026-05-08")).click();
 ```
 
+Both paths update the same visible result:
+
+```java
+Assert.assertEquals(driver.findElement(By.id("selected-date")).getText(), "Selected date: 2026-05-08");
+```
+
+That matters because a learning fixture should not make the native input path
+look disconnected from the custom date-button path.
+
 ## Web Tables
 
 Module 07 introduces table extraction on The Internet:
@@ -69,10 +79,12 @@ WebElement doeRow = rows.stream()
 
 The Internet table is good for reading cells, but its row actions do not
 produce a beginner-friendly visible result. The local fixture adds a visible
-row action result:
+row action result and a selected-row highlight:
 
 ```java
 doeRow.findElement(By.cssSelector("button.select-person")).click();
+Assert.assertTrue(doeRow.getAttribute("class").contains("selected-row"));
+Assert.assertEquals(driver.findElement(By.id("selected-person")).getText(), "Selected person: Jane Doe");
 ```
 
 This is the raw version of a pattern future helper methods can centralize:
@@ -83,8 +95,9 @@ This is the raw version of a pattern future helper methods can centralize:
 
 ## Sortable Tables
 
-The fixture has a sortable table. The test clicks the header button and then
-reads the first column:
+The fixture has a separate sortable table so row selection and sorting are not
+mixed into one lesson. The test clicks the header button and then reads the
+first column:
 
 ```java
 List<String> names = driver.findElements(By.cssSelector("#sortable-table tbody tr td:first-child"))
@@ -94,6 +107,12 @@ List<String> names = driver.findElements(By.cssSelector("#sortable-table tbody t
 ```
 
 This prepares for later collection and assertion patterns in framework tests.
+The fixture also reports the active sort direction:
+
+```java
+Assert.assertEquals(driver.findElement(By.id("sort-result")).getText(), "Sorted by name: ascending");
+Assert.assertEquals(driver.findElement(By.id("sort-by-name")).getAttribute("aria-sort"), "ascending");
+```
 
 ## JavaScriptExecutor
 

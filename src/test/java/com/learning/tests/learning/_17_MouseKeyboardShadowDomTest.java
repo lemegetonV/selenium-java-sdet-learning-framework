@@ -76,7 +76,8 @@ public class _17_MouseKeyboardShadowDomTest {
                     .release()
                     .perform();
 
-            Assert.assertEquals(driver.findElement(By.id("drag-result")).getText(), "Dropped on target");
+            Assert.assertEquals(driver.findElement(By.id("drag-result")).getText(), "Dropped: Drag source");
+            Assert.assertTrue(driver.findElement(By.id("drop-target")).getAttribute("class").contains("drop-ready"));
         } finally {
             driver.quit();
         }

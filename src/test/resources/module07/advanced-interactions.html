@@ -32,10 +32,29 @@
             margin: 4px;
             min-width: 120px;
             padding: 12px;
+            vertical-align: top;
+        }
+
+        #drag-source {
+            background: #eff6ff;
+            cursor: grab;
+            user-select: none;
         }
 
         #drop-target {
+            background: #f8fafc;
             min-height: 32px;
+        }
+
+        #drag-source.dragging {
+            background: #dbeafe;
+            border-color: #2563eb;
+            cursor: grabbing;
+        }
+
+        #drop-target.drop-ready {
+            background: #ecfdf5;
+            border-color: #16a34a;
         }
 
         #hidden-button {
@@ -59,6 +78,10 @@
             cursor: pointer;
             font-weight: 700;
             padding: 4px 8px;
+        }
+
+        tr.selected-row {
+            background: #ecfdf5;
         }
 
         .result {
@@ -96,11 +119,11 @@
         <section id="drag-drop" class="learning-section">
             <h2>Reliable Drag And Drop Fixture</h2>
             <p>
-                This simple mouse-event fixture keeps the beginner Selenium
-                Actions example stable before HTML5 drag/drop fallbacks are
-                discussed in later framework design.
+                This fixture gives visual feedback during drag/drop while still
+                supporting the simple Selenium Actions sequence used in this
+                module.
             </p>
-            <div id="drag-source">Drag source</div>
+            <div id="drag-source" draggable="true" role="button" tabindex="0">Drag source</div>
             <div id="drop-target">Drop target</div>
             <p id="drag-result" class="result">Not dropped</p>
         </section>
@@ -123,8 +146,13 @@
                 The Internet table is used for reading rows. This fixture adds
                 visible row action results and deterministic sorting.
             </p>
+            <h3>People With Row Actions</h3>
+            <p>
+                The row action button marks the selected row and updates the
+                result below the table.
+            </p>
             <table id="people-table">
-                <caption>People With Row Actions</caption>
+                <caption>Select A Person</caption>
                 <thead>
                     <tr>
                         <th>Last Name</th>
@@ -150,11 +178,16 @@
             </table>
             <p id="selected-person" class="result">No person selected</p>
 
+            <h3>Sortable Scores</h3>
+            <p>
+                The sort button reorders this second table and reports the
+                active sort direction.
+            </p>
             <table id="sortable-table">
                 <caption>Sortable Scores</caption>
                 <thead>
                     <tr>
-                        <th><button id="sort-by-name" type="button">Name</button></th>
+                        <th><button id="sort-by-name" type="button" aria-sort="none">Sort by name</button></th>
                         <th>Score</th>
                     </tr>
                 </thead>
@@ -164,6 +197,7 @@
                     <tr><td>Bob</td><td>80</td></tr>
                 </tbody>
             </table>
+            <p id="sort-result" class="result">Not sorted</p>
         </section>
 
         <section id="shadow" class="learning-section">
@@ -186,14 +220,79 @@
     </main>
 
     <script>
-        document.getElementById('drop-target').addEventListener('mouseup', function () {
-            document.getElementById('drag-result').textContent = 'Dropped on target';
+        const dragSource = document.getElementById('drag-source');
+        const dropTarget = document.getElementById('drop-target');
+        let draggingSource = false;
+        let dropCompleted = false;
+
+        function showDraggingState() {
+            draggingSource = true;
+            dropCompleted = false;
+            dragSource.classList.add('dragging');
+            dropTarget.classList.remove('drop-ready');
+            document.getElementById('drag-result').textContent = 'Dragging source';
+        }
+
+        function clearDraggingState() {
+            draggingSource = false;
+            dragSource.classList.remove('dragging');
+            if (!dropCompleted) {
+                dropTarget.classList.remove('drop-ready');
+            }
+        }
+
+        function completeDrop() {
+            dropCompleted = true;
+            document.getElementById('drag-result').textContent = 'Dropped: Drag source';
+            draggingSource = false;
+            dragSource.classList.remove('dragging');
+            dropTarget.classList.add('drop-ready');
+        }
+
+        dragSource.addEventListener('mousedown', showDraggingState);
+        dragSource.addEventListener('dragstart', function (event) {
+            showDraggingState();
+            event.dataTransfer.setData('text/plain', 'Drag source');
+        });
+        dragSource.addEventListener('dragend', clearDraggingState);
+
+        dropTarget.addEventListener('mouseenter', function () {
+            if (draggingSource) {
+                dropTarget.classList.add('drop-ready');
+            }
+        });
+        dropTarget.addEventListener('dragover', function (event) {
+            event.preventDefault();
+            dropTarget.classList.add('drop-ready');
+        });
+        dropTarget.addEventListener('drop', function (event) {
+            event.preventDefault();
+            completeDrop();
+        });
+        dropTarget.addEventListener('mouseup', function () {
+            if (draggingSource) {
+                completeDrop();
+            }
+        });
+        document.addEventListener('mouseup', function (event) {
+            if (draggingSource && event.target !== dropTarget) {
+                clearDraggingState();
+            }
+        });
+
+        function updateSelectedDate(date) {
+            document.getElementById('selected-date').textContent = 'Selected date: ' + date;
+        }
+
+        document.getElementById('appointment-date').addEventListener('change', function () {
+            updateSelectedDate(this.value || 'No date selected');
         });
 
         document.getElementById('date-2026-05-08').addEventListener('click', function () {
             const date = this.getAttribute('data-date');
-            document.getElementById('appointment-date').value = date;
-            document.getElementById('selected-date').textContent = date;
+            const dateInput = document.getElementById('appointment-date');
+            dateInput.value = date;
+            dateInput.dispatchEvent(new Event('change'));
         });
 
         document.querySelectorAll('.select-person').forEach(function (button) {
@@ -201,19 +300,29 @@
                 const row = this.closest('tr');
                 const firstName = row.cells[1].textContent;
                 const lastName = row.cells[0].textContent;
-                document.getElementById('selected-person').textContent = firstName + ' ' + lastName;
+                document.querySelectorAll('#people-table tbody tr').forEach(function (tableRow) {
+                    tableRow.classList.remove('selected-row');
+                });
+                row.classList.add('selected-row');
+                document.getElementById('selected-person').textContent = 'Selected person: ' + firstName + ' ' + lastName;
             });
         });
 
+        let sortAscending = true;
         document.getElementById('sort-by-name').addEventListener('click', function () {
             const tbody = document.querySelector('#sortable-table tbody');
             const rows = Array.from(tbody.querySelectorAll('tr'));
             rows.sort(function (left, right) {
-                return left.cells[0].textContent.localeCompare(right.cells[0].textContent);
+                const comparison = left.cells[0].textContent.localeCompare(right.cells[0].textContent);
+                return sortAscending ? comparison : -comparison;
             });
             rows.forEach(function (row) {
                 tbody.appendChild(row);
             });
+            this.setAttribute('aria-sort', sortAscending ? 'ascending' : 'descending');
+            document.getElementById('sort-result').textContent =
+                'Sorted by name: ' + (sortAscending ? 'ascending' : 'descending');
+            sortAscending = !sortAscending;
         });
 
         const shadowRoot = document.getElementById('shadow-host').attachShadow({ mode: 'open' });
