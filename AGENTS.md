@@ -59,7 +59,7 @@ find src -type f | sort
 
 **Module:** Module 08 - TestNG Framework Foundation
 **Branch:** `module-08-testng-framework-foundation`
-**Status:** In Progress
+**Status:** Complete
 **Previous:** Module 07 - Windows, Frames, Files, Actions
 **Next:** Module 09 - Page Object Model
 
