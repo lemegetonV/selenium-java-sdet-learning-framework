@@ -1,0 +1,116 @@
+package com.learning.tests.learning;
+
+import java.nio.file.Path;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+/**
+ * Introduces date picker strategies and table row extraction/action patterns.
+ */
+public class _18_CalendarAndWebTableTest {
+
+    @Test
+    public void selectsDateUsingInputAndCalendarButton() {
+        WebDriver driver = createChromeDriver();
+
+        try {
+            driver.get(module07FixtureUrl("advanced-interactions.html"));
+
+            WebElement dateInput = driver.findElement(By.id("appointment-date"));
+
+            /*
+             * Native date inputs store ISO dates, but typing can be interpreted
+             * through the browser locale. JavaScriptExecutor makes the stored ISO
+             * value explicit for this learning fixture.
+             */
+            ((JavascriptExecutor) driver).executeScript(
+                    "arguments[0].value = '2026-05-08'; arguments[0].dispatchEvent(new Event('change'));",
+                    dateInput
+            );
+            Assert.assertEquals(dateInput.getAttribute("value"), "2026-05-08");
+
+            /*
+             * Many real applications use custom calendar widgets, so this test also
+             * clicks a visible date button that updates the same input.
+             */
+            dateInput.clear();
+            driver.findElement(By.id("date-2026-05-08")).click();
+
+            Assert.assertEquals(dateInput.getAttribute("value"), "2026-05-08");
+            Assert.assertEquals(driver.findElement(By.id("selected-date")).getText(), "2026-05-08");
+        } finally {
+            driver.quit();
+        }
+    }
+
+    @Test
+    public void readsTableRowsAndClicksActionInMatchingRow() {
+        WebDriver driver = createChromeDriver();
+
+        try {
+            driver.get(module07FixtureUrl("advanced-interactions.html"));
+
+            List<WebElement> rows = driver.findElements(By.cssSelector("#people-table tbody tr"));
+            Assert.assertEquals(rows.size(), 2);
+
+            WebElement doeRow = rows.stream()
+                    .filter(row -> row.getText().contains("Doe"))
+                    .findFirst()
+                    .orElseThrow();
+
+            Assert.assertTrue(doeRow.getText().contains("jdoe@example.com"));
+
+            /*
+             * This pattern appears often in real tests: find the row by cell text,
+             * then click an action button in that same row.
+             */
+            doeRow.findElement(By.cssSelector("button.select-person")).click();
+            Assert.assertEquals(driver.findElement(By.id("selected-person")).getText(), "Jane Doe");
+        } finally {
+            driver.quit();
+        }
+    }
+
+    @Test
+    public void sortsTableAndReadsColumnOrder() {
+        WebDriver driver = createChromeDriver();
+
+        try {
+            driver.get(module07FixtureUrl("advanced-interactions.html"));
+
+            driver.findElement(By.id("sort-by-name")).click();
+
+            List<String> names = driver.findElements(By.cssSelector("#sortable-table tbody tr td:first-child"))
+                    .stream()
+                    .map(WebElement::getText)
+                    .toList();
+
+            Assert.assertEquals(names, List.of("Alice", "Bob", "Charlie"));
+        } finally {
+            driver.quit();
+        }
+    }
+
+    private String module07FixtureUrl(String fileName) {
+        return Path.of("src/test/resources/module07", fileName).toUri().toString();
+    }
+
+    private WebDriver createChromeDriver() {
+        ChromeOptions options = new ChromeOptions();
+
+        if (Boolean.parseBoolean(System.getProperty("headless", "true"))) {
+            options.addArguments("--headless=new");
+        }
+
+        options.addArguments("--window-size=1440,900");
+        return new ChromeDriver(options);
+    }
+}

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Module 07 Advanced Interactions</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.4; }
+        section { margin-bottom: 24px; }
+        #hover-card, #drag-source, #drop-target {
+            border: 1px solid #555;
+            display: inline-block;
+            margin: 4px;
+            padding: 12px;
+        }
+        #drop-target { min-width: 120px; min-height: 32px; }
+        #hidden-button { display: none; }
+        table { border-collapse: collapse; }
+        th, td { border: 1px solid #777; padding: 4px 8px; }
+        th button { border: 0; background: transparent; cursor: pointer; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Module 07 Advanced Interactions</h1>
+
+        <section id="windows">
+            <h2>Windows</h2>
+            <a id="new-window-link" href="window-target.html" target="_blank">Open window target</a>
+        </section>
+
+        <section id="frames">
+            <h2>Frames</h2>
+            <iframe id="profile-frame" name="profile-frame" src="frame-child.html" title="Profile frame"></iframe>
+        </section>
+
+        <section id="files">
+            <h2>Files</h2>
+            <input id="upload-file" type="file">
+            <p id="uploaded-file-name">No file uploaded</p>
+            <a id="download-link" href="data:text/plain,Downloaded%20from%20Module%2007" download="module07-download.txt">Download text file</a>
+        </section>
+
+        <section id="mouse-keyboard">
+            <h2>Mouse And Keyboard</h2>
+            <div id="hover-card">Hover over this card</div>
+            <p id="hover-result">Not hovered</p>
+
+            <input id="keyboard-input" type="text" placeholder="Type here">
+            <p id="keyboard-result">No key recorded</p>
+
+            <div id="drag-source">Drag source</div>
+            <div id="drop-target">Drop target</div>
+            <p id="drag-result">Not dropped</p>
+        </section>
+
+        <section id="calendar">
+            <h2>Calendar</h2>
+            <input id="appointment-date" type="date">
+            <button id="date-2026-05-08" type="button" data-date="2026-05-08">May 8, 2026</button>
+            <p id="selected-date">No date selected</p>
+        </section>
+
+        <section id="tables">
+            <h2>Tables</h2>
+            <table id="people-table">
+                <thead>
+                    <tr>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Smith</td>
+                        <td>John</td>
+                        <td>jsmith@example.com</td>
+                        <td><button type="button" class="select-person">Select</button></td>
+                    </tr>
+                    <tr>
+                        <td>Doe</td>
+                        <td>Jane</td>
+                        <td>jdoe@example.com</td>
+                        <td><button type="button" class="select-person">Select</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p id="selected-person">No person selected</p>
+
+            <table id="sortable-table">
+                <thead>
+                    <tr>
+                        <th><button id="sort-by-name" type="button">Name</button></th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Charlie</td><td>70</td></tr>
+                    <tr><td>Alice</td><td>95</td></tr>
+                    <tr><td>Bob</td><td>80</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="shadow">
+            <h2>Shadow DOM</h2>
+            <div id="shadow-host"></div>
+        </section>
+
+        <section id="images">
+            <h2>Broken Image</h2>
+            <img id="broken-image" alt="Broken sample" src="missing-module07-image.png">
+        </section>
+
+        <section id="exceptions">
+            <h2>Exception Fixtures</h2>
+            <button id="hidden-button" type="button">Hidden button</button>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById('upload-file').addEventListener('change', function () {
+            const fileName = this.files.length > 0 ? this.files[0].name : 'No file uploaded';
+            document.getElementById('uploaded-file-name').textContent = fileName;
+        });
+
+        document.getElementById('hover-card').addEventListener('mouseover', function () {
+            document.getElementById('hover-result').textContent = 'Hover detected';
+        });
+
+        document.getElementById('keyboard-input').addEventListener('keydown', function (event) {
+            document.getElementById('keyboard-result').textContent = 'Last key: ' + event.key;
+        });
+
+        document.getElementById('drop-target').addEventListener('mouseup', function () {
+            document.getElementById('drag-result').textContent = 'Dropped on target';
+        });
+
+        document.getElementById('date-2026-05-08').addEventListener('click', function () {
+            const date = this.getAttribute('data-date');
+            document.getElementById('appointment-date').value = date;
+            document.getElementById('selected-date').textContent = date;
+        });
+
+        document.querySelectorAll('.select-person').forEach(function (button) {
+            button.addEventListener('click', function () {
+                const row = this.closest('tr');
+                const firstName = row.cells[1].textContent;
+                const lastName = row.cells[0].textContent;
+                document.getElementById('selected-person').textContent = firstName + ' ' + lastName;
+            });
+        });
+
+        document.getElementById('sort-by-name').addEventListener('click', function () {
+            const tbody = document.querySelector('#sortable-table tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            rows.sort(function (left, right) {
+                return left.cells[0].textContent.localeCompare(right.cells[0].textContent);
+            });
+            rows.forEach(function (row) {
+                tbody.appendChild(row);
+            });
+        });
+
+        const shadowRoot = document.getElementById('shadow-host').attachShadow({ mode: 'open' });
+        shadowRoot.innerHTML = '<button id="shadow-button" type="button">Shadow button</button><span id="shadow-result">Not clicked</span>';
+        shadowRoot.getElementById('shadow-button').addEventListener('click', function () {
+            shadowRoot.getElementById('shadow-result').textContent = 'Shadow clicked';
+        });
+    </script>
+</body>
+</html>
