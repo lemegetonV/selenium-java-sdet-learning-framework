@@ -57,11 +57,11 @@ find src -type f | sort
 
 ## Current Module
 
-**Module:** Module 07 - Windows, Frames, Files, Actions
-**Branch:** `module-07-windows-frames-files-actions`
-**Status:** Complete
-**Previous:** Module 06 - Forms, Alerts, Dropdowns
-**Next:** Module 08 - TestNG Framework Foundation
+**Module:** Module 08 - TestNG Framework Foundation
+**Branch:** `module-08-testng-framework-foundation`
+**Status:** In Progress
+**Previous:** Module 07 - Windows, Frames, Files, Actions
+**Next:** Module 09 - Page Object Model
 
 When the current module status is `Complete`, do not continue work on its
 branch. Start the `Next` module from `main` using the module lifecycle below.
