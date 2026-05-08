@@ -33,15 +33,17 @@ The local fixture exists only for controls that The Internet does not provide
 as a compact, stable teaching page in this module: textarea, radio group,
 image attribute reading, hyperlink fragment navigation, and a simple button
 that updates visible text. The fixture is intentionally a complete learning
-page with headings, labels, visible results, and HTML comments.
+page with headings, labels, visible results, and HTML comments. Each local
+interaction now has a visible learner-facing result, so the page can be
+reviewed manually as well as through Selenium assertions.
 
 ## Files Added Or Changed
 
 | File | Status | Purpose |
 | --- | --- | --- |
-| `src/test/resources/module06/form-controls.html` | added | complete local learning fixture for textarea, radio, image, hyperlink, and button examples that are not cleanly covered by The Internet |
-| `src/test/java/com/learning/tests/learning/_11_TextboxTextareaButtonTest.java` | added | demonstrates textbox, textarea, button click, and reading updated page text |
-| `src/test/java/com/learning/tests/learning/_12_RadioImageHyperlinkTest.java` | added | demonstrates radio buttons, image attributes, and hyperlink navigation |
+| `src/test/resources/module06/form-controls.html` | added | complete local learning fixture for textarea, radio, image, hyperlink, and button examples with visible action results |
+| `src/test/java/com/learning/tests/learning/_11_TextboxTextareaButtonTest.java` | added | demonstrates textbox, textarea, button click, and reading a saved profile summary |
+| `src/test/java/com/learning/tests/learning/_12_RadioImageHyperlinkTest.java` | added | demonstrates radio buttons with visible state, image attributes, and hyperlink navigation |
 | `src/test/java/com/learning/tests/learning/_13_CheckboxDropdownTest.java` | added | demonstrates checkbox state and Selenium `Select` dropdown actions |
 | `src/test/java/com/learning/tests/learning/_14_AlertsAndAuthenticationTest.java` | added | demonstrates JavaScript alerts, confirms, prompts, and form authentication |
 | `docs/module-06-forms-alerts-dropdowns/00-module-overview.md` | added | module map, file ownership, deferred scope, and quality gate |

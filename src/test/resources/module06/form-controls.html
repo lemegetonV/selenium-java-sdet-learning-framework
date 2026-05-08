@@ -53,6 +53,16 @@
             margin-top: 12px;
             padding: 8px;
         }
+
+        .result-list {
+            margin: 8px 0 0;
+            padding-left: 20px;
+        }
+
+        #details:target {
+            background: #fffbeb;
+            border-color: #f59e0b;
+        }
     </style>
 </head>
 <body>
@@ -89,17 +99,29 @@
                     <input id="contact-phone" name="contact" type="radio" value="phone">
                     Phone
                 </label>
+                <p id="contact-result" class="result" aria-live="polite">No contact selected</p>
             </fieldset>
 
             <!-- Button click updates visible page text so Selenium can assert the result. -->
             <button id="save-profile" type="button">Save profile</button>
-            <p id="save-result" class="result" aria-live="polite">Not saved</p>
+            <div id="save-result" class="result" aria-live="polite">
+                <strong id="save-status">Not saved</strong>
+                <ul class="result-list">
+                    <li>Name: <span id="saved-name">Not provided</span></li>
+                    <li>Notes: <span id="saved-notes">Not provided</span></li>
+                    <li>Preferred contact: <span id="saved-contact">Not selected</span></li>
+                </ul>
+            </div>
         </form>
 
         <section id="details" class="control-group">
             <h2>Hyperlink Target</h2>
-            <p>The link below navigates to this section by changing the URL fragment.</p>
+            <p>
+                The link below navigates to this section by changing the URL
+                fragment. The section is highlighted when it becomes the target.
+            </p>
             <a id="details-link" href="#details">View details</a>
+            <p id="details-result" class="result" aria-live="polite">Details section not opened</p>
         </section>
 
         <section class="control-group" aria-labelledby="image-heading">
@@ -115,9 +137,34 @@
     </main>
 
     <script>
+        function selectedContactLabel() {
+            const checkedContact = document.querySelector('input[name="contact"]:checked');
+            if (!checkedContact) {
+                return 'Not selected';
+            }
+
+            return checkedContact.parentElement.textContent.trim();
+        }
+
+        document.querySelectorAll('input[name="contact"]').forEach(function (radio) {
+            radio.addEventListener('change', function () {
+                document.getElementById('contact-result').textContent =
+                    'Preferred contact: ' + selectedContactLabel();
+            });
+        });
+
         document.getElementById('save-profile').addEventListener('click', function () {
-            const displayName = document.getElementById('display-name').value;
-            document.getElementById('save-result').textContent = 'Saved: ' + displayName;
+            const displayName = document.getElementById('display-name').value.trim() || 'Not provided';
+            const notes = document.getElementById('notes').value.trim() || 'Not provided';
+
+            document.getElementById('save-status').textContent = 'Saved profile';
+            document.getElementById('saved-name').textContent = displayName;
+            document.getElementById('saved-notes').textContent = notes;
+            document.getElementById('saved-contact').textContent = selectedContactLabel();
+        });
+
+        document.getElementById('details-link').addEventListener('click', function () {
+            document.getElementById('details-result').textContent = 'Details section opened';
         });
     </script>
 </body>

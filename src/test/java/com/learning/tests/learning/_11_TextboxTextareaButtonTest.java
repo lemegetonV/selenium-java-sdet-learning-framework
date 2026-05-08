@@ -53,15 +53,24 @@ public class _11_TextboxTextareaButtonTest {
             driver.get(module06FixtureUrl());
 
             WebElement displayName = driver.findElement(By.id("display-name"));
+            WebElement notes = driver.findElement(By.id("notes"));
+            WebElement emailRadio = driver.findElement(By.id("contact-email"));
             WebElement saveButton = driver.findElement(By.id("save-profile"));
 
             displayName.sendKeys("Module 06");
+            notes.sendKeys("Saved from a Selenium button test.");
+            emailRadio.click();
 
             // click() asks the browser to perform the element's normal click behavior.
             saveButton.click();
 
-            WebElement saveResult = driver.findElement(By.id("save-result"));
-            Assert.assertEquals(saveResult.getText(), "Saved: Module 06");
+            Assert.assertEquals(driver.findElement(By.id("save-status")).getText(), "Saved profile");
+            Assert.assertEquals(driver.findElement(By.id("saved-name")).getText(), "Module 06");
+            Assert.assertEquals(
+                    driver.findElement(By.id("saved-notes")).getText(),
+                    "Saved from a Selenium button test."
+            );
+            Assert.assertEquals(driver.findElement(By.id("saved-contact")).getText(), "Email");
         } finally {
             driver.quit();
         }

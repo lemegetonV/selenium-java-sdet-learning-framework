@@ -17,6 +17,7 @@ The HTML fixture includes clearly labeled controls:
 <input id="display-name" name="displayName" type="text">
 <textarea id="notes" name="notes"></textarea>
 <button id="save-profile" type="button">Save profile</button>
+<div id="save-result">...</div>
 ```
 
 ## Textbox Actions
@@ -75,6 +76,21 @@ saveButton.click();
 Selenium does not know the business meaning of the button. It only asks the
 browser to perform the normal click action. The page's JavaScript decides what
 happens next.
+
+This fixture updates a visible saved profile summary:
+
+```java
+Assert.assertEquals(driver.findElement(By.id("save-status")).getText(), "Saved profile");
+Assert.assertEquals(driver.findElement(By.id("saved-name")).getText(), "Module 06");
+Assert.assertEquals(driver.findElement(By.id("saved-contact")).getText(), "Email");
+```
+
+That gives the learner a direct connection between:
+
+- the text typed into the textbox.
+- the text typed into the textarea.
+- the selected radio option.
+- the visible result produced by clicking the button.
 
 ## Common Beginner Mistakes
 

@@ -32,10 +32,18 @@ public class _12_RadioImageHyperlinkTest {
             emailRadio.click();
             Assert.assertTrue(emailRadio.isSelected());
             Assert.assertFalse(phoneRadio.isSelected());
+            Assert.assertEquals(
+                    driver.findElement(By.id("contact-result")).getText(),
+                    "Preferred contact: Email"
+            );
 
             phoneRadio.click();
             Assert.assertTrue(phoneRadio.isSelected());
             Assert.assertFalse(emailRadio.isSelected());
+            Assert.assertEquals(
+                    driver.findElement(By.id("contact-result")).getText(),
+                    "Preferred contact: Phone"
+            );
         } finally {
             driver.quit();
         }
@@ -60,6 +68,10 @@ public class _12_RadioImageHyperlinkTest {
             // Hyperlinks navigate through their href when clicked.
             detailsLink.click();
             Assert.assertTrue(driver.getCurrentUrl().endsWith("#details"));
+            Assert.assertEquals(
+                    driver.findElement(By.id("details-result")).getText(),
+                    "Details section opened"
+            );
         } finally {
             driver.quit();
         }
