@@ -104,3 +104,28 @@ What is intentionally not handled yet:
 
 Those are deeper validation topics. Module 07 introduces broken image
 behavior separately.
+
+## Interview Readiness
+
+**Question: What is the difference between checkbox and radio button behavior?**
+
+Checkboxes are independent toggles and multiple boxes can be selected. Radio
+buttons are grouped by `name`, and usually only one option in the group can be
+selected.
+
+**Question: How do you verify checkbox or radio state?**
+
+Use `isSelected()`. Do not assume a click changed state just because no
+exception was thrown.
+
+**Question: How do you test links and images?**
+
+For links, assert visible text, `href`, and navigation result when relevant.
+For images, assert display state and useful attributes such as `alt` and `src`.
+Deeper broken-image validation is a separate topic.
+
+## Revision Checklist
+
+- Can you explain why radio buttons need a shared `name`?
+- Can you explain when link text locators may become brittle?
+- Can you explain why `alt` text matters beyond the automation assertion?

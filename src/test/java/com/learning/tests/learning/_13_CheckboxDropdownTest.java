@@ -24,6 +24,11 @@ public class _13_CheckboxDropdownTest {
             WebElement firstCheckbox = driver.findElement(By.cssSelector("#checkboxes input:nth-of-type(1)"));
             WebElement secondCheckbox = driver.findElement(By.cssSelector("#checkboxes input:nth-of-type(2)"));
 
+            /*
+             * The test asserts starting state because checkbox clicks toggle.
+             * Without knowing the initial state, a click could accidentally
+             * create the opposite of the state the test intended.
+             */
             Assert.assertFalse(firstCheckbox.isSelected(), "First checkbox starts unchecked");
             Assert.assertTrue(secondCheckbox.isSelected(), "Second checkbox starts checked");
 
@@ -60,6 +65,10 @@ public class _13_CheckboxDropdownTest {
             dropdown.selectByVisibleText("Option 1");
             Assert.assertEquals(dropdown.getFirstSelectedOption().getText(), "Option 1");
 
+            /*
+             * selectByValue targets the option value attribute, not the visible
+             * label. Both strategies are useful when the HTML has stable values.
+             */
             dropdown.selectByValue("2");
             Assert.assertEquals(dropdown.getFirstSelectedOption().getText(), "Option 2");
         } finally {

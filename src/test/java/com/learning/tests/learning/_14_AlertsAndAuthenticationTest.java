@@ -70,6 +70,10 @@ public class _14_AlertsAndAuthenticationTest {
             driver.findElement(By.xpath("//button[normalize-space()='Click for JS Prompt']")).click();
 
             Alert prompt = driver.switchTo().alert();
+            /*
+             * sendKeys on Alert types into the browser prompt dialog, not into a
+             * DOM input. After accept(), Selenium returns to normal page context.
+             */
             prompt.sendKeys("Module 06 prompt");
             prompt.accept();
 
@@ -90,6 +94,11 @@ public class _14_AlertsAndAuthenticationTest {
             WebElement password = driver.findElement(By.id("password"));
             WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
 
+            /*
+             * Credentials are visible in beginner code for learning only. Later
+             * data-driven and logging modules must avoid printing or exposing
+             * secrets in reports.
+             */
             username.sendKeys("tomsmith");
             password.sendKeys("SuperSecretPassword!");
             loginButton.click();

@@ -51,6 +51,7 @@ reviewed manually as well as through Selenium assertions.
 | `docs/module-06-forms-alerts-dropdowns/02-checkbox-radio-links-images.md` | added | explains selected state, radio groups, hyperlinks, and images |
 | `docs/module-06-forms-alerts-dropdowns/03-dropdowns-select.md` | added | explains HTML dropdowns and Selenium `Select` |
 | `docs/module-06-forms-alerts-dropdowns/04-alerts-and-authentication.md` | added | explains alert handling and login form flow |
+| `docs/module-06-forms-alerts-dropdowns/99-interview-review.md` | added | interview-ready revision for form controls, dropdowns, alerts, and authentication |
 | `docs/module-06-forms-alerts-dropdowns/exercises.md` | added | practice tasks with hints and expected outcomes |
 
 ## Previous Module Files Reused
@@ -132,3 +133,19 @@ Expected outcome:
 - local fixture tests pass from `src/test/resources/module06/form-controls.html`.
 - The Internet checkbox, dropdown, alert, and login tests pass.
 - visible mode passes when `-Dheadless=false` is used.
+
+## Readiness Standard
+
+Before Module 07 adds advanced browser mechanics, a learner should be able to
+explain:
+
+- textbox vs textarea value handling.
+- button click behavior and why assertions must check the resulting state.
+- checkbox vs radio selected-state rules.
+- hyperlink navigation and image attribute checks.
+- why Selenium `Select` only works with real `<select>` elements.
+- alert, confirm, and prompt handling through `switchTo().alert()`.
+- why login navigation needs an explicit wait after submit.
+- what stays raw now and what later page objects/wrappers will centralize.
+
+Use `99-interview-review.md` as the final Module 06 revision pass.

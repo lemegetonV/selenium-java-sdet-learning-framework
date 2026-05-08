@@ -69,3 +69,30 @@ Common actions:
 - selecting by index when option order changes often.
 - clicking the `<select>` and assuming the option changed.
 - forgetting to assert the selected option after selection.
+
+## Interview Readiness
+
+**Question: What is Selenium's `Select` class used for?**
+
+`Select` is a helper for real HTML `<select>` dropdowns. It provides methods to
+select options by visible text, value, or index and to inspect selected
+options.
+
+**Question: Can `Select` handle all dropdowns?**
+
+No. Many modern applications build custom dropdowns from `div`, `button`, `ul`,
+and `li` elements. Those must be automated as normal clickable elements, often
+with waits.
+
+**Question: Which selection method is safest?**
+
+Visible text is readable when labels are stable. Value is useful when the
+application owns stable option values. Index is the most brittle unless order
+is the behavior under test.
+
+## Revision Checklist
+
+- Can you inspect HTML and decide whether `Select` is valid?
+- Can you explain `isMultiple()`?
+- Can you explain why selecting is not enough without asserting the selected
+  option?

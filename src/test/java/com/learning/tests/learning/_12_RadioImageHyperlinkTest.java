@@ -58,6 +58,11 @@ public class _12_RadioImageHyperlinkTest {
 
             WebElement logo = driver.findElement(By.id("sample-logo"));
             Assert.assertTrue(logo.isDisplayed());
+            /*
+             * The image is validated through attributes in this module. The alt
+             * text describes meaning/accessibility; src confirms which image the
+             * browser was asked to load. Broken-image checks are saved for Module 07.
+             */
             Assert.assertEquals(logo.getAttribute("alt"), "Sample inline logo");
             Assert.assertTrue(logo.getAttribute("src").startsWith("data:image/svg+xml"));
 
@@ -65,7 +70,10 @@ public class _12_RadioImageHyperlinkTest {
             Assert.assertEquals(detailsLink.getText(), "View details");
             Assert.assertTrue(detailsLink.getAttribute("href").endsWith("#details"));
 
-            // Hyperlinks navigate through their href when clicked.
+            /*
+             * A normal hyperlink follows its href. Here the href is a fragment,
+             * so the URL changes to #details instead of loading a new page.
+             */
             detailsLink.click();
             Assert.assertTrue(driver.getCurrentUrl().endsWith("#details"));
             Assert.assertEquals(

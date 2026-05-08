@@ -100,3 +100,27 @@ concept already learned.
   for navigation.
 - logging passwords to console or reports. Logging is introduced later, and
   credentials should be handled carefully when that happens.
+
+## Interview Readiness
+
+**Question: Why can't JavaScript alerts be located with `findElement`?**
+
+Browser JavaScript alerts are not DOM elements. They are browser-level dialogs,
+so Selenium handles them through `driver.switchTo().alert()`.
+
+**Question: What is the difference between alert, confirm, and prompt?**
+
+A simple alert has text and OK. A confirm has OK and Cancel, so it can be
+accepted or dismissed. A prompt accepts text before accept or dismiss.
+
+**Question: Why wait after login submit?**
+
+Submitting a login form can trigger navigation and delayed messages. The test
+should wait for URL or visible page state before asserting the secure page.
+
+## Revision Checklist
+
+- Can you explain why an open alert blocks normal page interaction?
+- Can you explain when to use `accept`, `dismiss`, and `sendKeys` on alerts?
+- Can you explain why credentials should be treated carefully before logging
+  and reporting modules exist?

@@ -100,3 +100,29 @@ That gives the learner a direct connection between:
   behave differently.
 - clicking and asserting immediately when the page updates asynchronously. If
   the update is delayed, reuse the explicit wait pattern from Module 05.
+
+## Interview Readiness
+
+**Question: How do you type into a textbox in Selenium?**
+
+Locate the input as a `WebElement`, clear it if existing text may be present,
+then call `sendKeys(...)`. Assert the typed value with `getAttribute("value")`
+for input-like controls.
+
+**Question: Is a textarea handled differently from a textbox?**
+
+For basic Selenium typing, no. A textarea is still a `WebElement`, and
+`sendKeys` works. The important nuance is still to assert its `value`, not
+`getText()`.
+
+**Question: What happens when Selenium clicks a button?**
+
+Selenium asks the browser to perform the normal click action. The application
+decides what changes afterward, so the test should assert the resulting state.
+
+## Revision Checklist
+
+- Can you explain why `getAttribute("value")` is used?
+- Can you explain the difference between `type="button"` and `type="submit"`?
+- Can you explain why a future page object should expose a method like
+  `saveProfile(...)` instead of test code clicking low-level controls directly?

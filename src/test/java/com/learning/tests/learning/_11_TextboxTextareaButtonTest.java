@@ -28,7 +28,11 @@ public class _11_TextboxTextareaButtonTest {
             WebElement displayName = driver.findElement(By.id("display-name"));
             WebElement notes = driver.findElement(By.id("notes"));
 
-            // clear() is a safe habit before typing when the field may already contain text.
+            /*
+             * clear() prevents sendKeys from appending to existing text. This is
+             * the raw version of what a future typeInto wrapper should do when a
+             * field must contain an exact value.
+             */
             displayName.clear();
             displayName.sendKeys("Selenium learner");
 
@@ -61,7 +65,11 @@ public class _11_TextboxTextareaButtonTest {
             notes.sendKeys("Saved from a Selenium button test.");
             emailRadio.click();
 
-            // click() asks the browser to perform the element's normal click behavior.
+            /*
+             * click() only performs the button action. The important assertion is
+             * the application state after the click: the saved summary should
+             * reflect the values the test entered.
+             */
             saveButton.click();
 
             Assert.assertEquals(driver.findElement(By.id("save-status")).getText(), "Saved profile");
