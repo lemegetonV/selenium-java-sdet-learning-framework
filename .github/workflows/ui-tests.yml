@@ -1,0 +1,161 @@
+name: UI Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      test_scope:
+        description: "Which UI test scope should run?"
+        required: true
+        default: smoke
+        type: choice
+        options:
+          - smoke
+          - regression
+          - bdd
+          - parallel
+          - full
+  schedule:
+    # GitHub schedules use UTC. This runs the full regression every Monday.
+    - cron: "0 2 * * 1"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ui-tests-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ui-tests:
+    name: Selenium UI tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+
+    env:
+      MAVEN_OPTS: "-Dfile.encoding=UTF-8"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+
+      - name: Show tool versions
+        run: |
+          java -version
+          mvn -version
+          google-chrome --version
+
+      - name: Resolve test scope
+        id: scope
+        shell: bash
+        run: |
+          scope="${{ github.event.inputs.test_scope }}"
+
+          if [ -z "$scope" ]; then
+            if [ "${{ github.event_name }}" = "schedule" ]; then
+              scope="full"
+            else
+              scope="smoke"
+            fi
+          fi
+
+          echo "scope=$scope" >> "$GITHUB_OUTPUT"
+          echo "Resolved UI test scope: $scope"
+
+      - name: Run selected UI test scope
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          scope="${{ steps.scope.outputs.scope }}"
+
+          case "$scope" in
+            smoke)
+              # Pull requests and pushes run a fast confidence path from both
+              # TestNG and Cucumber so CI fails early on critical workflow bugs.
+              mvn --batch-mode test -DsuiteXmlFile=testng.xml -Dgroups=smoke -Dheadless=true
+              mvn --batch-mode test -DsuiteXmlFile=testng-cucumber.xml -Dcucumber.filter.tags="@smoke" -Dheadless=true
+              ;;
+            regression)
+              mvn --batch-mode test -DsuiteXmlFile=testng.xml -Dheadless=true
+              mvn --batch-mode test -DsuiteXmlFile=testng-cucumber.xml -Dheadless=true
+              ;;
+            bdd)
+              mvn --batch-mode test -DsuiteXmlFile=testng-cucumber.xml -Dheadless=true
+              ;;
+            parallel)
+              mvn --batch-mode test -DsuiteXmlFile=testng-parallel.xml -Dheadless=true
+              ;;
+            full)
+              mvn --batch-mode test -Dheadless=true
+              mvn --batch-mode test -DsuiteXmlFile=testng-parallel.xml -Dheadless=true
+              ;;
+            *)
+              echo "Unsupported test scope: $scope" >&2
+              exit 2
+              ;;
+          esac
+
+      - name: Generate Allure report
+        if: always()
+        continue-on-error: true
+        run: mvn --batch-mode allure:report
+
+      - name: Upload Surefire reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: surefire-reports
+          path: target/surefire-reports/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Upload Extent report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: extent-report
+          path: target/extent-report/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Upload Cucumber report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: cucumber-report
+          path: target/cucumber-report/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Upload Allure results and report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: allure-output
+          path: |
+            target/allure-results/
+            target/allure-report/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Upload failure screenshots
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: screenshots
+          path: target/screenshots/
+          if-no-files-found: ignore
+          retention-days: 14
