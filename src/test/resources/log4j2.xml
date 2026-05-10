@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="logDirectory">target/logs</Property>
+        <Property name="logPattern">%d{HH:mm:ss.SSS} %-5level [%X{testName}] %c{1} - %msg%n%throwable</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${logPattern}"/>
+        </Console>
+        <File name="File" fileName="${logDirectory}/test-execution.log" append="false">
+            <PatternLayout pattern="${logPattern}"/>
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="com.learning" level="debug"/>
+        <Logger name="org.openqa.selenium" level="warn"/>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
+        </Root>
+    </Loggers>
+</Configuration>

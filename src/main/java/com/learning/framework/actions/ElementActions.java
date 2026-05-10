@@ -2,6 +2,8 @@ package com.learning.framework.actions;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,6 +20,8 @@ import com.learning.framework.waits.WaitUtils;
  */
 public class ElementActions {
 
+    private static final Logger LOGGER = LogManager.getLogger(ElementActions.class);
+
     private final WebDriver driver;
     private final WaitUtils waits;
 
@@ -27,6 +31,7 @@ public class ElementActions {
     }
 
     public void click(By locator) {
+        LOGGER.debug("Clicking element located by {}", locator);
         waits.waitForClickable(locator).click();
     }
 
@@ -35,10 +40,16 @@ public class ElementActions {
          * This scoped action keeps the Module 09 row/card lookup lesson intact:
          * first find the correct container, then click inside that container.
          */
+        LOGGER.debug("Clicking child element located by {}", childLocator);
         parent.findElement(childLocator).click();
     }
 
     public void type(By locator, String value) {
+        /*
+         * Logging the length, not the text, is intentional. Passwords and other
+         * sensitive values often flow through sendKeys in real test suites.
+         */
+        LOGGER.debug("Typing {} characters into element located by {}", value.length(), locator);
         WebElement element = waits.waitForVisible(locator);
         element.clear();
         element.sendKeys(value);
@@ -61,6 +72,7 @@ public class ElementActions {
     }
 
     public void selectByVisibleText(By locator, String visibleText) {
+        LOGGER.debug("Selecting visible text '{}' from dropdown located by {}", visibleText, locator);
         Select select = new Select(waits.waitForVisible(locator));
         select.selectByVisibleText(visibleText);
     }

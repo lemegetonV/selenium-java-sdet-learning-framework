@@ -2,6 +2,8 @@ package com.learning.framework.driver;
 
 import java.time.Duration;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -11,6 +13,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 import com.learning.framework.config.ConfigReader;
+import com.learning.framework.exceptions.FrameworkException;
 
 /**
  * Owns WebDriver creation, access, and cleanup.
@@ -21,6 +24,7 @@ import com.learning.framework.config.ConfigReader;
  */
 public final class DriverFactory {
 
+    private static final Logger LOGGER = LogManager.getLogger(DriverFactory.class);
     private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
 
     private DriverFactory() {
@@ -36,7 +40,7 @@ public final class DriverFactory {
             case "chrome" -> createChromeDriver();
             case "firefox" -> createFirefoxDriver();
             case "edge" -> createEdgeDriver();
-            default -> throw new IllegalArgumentException(
+            default -> throw new FrameworkException(
                     "Unsupported browser: " + ConfigReader.getBrowser()
                             + ". Supported values: chrome, firefox, edge."
             );
@@ -46,12 +50,14 @@ public final class DriverFactory {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(ConfigReader.getImplicitWaitSeconds()));
 
         DRIVER.set(driver);
+        LOGGER.info("Created {} browser session with window {}x{}",
+                ConfigReader.getBrowser(), ConfigReader.getWindowWidth(), ConfigReader.getWindowHeight());
     }
 
     public static WebDriver getDriver() {
         WebDriver driver = DRIVER.get();
         if (driver == null) {
-            throw new IllegalStateException("Driver has not been created. Call DriverFactory.createDriver() first.");
+            throw new FrameworkException("Driver has not been created. Call DriverFactory.createDriver() first.");
         }
         return driver;
     }
@@ -59,6 +65,7 @@ public final class DriverFactory {
     public static void quitDriver() {
         WebDriver driver = DRIVER.get();
         if (driver != null) {
+            LOGGER.info("Quitting browser session");
             driver.quit();
             DRIVER.remove();
         }

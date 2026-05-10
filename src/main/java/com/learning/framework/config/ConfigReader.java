@@ -70,6 +70,10 @@ public final class ConfigReader {
         return getInt("windowHeight");
     }
 
+    public static int getRetryCount() {
+        return getInt("retryCount");
+    }
+
     public static int getInt(String key) {
         String value = get(key);
         try {
