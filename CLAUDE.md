@@ -59,7 +59,7 @@ find src -type f | sort
 
 **Module:** Module 13 - Listeners, Screenshots, Logging
 **Branch:** `module-13-listeners-screenshots-logging`
-**Status:** In Progress
+**Status:** Complete
 **Previous:** Module 12 - Data Driven Testing
 **Next:** Module 14 - Extent and Allure Reporting
 
