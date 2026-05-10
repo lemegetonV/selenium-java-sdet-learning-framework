@@ -9,6 +9,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import com.learning.framework.actions.ElementActions;
+import com.learning.framework.waits.WaitUtils;
+
 /**
  * First reusable TestNG base class for framework-style tests.
  *
@@ -28,6 +31,8 @@ public class BaseTest {
      */
     protected WebDriver driver;
     protected WebDriverWait wait;
+    protected WaitUtils waits;
+    protected ElementActions elementActions;
 
     /**
      * TestNG runs this method before every @Test method in child classes.
@@ -47,6 +52,13 @@ public class BaseTest {
 
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(DEFAULT_TIMEOUT_SECONDS));
+
+        /*
+         * Module 10 introduces wrapper services after the learner has already
+         * seen repeated raw Selenium calls inside page objects.
+         */
+        waits = new WaitUtils(wait);
+        elementActions = new ElementActions(driver, waits);
     }
 
     /**
@@ -61,6 +73,8 @@ public class BaseTest {
             driver.quit();
             driver = null;
             wait = null;
+            waits = null;
+            elementActions = null;
         }
     }
 }

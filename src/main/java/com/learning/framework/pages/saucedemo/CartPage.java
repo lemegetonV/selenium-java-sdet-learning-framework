@@ -3,10 +3,10 @@ package com.learning.framework.pages.saucedemo;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.learning.framework.actions.ElementActions;
+import com.learning.framework.waits.WaitUtils;
 
 /**
  * Page Object for the SauceDemo cart page.
@@ -20,16 +20,16 @@ public class CartPage {
     private static final By CART_ITEMS = By.cssSelector("[data-test='inventory-item']");
     private static final By CHECKOUT_BUTTON = By.id("checkout");
 
-    private final WebDriver driver;
-    private final WebDriverWait wait;
+    private final ElementActions actions;
+    private final WaitUtils waits;
 
-    public CartPage(WebDriver driver, WebDriverWait wait) {
-        this.driver = driver;
-        this.wait = wait;
+    public CartPage(ElementActions actions, WaitUtils waits) {
+        this.actions = actions;
+        this.waits = waits;
     }
 
     public CartPage waitUntilLoaded() {
-        wait.until(ExpectedConditions.textToBe(PAGE_TITLE, "Your Cart"));
+        waits.waitForText(PAGE_TITLE, "Your Cart");
         return this;
     }
 
@@ -43,11 +43,11 @@ public class CartPage {
     }
 
     public CheckoutPage checkout() {
-        driver.findElement(CHECKOUT_BUTTON).click();
-        return new CheckoutPage(driver, wait).waitForInformationStep();
+        actions.click(CHECKOUT_BUTTON);
+        return new CheckoutPage(actions, waits).waitForInformationStep();
     }
 
     private List<WebElement> findCartItems() {
-        return driver.findElements(CART_ITEMS);
+        return actions.findAll(CART_ITEMS);
     }
 }

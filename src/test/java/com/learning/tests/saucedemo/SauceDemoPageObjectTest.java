@@ -32,7 +32,7 @@ public class SauceDemoPageObjectTest extends BaseTest {
 
     @Test(groups = {"smoke", "regression"})
     public void standardUserCanReachProductsPage() {
-        ProductsPage productsPage = new LoginPage(driver, wait)
+        ProductsPage productsPage = new LoginPage(driver, elementActions, waits)
                 .open()
                 .loginAs(standardUser, password);
 
@@ -42,7 +42,7 @@ public class SauceDemoPageObjectTest extends BaseTest {
 
     @Test(groups = "regression")
     public void lockedOutUserSeesErrorMessage() {
-        LoginPage loginPage = new LoginPage(driver, wait)
+        LoginPage loginPage = new LoginPage(driver, elementActions, waits)
                 .open()
                 .loginExpectingError(lockedOutUser, password);
 
@@ -54,7 +54,7 @@ public class SauceDemoPageObjectTest extends BaseTest {
 
     @Test(groups = "regression")
     public void standardUserCanStartCheckoutForSingleProduct() {
-        ProductsPage productsPage = new LoginPage(driver, wait)
+        ProductsPage productsPage = new LoginPage(driver, elementActions, waits)
                 .open()
                 .loginAs(standardUser, password)
                 .addProductToCart("Sauce Labs Backpack");

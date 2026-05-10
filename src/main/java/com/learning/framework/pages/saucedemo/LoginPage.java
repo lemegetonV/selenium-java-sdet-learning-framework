@@ -2,8 +2,9 @@ package com.learning.framework.pages.saucedemo;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.learning.framework.actions.ElementActions;
+import com.learning.framework.waits.WaitUtils;
 
 /**
  * Page Object for the SauceDemo login page.
@@ -27,20 +28,23 @@ public class LoginPage {
     private static final By LOGIN_ERROR = By.cssSelector("[data-test='error']");
 
     private final WebDriver driver;
-    private final WebDriverWait wait;
+    private final ElementActions actions;
+    private final WaitUtils waits;
 
     /**
      * The test owns the browser lifecycle through BaseTest. The Page Object only
-     * receives the active driver and wait so it can interact with its page.
+     * receives framework services so it can interact with its page without
+     * owning browser lifecycle.
      */
-    public LoginPage(WebDriver driver, WebDriverWait wait) {
+    public LoginPage(WebDriver driver, ElementActions actions, WaitUtils waits) {
         this.driver = driver;
-        this.wait = wait;
+        this.actions = actions;
+        this.waits = waits;
     }
 
     public LoginPage open() {
         driver.get(LOGIN_URL);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON));
+        waits.waitForVisible(LOGIN_BUTTON);
         return this;
     }
 
@@ -51,8 +55,8 @@ public class LoginPage {
      */
     public ProductsPage loginAs(String username, String password) {
         enterCredentials(username, password);
-        driver.findElement(LOGIN_BUTTON).click();
-        return new ProductsPage(driver, wait).waitUntilLoaded();
+        actions.click(LOGIN_BUTTON);
+        return new ProductsPage(actions, waits).waitUntilLoaded();
     }
 
     /**
@@ -61,19 +65,17 @@ public class LoginPage {
      */
     public LoginPage loginExpectingError(String username, String password) {
         enterCredentials(username, password);
-        driver.findElement(LOGIN_BUTTON).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_ERROR));
+        actions.click(LOGIN_BUTTON);
+        waits.waitForVisible(LOGIN_ERROR);
         return this;
     }
 
     public String getErrorMessage() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_ERROR)).getText();
+        return actions.getText(LOGIN_ERROR);
     }
 
     private void enterCredentials(String username, String password) {
-        driver.findElement(USERNAME_INPUT).clear();
-        driver.findElement(USERNAME_INPUT).sendKeys(username);
-        driver.findElement(PASSWORD_INPUT).clear();
-        driver.findElement(PASSWORD_INPUT).sendKeys(password);
+        actions.type(USERNAME_INPUT, username);
+        actions.type(PASSWORD_INPUT, password);
     }
 }

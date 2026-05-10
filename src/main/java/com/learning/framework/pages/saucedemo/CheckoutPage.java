@@ -1,9 +1,9 @@
 package com.learning.framework.pages.saucedemo;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.learning.framework.actions.ElementActions;
+import com.learning.framework.waits.WaitUtils;
 
 /**
  * Page Object for the SauceDemo checkout flow.
@@ -18,22 +18,22 @@ public class CheckoutPage {
     private static final By PAGE_TITLE = By.cssSelector("[data-test='title']");
     private static final By FIRST_NAME_INPUT = By.cssSelector("[data-test='firstName']");
 
-    private final WebDriver driver;
-    private final WebDriverWait wait;
+    private final ElementActions actions;
+    private final WaitUtils waits;
 
-    public CheckoutPage(WebDriver driver, WebDriverWait wait) {
-        this.driver = driver;
-        this.wait = wait;
+    public CheckoutPage(ElementActions actions, WaitUtils waits) {
+        this.actions = actions;
+        this.waits = waits;
     }
 
     public CheckoutPage waitForInformationStep() {
-        wait.until(ExpectedConditions.textToBe(PAGE_TITLE, "Checkout: Your Information"));
-        wait.until(ExpectedConditions.elementToBeClickable(FIRST_NAME_INPUT));
+        waits.waitForText(PAGE_TITLE, "Checkout: Your Information");
+        waits.waitForClickable(FIRST_NAME_INPUT);
         return this;
     }
 
     public String getTitle() {
-        return driver.findElement(PAGE_TITLE).getText();
+        return actions.getText(PAGE_TITLE);
     }
 
     public boolean isCustomerInformationFormDisplayed() {
@@ -41,6 +41,6 @@ public class CheckoutPage {
          * Page Objects can expose page state without forcing the test to know the
          * locator. Module 10 will centralize this wait/find/display pattern.
          */
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_NAME_INPUT)).isDisplayed();
+        return actions.isDisplayed(FIRST_NAME_INPUT);
     }
 }
