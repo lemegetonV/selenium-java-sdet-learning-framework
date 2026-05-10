@@ -46,6 +46,14 @@ public final class ConfigReader {
         return get("browser").toLowerCase();
     }
 
+    public static String getExecutionMode() {
+        return get("executionMode").toLowerCase();
+    }
+
+    public static String getGridUrl() {
+        return get("gridUrl");
+    }
+
     public static boolean isHeadless() {
         return Boolean.parseBoolean(get("headless"));
     }

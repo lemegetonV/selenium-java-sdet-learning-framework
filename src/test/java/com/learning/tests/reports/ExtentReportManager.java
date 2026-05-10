@@ -53,24 +53,24 @@ public final class ExtentReportManager {
         extentReports = new ExtentReports();
         extentReports.attachReporter(sparkReporter);
         extentReports.setSystemInfo("Project", "Selenium Java UI Automation Learning Framework");
-        extentReports.setSystemInfo("Module", "Module 14 - Extent and Allure Reporting");
+        extentReports.setSystemInfo("Module", "Module 15 - Parallel Execution and Selenium Grid");
 
         LOGGER.info("Initialized Extent report at {}", REPORT_PATH.toAbsolutePath());
     }
 
-    public static void startTest(ITestResult result, String displayName) {
+    public static synchronized void startTest(ITestResult result, String displayName) {
         ExtentTest extentTest = extentReports.createTest(displayName)
                 .assignCategory(result.getMethod().getGroups());
 
         CURRENT_TEST.set(extentTest);
     }
 
-    public static void pass(String message) {
+    public static synchronized void pass(String message) {
         log(Status.PASS, message);
         CURRENT_TEST.remove();
     }
 
-    public static void fail(Throwable throwable, Path screenshotPath) {
+    public static synchronized void fail(Throwable throwable, Path screenshotPath) {
         ExtentTest currentTest = CURRENT_TEST.get();
         if (currentTest != null) {
             currentTest.fail(throwable);
@@ -79,7 +79,7 @@ public final class ExtentReportManager {
         CURRENT_TEST.remove();
     }
 
-    public static void skip(Throwable throwable) {
+    public static synchronized void skip(Throwable throwable) {
         ExtentTest currentTest = CURRENT_TEST.get();
         if (currentTest != null) {
             currentTest.skip(throwable);

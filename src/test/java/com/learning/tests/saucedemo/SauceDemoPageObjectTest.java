@@ -44,7 +44,7 @@ public class SauceDemoPageObjectTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void standardUserCanReachProductsPage() {
         Allure.step("Open login page and login as standard user");
-        ProductsPage productsPage = new LoginPage(driver, elementActions, waits)
+        ProductsPage productsPage = new LoginPage(driver(), elementActions(), waits())
                 .open()
                 .loginAs(standardUser, password);
 
@@ -58,7 +58,7 @@ public class SauceDemoPageObjectTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void lockedOutUserSeesErrorMessage() {
         Allure.step("Open login page and login as locked-out user");
-        LoginPage loginPage = new LoginPage(driver, elementActions, waits)
+        LoginPage loginPage = new LoginPage(driver(), elementActions(), waits())
                 .open()
                 .loginExpectingError(lockedOutUser, password);
 
@@ -74,7 +74,7 @@ public class SauceDemoPageObjectTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void standardUserCanStartCheckoutForSingleProduct() {
         Allure.step("Login and add one product to cart");
-        ProductsPage productsPage = new LoginPage(driver, elementActions, waits)
+        ProductsPage productsPage = new LoginPage(driver(), elementActions(), waits())
                 .open()
                 .loginAs(standardUser, password)
                 .addProductToCart("Sauce Labs Backpack");

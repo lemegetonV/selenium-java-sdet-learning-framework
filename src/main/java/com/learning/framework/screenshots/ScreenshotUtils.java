@@ -55,7 +55,9 @@ public final class ScreenshotUtils {
     }
 
     private static String fileNameFor(String logicalName) {
-        return LocalDateTime.now().format(FILE_TIMESTAMP) + "-" + sanitize(logicalName) + ".png";
+        return LocalDateTime.now().format(FILE_TIMESTAMP)
+                + "-thread-" + Thread.currentThread().threadId()
+                + "-" + sanitize(logicalName) + ".png";
     }
 
     private static String sanitize(String value) {

@@ -21,14 +21,14 @@ import com.learning.framework.waits.WaitUtils;
 public class BaseTest {
 
     /*
-     * protected is the framework compromise for this module: child test classes
-     * can use driver and wait directly, while non-child classes cannot access
-     * them as public global state.
+     * Module 15 moves these from simple fields to ThreadLocal values. TestNG
+     * can run methods from the same test class instance on different threads,
+     * so normal instance fields can be overwritten by a parallel test method.
      */
-    protected WebDriver driver;
-    protected WebDriverWait wait;
-    protected WaitUtils waits;
-    protected ElementActions elementActions;
+    private final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private final ThreadLocal<WebDriverWait> wait = new ThreadLocal<>();
+    private final ThreadLocal<WaitUtils> waits = new ThreadLocal<>();
+    private final ThreadLocal<ElementActions> elementActions = new ThreadLocal<>();
 
     /**
      * TestNG runs this method before every @Test method in child classes.
@@ -39,15 +39,23 @@ public class BaseTest {
     @BeforeMethod(alwaysRun = true)
     public void setUpBrowser() {
         DriverFactory.createDriver();
-        driver = DriverFactory.getDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(ConfigReader.getExplicitWaitSeconds()));
+        WebDriver currentDriver = DriverFactory.getDriver();
+        WebDriverWait currentWait = new WebDriverWait(
+                currentDriver,
+                Duration.ofSeconds(ConfigReader.getExplicitWaitSeconds())
+        );
 
         /*
          * Module 10 introduces wrapper services after the learner has already
          * seen repeated raw Selenium calls inside page objects.
          */
-        waits = new WaitUtils(wait);
-        elementActions = new ElementActions(driver, waits);
+        WaitUtils currentWaits = new WaitUtils(currentWait);
+        ElementActions currentElementActions = new ElementActions(currentDriver, currentWaits);
+
+        driver.set(currentDriver);
+        wait.set(currentWait);
+        waits.set(currentWaits);
+        elementActions.set(currentElementActions);
     }
 
     /**
@@ -58,12 +66,24 @@ public class BaseTest {
      */
     @AfterMethod(alwaysRun = true)
     public void tearDownBrowser() {
-        if (driver != null) {
+        if (driver.get() != null) {
             DriverFactory.quitDriver();
-            driver = null;
-            wait = null;
-            waits = null;
-            elementActions = null;
+            driver.remove();
+            wait.remove();
+            waits.remove();
+            elementActions.remove();
         }
+    }
+
+    protected WebDriver driver() {
+        return driver.get();
+    }
+
+    protected WaitUtils waits() {
+        return waits.get();
+    }
+
+    protected ElementActions elementActions() {
+        return elementActions.get();
     }
 }

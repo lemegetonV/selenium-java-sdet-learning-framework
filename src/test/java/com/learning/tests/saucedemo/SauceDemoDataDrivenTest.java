@@ -61,7 +61,7 @@ public class SauceDemoDataDrivenTest extends BaseTest {
     private void runLoginScenario(LoginScenario scenario) {
         Allure.step("Run login scenario: " + scenario.scenarioName());
         Allure.step("Open SauceDemo login page");
-        LoginPage loginPage = new LoginPage(driver, elementActions, waits).open();
+        LoginPage loginPage = new LoginPage(driver(), elementActions(), waits()).open();
 
         if (scenario.successfulLogin()) {
             Allure.step("Submit valid credentials and verify product page");

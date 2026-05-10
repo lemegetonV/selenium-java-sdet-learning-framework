@@ -1,5 +1,8 @@
 package com.learning.framework.driver;
 
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
@@ -11,6 +14,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.learning.framework.config.ConfigReader;
 import com.learning.framework.exceptions.FrameworkException;
@@ -18,9 +22,9 @@ import com.learning.framework.exceptions.FrameworkException;
 /**
  * Owns WebDriver creation, access, and cleanup.
  *
- * Module 11 moves browser construction out of BaseTest. DriverFactory is also
- * the first place where ThreadLocal appears. ThreadLocal prepares the framework
- * for future parallel execution by keeping one driver per executing thread.
+ * Module 11 moves browser construction out of BaseTest. Module 15 now uses
+ * ThreadLocal for real controlled parallel execution and adds a Grid execution
+ * path through RemoteWebDriver.
  */
 public final class DriverFactory {
 
@@ -36,22 +40,23 @@ public final class DriverFactory {
             return;
         }
 
-        WebDriver driver = switch (ConfigReader.getBrowser()) {
-            case "chrome" -> createChromeDriver();
-            case "firefox" -> createFirefoxDriver();
-            case "edge" -> createEdgeDriver();
+        WebDriver driver = switch (ConfigReader.getExecutionMode()) {
+            case "local" -> createLocalDriver();
+            case "grid" -> createRemoteDriver();
             default -> throw new FrameworkException(
-                    "Unsupported browser: " + ConfigReader.getBrowser()
-                            + ". Supported values: chrome, firefox, edge."
+                    "Unsupported executionMode: " + ConfigReader.getExecutionMode()
+                            + ". Supported values: local, grid."
             );
         };
 
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(ConfigReader.getPageLoadTimeoutSeconds()));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(ConfigReader.getImplicitWaitSeconds()));
-
+        configureDriver(driver);
         DRIVER.set(driver);
-        LOGGER.info("Created {} browser session with window {}x{}",
-                ConfigReader.getBrowser(), ConfigReader.getWindowWidth(), ConfigReader.getWindowHeight());
+        LOGGER.info("Created {} {} browser session on thread {} with window {}x{}",
+                ConfigReader.getExecutionMode(),
+                ConfigReader.getBrowser(),
+                Thread.currentThread().threadId(),
+                ConfigReader.getWindowWidth(),
+                ConfigReader.getWindowHeight());
     }
 
     public static WebDriver getDriver() {
@@ -65,44 +70,89 @@ public final class DriverFactory {
     public static void quitDriver() {
         WebDriver driver = DRIVER.get();
         if (driver != null) {
-            LOGGER.info("Quitting browser session");
+            LOGGER.info("Quitting browser session on thread {}", Thread.currentThread().threadId());
             driver.quit();
             DRIVER.remove();
         }
     }
 
+    private static WebDriver createLocalDriver() {
+        return switch (ConfigReader.getBrowser()) {
+            case "chrome" -> createChromeDriver();
+            case "firefox" -> createFirefoxDriver();
+            case "edge" -> createEdgeDriver();
+            default -> throw new FrameworkException(
+                    "Unsupported browser: " + ConfigReader.getBrowser()
+                            + ". Supported values: chrome, firefox, edge."
+            );
+        };
+    }
+
+    private static WebDriver createRemoteDriver() {
+        URL remoteUrl = gridUrl();
+        LOGGER.info("Connecting to Selenium Grid at {}", remoteUrl);
+
+        return switch (ConfigReader.getBrowser()) {
+            case "chrome" -> new RemoteWebDriver(remoteUrl, chromeOptions());
+            case "firefox" -> new RemoteWebDriver(remoteUrl, firefoxOptions());
+            case "edge" -> new RemoteWebDriver(remoteUrl, edgeOptions());
+            default -> throw new FrameworkException(
+                    "Unsupported browser for Grid: " + ConfigReader.getBrowser()
+                            + ". Supported values: chrome, firefox, edge."
+            );
+        };
+    }
+
     private static WebDriver createChromeDriver() {
-        ChromeOptions options = new ChromeOptions();
-
-        if (ConfigReader.isHeadless()) {
-            options.addArguments("--headless=new");
-        }
-
-        options.addArguments(windowSizeArgument());
-        return new ChromeDriver(options);
+        return new ChromeDriver(chromeOptions());
     }
 
     private static WebDriver createFirefoxDriver() {
-        FirefoxOptions options = new FirefoxOptions();
-
-        if (ConfigReader.isHeadless()) {
-            options.addArguments("--headless");
-        }
-
-        WebDriver driver = new FirefoxDriver(options);
-        driver.manage().window().setSize(configuredWindowSize());
-        return driver;
+        return new FirefoxDriver(firefoxOptions());
     }
 
     private static WebDriver createEdgeDriver() {
-        EdgeOptions options = new EdgeOptions();
+        return new EdgeDriver(edgeOptions());
+    }
 
+    private static ChromeOptions chromeOptions() {
+        ChromeOptions options = new ChromeOptions();
         if (ConfigReader.isHeadless()) {
             options.addArguments("--headless=new");
         }
-
         options.addArguments(windowSizeArgument());
-        return new EdgeDriver(options);
+        return options;
+    }
+
+    private static FirefoxOptions firefoxOptions() {
+        FirefoxOptions options = new FirefoxOptions();
+        if (ConfigReader.isHeadless()) {
+            options.addArguments("--headless");
+        }
+        return options;
+    }
+
+    private static EdgeOptions edgeOptions() {
+        EdgeOptions options = new EdgeOptions();
+        if (ConfigReader.isHeadless()) {
+            options.addArguments("--headless=new");
+        }
+        options.addArguments(windowSizeArgument());
+        return options;
+    }
+
+    private static void configureDriver(WebDriver driver) {
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(ConfigReader.getPageLoadTimeoutSeconds()));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(ConfigReader.getImplicitWaitSeconds()));
+        driver.manage().window().setSize(configuredWindowSize());
+    }
+
+    private static URL gridUrl() {
+        try {
+            return URI.create(ConfigReader.getGridUrl()).toURL();
+        } catch (IllegalArgumentException | MalformedURLException exception) {
+            throw new FrameworkException("Invalid Selenium Grid URL: " + ConfigReader.getGridUrl(), exception);
+        }
     }
 
     private static String windowSizeArgument() {
