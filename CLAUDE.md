@@ -59,7 +59,7 @@ find src -type f | sort
 
 **Module:** Module 16 - Cucumber BDD
 **Branch:** `module-16-cucumber-bdd`
-**Status:** In Progress
+**Status:** Complete
 **Previous:** Module 15 - Parallel Execution and Selenium Grid
 **Next:** Module 17 - CI/CD
 
