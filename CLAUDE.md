@@ -59,7 +59,7 @@ find src -type f | sort
 
 **Module:** Module 12 - Data Driven Testing
 **Branch:** `module-12-data-driven-testing`
-**Status:** In Progress
+**Status:** Complete
 **Previous:** Module 11 - Config and Driver Factory
 **Next:** Module 13 - Listeners, Screenshots, Logging
 
