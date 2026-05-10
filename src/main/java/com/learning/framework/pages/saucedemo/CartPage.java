@@ -3,6 +3,7 @@ package com.learning.framework.pages.saucedemo;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 
 import com.learning.framework.actions.ElementActions;
@@ -43,8 +44,26 @@ public class CartPage {
     }
 
     public CheckoutPage checkout() {
-        actions.click(CHECKOUT_BUTTON);
-        return new CheckoutPage(actions, waits).waitForInformationStep();
+        /*
+         * Final capstone hardening: under parallel load the public SauceDemo
+         * training site can occasionally leave the browser on the cart page
+         * after the first checkout click. The retry belongs here because this
+         * page knows the expected transition from cart to checkout; a generic
+         * click retry in ElementActions would hide whether every click is
+         * actually safe to repeat.
+         */
+        for (int attempt = 1; attempt <= 2; attempt++) {
+            actions.click(CHECKOUT_BUTTON);
+            try {
+                return new CheckoutPage(actions, waits).waitForInformationStep();
+            } catch (TimeoutException exception) {
+                if (attempt == 2) {
+                    throw exception;
+                }
+                waits.waitForText(PAGE_TITLE, "Your Cart");
+            }
+        }
+        throw new IllegalStateException("Unable to start checkout from the cart page.");
     }
 
     private List<WebElement> findCartItems() {
