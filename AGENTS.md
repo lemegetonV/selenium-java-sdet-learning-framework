@@ -59,7 +59,7 @@ find src -type f | sort
 
 **Module:** Module 10 - Wrapper Methods and Waits
 **Branch:** `module-10-wrapper-methods-and-waits`
-**Status:** In Progress
+**Status:** Complete
 **Previous:** Module 09 - Page Object Model
 **Next:** Module 11 - Config and Driver Factory
 
