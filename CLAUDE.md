@@ -59,7 +59,7 @@ find src -type f | sort
 
 **Module:** Module 18 - Capstone and Portfolio Packaging
 **Branch:** `module-18-capstone-and-portfolio`
-**Status:** In Progress
+**Status:** Complete
 **Previous:** Module 17 - CI/CD
 **Next:** Curriculum Complete
 
