@@ -57,11 +57,11 @@ find src -type f | sort
 
 ## Current Module
 
-**Module:** Module 13 - Listeners, Screenshots, Logging
-**Branch:** `module-13-listeners-screenshots-logging`
-**Status:** Complete
-**Previous:** Module 12 - Data Driven Testing
-**Next:** Module 14 - Extent and Allure Reporting
+**Module:** Module 14 - Extent and Allure Reporting
+**Branch:** `module-14-extent-and-allure-reporting`
+**Status:** In Progress
+**Previous:** Module 13 - Listeners, Screenshots, Logging
+**Next:** Module 15 - Parallel Execution and Selenium Grid
 
 When the current module status is `Complete`, do not continue work on its
 branch. Start the `Next` module from `main` using the module lifecycle below.
