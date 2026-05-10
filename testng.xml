@@ -1,13 +1,13 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Module 08 TestNG Framework Foundation" verbose="1">
-    <test name="SauceDemo Framework Regression">
+<suite name="Module 09 Page Object Model" verbose="1">
+    <test name="SauceDemo Page Object Regression">
         <groups>
             <run>
                 <include name="regression"/>
             </run>
         </groups>
         <classes>
-            <class name="com.learning.tests.saucedemo.LoginFoundationTest"/>
+            <class name="com.learning.tests.saucedemo.SauceDemoPageObjectTest"/>
         </classes>
     </test>
 </suite>
