@@ -59,7 +59,7 @@ find src -type f | sort
 
 **Module:** Module 11 - Config and Driver Factory
 **Branch:** `module-11-config-and-driver-factory`
-**Status:** In Progress
+**Status:** Complete
 **Previous:** Module 10 - Wrapper Methods and Waits
 **Next:** Module 12 - Data Driven Testing
 
