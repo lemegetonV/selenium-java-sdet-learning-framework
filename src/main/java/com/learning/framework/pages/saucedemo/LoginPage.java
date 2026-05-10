@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import com.learning.framework.actions.ElementActions;
+import com.learning.framework.config.ConfigReader;
 import com.learning.framework.waits.WaitUtils;
 
 /**
@@ -14,8 +15,6 @@ import com.learning.framework.waits.WaitUtils;
  * username/password/button locators in every test method.
  */
 public class LoginPage {
-
-    private static final String LOGIN_URL = "https://www.saucedemo.com/";
 
     /*
      * Locators are private because outside classes should not depend on this
@@ -43,7 +42,7 @@ public class LoginPage {
     }
 
     public LoginPage open() {
-        driver.get(LOGIN_URL);
+        driver.get(ConfigReader.getBaseUrl());
         waits.waitForVisible(LOGIN_BUTTON);
         return this;
     }

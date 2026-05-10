@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Module 10 Wrapper Methods and Waits" verbose="1">
-    <test name="SauceDemo Wrapper Regression">
+<suite name="Module 11 Config and Driver Factory" verbose="1">
+    <test name="SauceDemo Configured Driver Regression">
         <groups>
             <run>
                 <include name="regression"/>

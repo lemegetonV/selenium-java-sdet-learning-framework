@@ -3,26 +3,22 @@ package com.learning.tests.base;
 import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import com.learning.framework.actions.ElementActions;
+import com.learning.framework.config.ConfigReader;
+import com.learning.framework.driver.DriverFactory;
 import com.learning.framework.waits.WaitUtils;
 
 /**
  * First reusable TestNG base class for framework-style tests.
  *
- * Module 08 intentionally keeps driver creation simple: Chrome is still created
- * directly here so the learner can see exactly what was repeated in Modules
- * 03-07. Module 11 will move this responsibility into DriverFactory after the
- * need for external browser configuration is clear.
+ * BaseTest owns test lifecycle. Module 11 delegates browser construction to
+ * DriverFactory and reads timeout settings from ConfigReader.
  */
 public class BaseTest {
-
-    private static final int DEFAULT_TIMEOUT_SECONDS = 10;
 
     /*
      * protected is the framework compromise for this module: child test classes
@@ -42,16 +38,9 @@ public class BaseTest {
      */
     @BeforeMethod(alwaysRun = true)
     public void setUpBrowser() {
-        ChromeOptions options = new ChromeOptions();
-
-        if (Boolean.parseBoolean(System.getProperty("headless", "true"))) {
-            options.addArguments("--headless=new");
-        }
-
-        options.addArguments("--window-size=1440,900");
-
-        driver = new ChromeDriver(options);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(DEFAULT_TIMEOUT_SECONDS));
+        DriverFactory.createDriver();
+        driver = DriverFactory.getDriver();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(ConfigReader.getExplicitWaitSeconds()));
 
         /*
          * Module 10 introduces wrapper services after the learner has already
@@ -70,7 +59,7 @@ public class BaseTest {
     @AfterMethod(alwaysRun = true)
     public void tearDownBrowser() {
         if (driver != null) {
-            driver.quit();
+            DriverFactory.quitDriver();
             driver = null;
             wait = null;
             waits = null;
