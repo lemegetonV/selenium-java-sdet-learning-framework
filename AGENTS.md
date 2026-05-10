@@ -59,7 +59,7 @@ find src -type f | sort
 
 **Module:** Module 15 - Parallel Execution and Selenium Grid
 **Branch:** `module-15-parallel-and-grid`
-**Status:** In Progress
+**Status:** Complete
 **Previous:** Module 14 - Extent and Allure Reporting
 **Next:** Module 16 - Cucumber BDD
 
