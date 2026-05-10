@@ -57,11 +57,11 @@ find src -type f | sort
 
 ## Current Module
 
-**Module:** Module 11 - Config and Driver Factory
-**Branch:** `module-11-config-and-driver-factory`
-**Status:** Complete
-**Previous:** Module 10 - Wrapper Methods and Waits
-**Next:** Module 12 - Data Driven Testing
+**Module:** Module 12 - Data Driven Testing
+**Branch:** `module-12-data-driven-testing`
+**Status:** In Progress
+**Previous:** Module 11 - Config and Driver Factory
+**Next:** Module 13 - Listeners, Screenshots, Logging
 
 When the current module status is `Complete`, do not continue work on its
 branch. Start the `Next` module from `main` using the module lifecycle below.
