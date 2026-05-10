@@ -59,7 +59,7 @@ find src -type f | sort
 
 **Module:** Module 09 - Page Object Model
 **Branch:** `module-09-page-object-model`
-**Status:** In Progress
+**Status:** Complete
 **Previous:** Module 08 - TestNG Framework Foundation
 **Next:** Module 10 - Wrapper Methods and Waits
 
