@@ -59,7 +59,7 @@ find src -type f | sort
 
 **Module:** Module 14 - Extent and Allure Reporting
 **Branch:** `module-14-extent-and-allure-reporting`
-**Status:** In Progress
+**Status:** Complete
 **Previous:** Module 13 - Listeners, Screenshots, Logging
 **Next:** Module 15 - Parallel Execution and Selenium Grid
 
