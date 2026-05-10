@@ -1,0 +1,16 @@
+[
+  {
+    "scenarioName": "standard user login",
+    "username": "standard_user",
+    "password": "secret_sauce",
+    "successfulLogin": true,
+    "expectedMessage": "Products"
+  },
+  {
+    "scenarioName": "locked out user login",
+    "username": "locked_out_user",
+    "password": "secret_sauce",
+    "successfulLogin": false,
+    "expectedMessage": "Sorry, this user has been locked out."
+  }
+]

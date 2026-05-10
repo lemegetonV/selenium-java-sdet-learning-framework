@@ -1,0 +1,3 @@
+scenarioName,username,password,successfulLogin,expectedMessage
+standard user csv login,standard_user,secret_sauce,true,Products
+locked out csv login,locked_out_user,secret_sauce,false,locked out

@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Module 11 Config and Driver Factory" verbose="1">
-    <test name="SauceDemo Configured Driver Regression">
+<suite name="Module 12 Data Driven Testing" verbose="1">
+    <test name="SauceDemo Data Driven Regression">
         <groups>
             <run>
                 <include name="regression"/>
@@ -8,6 +8,7 @@
         </groups>
         <classes>
             <class name="com.learning.tests.saucedemo.SauceDemoPageObjectTest"/>
+            <class name="com.learning.tests.saucedemo.SauceDemoDataDrivenTest"/>
         </classes>
     </test>
 </suite>
