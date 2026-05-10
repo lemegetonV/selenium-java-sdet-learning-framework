@@ -59,7 +59,7 @@ find src -type f | sort
 
 **Module:** Module 17 - CI/CD
 **Branch:** `module-17-cicd`
-**Status:** In Progress
+**Status:** Complete
 **Previous:** Module 16 - Cucumber BDD
 **Next:** Module 18 - Capstone and Portfolio Packaging
 
