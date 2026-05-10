@@ -21,6 +21,7 @@
         <exec.maven.plugin.version>3.5.0</exec.maven.plugin.version>
         <selenium.version>4.43.0</selenium.version>
         <testng.version>7.12.0</testng.version>
+        <cucumber.version>7.34.3</cucumber.version>
         <jackson.version>2.20.0</jackson.version>
         <apache.poi.version>5.5.0</apache.poi.version>
         <log4j.version>2.25.2</log4j.version>
@@ -78,6 +79,24 @@
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
+            <version>${allure.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-cucumber7-jvm</artifactId>
             <version>${allure.version}</version>
             <scope>test</scope>
         </dependency>

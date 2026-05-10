@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Module 16 Cucumber BDD Regression" verbose="1">
+    <test name="SauceDemo BDD Scenarios">
+        <classes>
+            <class name="com.learning.tests.bdd.runners.CucumberTest"/>
+        </classes>
+    </test>
+</suite>
