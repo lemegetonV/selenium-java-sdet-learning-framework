@@ -1,10 +1,10 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Module 13 Diagnostics Regression" verbose="1">
+<suite name="Module 14 Reporting Regression" verbose="1">
     <listeners>
         <listener class-name="com.learning.tests.listeners.FrameworkTestListener"/>
         <listener class-name="com.learning.tests.listeners.RetryAnnotationTransformer"/>
     </listeners>
-    <test name="SauceDemo Diagnostics Regression">
+    <test name="SauceDemo Reporting Regression">
         <groups>
             <run>
                 <include name="regression"/>

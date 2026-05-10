@@ -14,4 +14,19 @@ public record LoginScenario(
         boolean successfulLogin,
         String expectedMessage
 ) {
+
+    /**
+     * TestNG and reporting tools often call toString() when displaying
+     * DataProvider parameters. The password must stay available to the test,
+     * but it should never be written into reports or logs.
+     */
+    @Override
+    public String toString() {
+        return "LoginScenario[scenarioName=" + scenarioName
+                + ", username=" + username
+                + ", password=****"
+                + ", successfulLogin=" + successfulLogin
+                + ", expectedMessage=" + expectedMessage
+                + "]";
+    }
 }

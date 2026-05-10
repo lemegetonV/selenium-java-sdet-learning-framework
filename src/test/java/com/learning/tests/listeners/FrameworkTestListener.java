@@ -2,6 +2,7 @@ package com.learning.tests.listeners;
 
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
@@ -15,6 +16,8 @@ import org.testng.Reporter;
 import com.learning.framework.driver.DriverFactory;
 import com.learning.framework.screenshots.ScreenshotUtils;
 import com.learning.tests.models.LoginScenario;
+import com.learning.tests.reports.AllureReportUtils;
+import com.learning.tests.reports.ExtentReportManager;
 
 /**
  * TestNG listener that records lifecycle events around each test method.
@@ -30,6 +33,7 @@ public class FrameworkTestListener implements ITestListener {
 
     @Override
     public void onStart(ITestContext context) {
+        ExtentReportManager.initialize(context.getSuite().getName());
         LOGGER.info("Starting TestNG context: {}", context.getName());
     }
 
@@ -43,12 +47,14 @@ public class FrameworkTestListener implements ITestListener {
          * its own testName into every log line.
          */
         ThreadContext.put("testName", testName);
+        ExtentReportManager.startTest(result, testName);
         LOGGER.info("START {}", testName);
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
         LOGGER.info("PASS {}", displayName(result));
+        ExtentReportManager.pass("Test passed");
         ThreadContext.clearMap();
     }
 
@@ -56,22 +62,26 @@ public class FrameworkTestListener implements ITestListener {
     public void onTestFailure(ITestResult result) {
         String testName = displayName(result);
         LOGGER.error("FAIL {}", testName, result.getThrowable());
-        captureFailureScreenshot(result, testName);
+        Optional<Path> screenshotPath = captureFailureScreenshot(result, testName);
+        ExtentReportManager.fail(result.getThrowable(), screenshotPath.orElse(null));
+        screenshotPath.ifPresent(AllureReportUtils::attachScreenshot);
         ThreadContext.clearMap();
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
         LOGGER.warn("SKIP {}", displayName(result), result.getThrowable());
+        ExtentReportManager.skip(result.getThrowable());
         ThreadContext.clearMap();
     }
 
     @Override
     public void onFinish(ITestContext context) {
         LOGGER.info("Finished TestNG context: {}", context.getName());
+        ExtentReportManager.flush();
     }
 
-    private void captureFailureScreenshot(ITestResult result, String testName) {
+    private Optional<Path> captureFailureScreenshot(ITestResult result, String testName) {
         try {
             Path screenshotPath = ScreenshotUtils.capture(DriverFactory.getDriver(), testName);
             result.setAttribute(SCREENSHOT_PATH_ATTRIBUTE, screenshotPath.toString());
@@ -82,8 +92,10 @@ public class FrameworkTestListener implements ITestListener {
              */
             Reporter.log("Failure screenshot: " + screenshotPath, true);
             LOGGER.info("Saved failure screenshot to {}", screenshotPath);
+            return Optional.of(screenshotPath);
         } catch (RuntimeException exception) {
             LOGGER.warn("Could not capture failure screenshot for {}", testName, exception);
+            return Optional.empty();
         }
     }
 

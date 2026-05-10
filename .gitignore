@@ -5,6 +5,7 @@ target/
 test-output/
 allure-results/
 allure-report/
+.allure/
 logs/
 *.log
 
