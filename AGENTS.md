@@ -57,11 +57,11 @@ find src -type f | sort
 
 ## Current Module
 
-**Module:** Module 12 - Data Driven Testing
-**Branch:** `module-12-data-driven-testing`
-**Status:** Complete
-**Previous:** Module 11 - Config and Driver Factory
-**Next:** Module 13 - Listeners, Screenshots, Logging
+**Module:** Module 13 - Listeners, Screenshots, Logging
+**Branch:** `module-13-listeners-screenshots-logging`
+**Status:** In Progress
+**Previous:** Module 12 - Data Driven Testing
+**Next:** Module 14 - Extent and Allure Reporting
 
 When the current module status is `Complete`, do not continue work on its
 branch. Start the `Next` module from `main` using the module lifecycle below.
