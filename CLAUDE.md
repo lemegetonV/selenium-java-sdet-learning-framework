@@ -57,11 +57,11 @@ find src -type f | sort
 
 ## Current Module
 
-**Module:** Module 15 - Parallel Execution and Selenium Grid
-**Branch:** `module-15-parallel-and-grid`
-**Status:** Complete
-**Previous:** Module 14 - Extent and Allure Reporting
-**Next:** Module 16 - Cucumber BDD
+**Module:** Module 16 - Cucumber BDD
+**Branch:** `module-16-cucumber-bdd`
+**Status:** In Progress
+**Previous:** Module 15 - Parallel Execution and Selenium Grid
+**Next:** Module 17 - CI/CD
 
 When the current module status is `Complete`, do not continue work on its
 branch. Start the `Next` module from `main` using the module lifecycle below.
