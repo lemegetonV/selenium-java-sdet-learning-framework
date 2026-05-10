@@ -57,11 +57,11 @@ find src -type f | sort
 
 ## Current Module
 
-**Module:** Module 08 - TestNG Framework Foundation
-**Branch:** `module-08-testng-framework-foundation`
-**Status:** Complete
-**Previous:** Module 07 - Windows, Frames, Files, Actions
-**Next:** Module 09 - Page Object Model
+**Module:** Module 09 - Page Object Model
+**Branch:** `module-09-page-object-model`
+**Status:** In Progress
+**Previous:** Module 08 - TestNG Framework Foundation
+**Next:** Module 10 - Wrapper Methods and Waits
 
 When the current module status is `Complete`, do not continue work on its
 branch. Start the `Next` module from `main` using the module lifecycle below.
