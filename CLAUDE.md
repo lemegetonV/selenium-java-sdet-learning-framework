@@ -57,11 +57,11 @@ find src -type f | sort
 
 ## Current Module
 
-**Module:** Module 10 - Wrapper Methods and Waits
-**Branch:** `module-10-wrapper-methods-and-waits`
-**Status:** Complete
-**Previous:** Module 09 - Page Object Model
-**Next:** Module 11 - Config and Driver Factory
+**Module:** Module 11 - Config and Driver Factory
+**Branch:** `module-11-config-and-driver-factory`
+**Status:** In Progress
+**Previous:** Module 10 - Wrapper Methods and Waits
+**Next:** Module 12 - Data Driven Testing
 
 When the current module status is `Complete`, do not continue work on its
 branch. Start the `Next` module from `main` using the module lifecycle below.
