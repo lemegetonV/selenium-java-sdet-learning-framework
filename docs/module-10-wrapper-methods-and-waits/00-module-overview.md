@@ -42,6 +42,30 @@ The framework now has three responsibility layers:
 - Page Objects own page behavior and locators.
 - `ElementActions` and `WaitUtils` own repeated Selenium mechanics.
 
+This module is important because it teaches the difference between a Page
+Object and a framework service. A Page Object should know that the login button
+means "submit credentials." A framework action should know how to wait for an
+element and click it consistently. Mixing those two responsibilities makes the
+page class harder to read and makes future diagnostics harder to add.
+
+## How To Study This Module
+
+Read the source in this order:
+
+1. Start with [WaitUtils.java](../../src/main/java/com/learning/framework/waits/WaitUtils.java)
+   because every action wrapper depends on wait behavior.
+2. Move to [ElementActions.java](../../src/main/java/com/learning/framework/actions/ElementActions.java)
+   and map each method to the Selenium command it wraps.
+3. Read [BaseTest.java](../../src/test/java/com/learning/tests/base/BaseTest.java)
+   to see where the wrapper services are created for each test method.
+4. Read [LoginPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java),
+   [ProductsPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java),
+   [CartPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/CartPage.java),
+   and [CheckoutPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/CheckoutPage.java)
+   to see how page objects become thinner.
+5. Finish with [SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java)
+   to confirm the test still reads as a user workflow.
+
 ## Files Added Or Changed
 
 | File | Status | Purpose |
@@ -116,6 +140,47 @@ flowchart TD
 services. Tests do not call `driver.findElement(...)` for normal page
 interactions.
 
+## Runtime Flow
+
+When `standardUserCanStartCheckoutForSingleProduct` runs from
+[SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java),
+the framework flow is:
+
+1. TestNG calls `setUpBrowser()` in
+   [BaseTest.java](../../src/test/java/com/learning/tests/base/BaseTest.java).
+2. `BaseTest` creates `ChromeDriver`, `WebDriverWait`, `WaitUtils`, and
+   `ElementActions`.
+3. The test creates [LoginPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java)
+   with the driver and wrapper services.
+4. `LoginPage.open()` still calls `driver.get(...)` because opening a URL is
+   browser navigation, not an element action.
+5. `LoginPage.loginAs(...)` uses `actions.type(...)` and `actions.click(...)`,
+   then returns [ProductsPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java).
+6. `ProductsPage.addProductToCart(...)` finds the correct product card and uses
+   `actions.clickInside(...)` so the click is scoped to that card.
+7. `ProductsPage.openCart()` and `CartPage.checkout()` return the next page
+   object after each navigation.
+8. Assertions remain in the test class, while locators remain private inside
+   the page objects.
+
+That flow is the learning target for Module 10: tests express business intent,
+page objects express page behavior, and wrapper services express reusable
+Selenium mechanics.
+
+## Source Ownership
+
+| Source | Owner Type | What To Learn |
+| --- | --- | --- |
+| [WaitUtils.java](../../src/main/java/com/learning/framework/waits/WaitUtils.java) | framework wait service | explicit wait conditions are centralized but still visible |
+| [ElementActions.java](../../src/main/java/com/learning/framework/actions/ElementActions.java) | framework action service | click, type, read, count, find, dropdown, and scoped click patterns |
+| [BaseTest.java](../../src/test/java/com/learning/tests/base/BaseTest.java) | test framework base class | per-test browser/session setup also creates per-test wrapper services |
+| [LoginPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java) | page object | URL navigation stays page-specific while input/button work moves to wrappers |
+| [ProductsPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java) | page object | product-card selection remains page-specific, not a generic action utility |
+| [CartPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/CartPage.java) | page object | page transition methods return the next page object |
+| [CheckoutPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/CheckoutPage.java) | page object | page state checks call wrapper services without exposing locators to tests |
+| [SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java) | TestNG test class | assertions and workflow intent stay in tests |
+| [testng.xml](../../testng.xml) | suite configuration | TestNG still runs the framework regression group through suite XML |
+
 ## What Is Intentionally Deferred
 
 Module 10 does not add:
@@ -160,5 +225,8 @@ Before moving to Module 11, a learner should be able to explain:
 - why waits belong near the action layer.
 - what `WaitUtils` centralizes.
 - why `BaseTest` creates wrapper services for tests.
+- why `LoginPage` still receives `WebDriver` while other page objects only need
+  wrapper services.
+- why `ProductsPage.findProductCard(...)` is not moved into `ElementActions`.
 - why logging and screenshot diagnostics are still deferred.
 - what driver configuration problem remains for `DriverFactory`.
