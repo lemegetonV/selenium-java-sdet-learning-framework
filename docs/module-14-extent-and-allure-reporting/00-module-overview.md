@@ -35,6 +35,33 @@ custom listener for Extent. Allure's TestNG integration is provided by the
 `allure-testng` dependency, so [testng.xml](../../testng.xml) does not explicitly list the Allure
 listener. Listing it manually creates duplicate listener warnings.
 
+## How To Study This Module
+
+Read the source in this order:
+
+1. Start with [pom.xml](../../pom.xml) to see the ExtentReports dependency,
+   Allure TestNG dependency, and Allure Maven plugin.
+2. Read [testng.xml](../../testng.xml) and notice that it registers only the
+   framework listener and retry transformer. Allure is not listed manually.
+3. Read [FrameworkTestListener.java](../../src/test/java/com/learning/tests/listeners/FrameworkTestListener.java)
+   to see where TestNG lifecycle events are translated into Extent status and
+   Allure screenshot attachments.
+4. Read [ExtentReportManager.java](../../src/test/java/com/learning/tests/reports/ExtentReportManager.java)
+   to understand suite-level initialization, per-test `ThreadLocal<ExtentTest>`,
+   screenshot attachment, and `flush()`.
+5. Read [AllureReportUtils.java](../../src/test/java/com/learning/tests/reports/AllureReportUtils.java)
+   to see how an existing screenshot file becomes an Allure attachment.
+6. Read [SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java)
+   and [SauceDemoDataDrivenTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java)
+   to inspect labels, severity, and steps.
+7. Read [LoginScenario.java](../../src/test/java/com/learning/tests/models/LoginScenario.java)
+   to understand why report-safe `toString()` output matters.
+
+The learning target is to trace one failing test: TestNG reports failure to the
+framework listener, the listener captures one screenshot, Extent attaches the
+same path, Allure attaches the same image stream, and both reports avoid raw
+password output.
+
 ## Files Added Or Changed
 
 | File path | Status | Purpose |
@@ -87,6 +114,44 @@ After a suite run:
 - Allure generated report: `target/allure-report/`
 - Logs: `target/logs/test-execution.log`
 
+## Runtime Flow
+
+When `mvn test -DsuiteXmlFile=testng.xml` runs:
+
+1. TestNG starts the Module 14 suite.
+2. [FrameworkTestListener.java](../../src/test/java/com/learning/tests/listeners/FrameworkTestListener.java)
+   receives `onStart(...)` and calls
+   [ExtentReportManager.initialize(...)](../../src/test/java/com/learning/tests/reports/ExtentReportManager.java).
+3. For each test, `onTestStart(...)` creates an Extent test entry and sets
+   Log4j2 `testName` context.
+4. Allure's TestNG integration observes the same test execution through the
+   `allure-testng` dependency.
+5. SauceDemo tests add Allure labels and simple `Allure.step(...)` calls.
+6. On pass, the listener marks the Extent test as passed.
+7. On failure, the listener captures one screenshot through Module 13's
+   `ScreenshotUtils`, then passes the same screenshot path to Extent and
+   Allure.
+8. On suite finish, the listener calls `ExtentReportManager.flush()` so the
+   Extent HTML file is written.
+9. `mvn allure:report` converts raw Allure results into the HTML dashboard.
+
+That flow keeps reporting integration centralized. Test methods may declare
+labels and business-readable steps, but they do not own report lifecycle,
+report flushing, or screenshot file handling.
+
+## Source Ownership
+
+| Source | Owner Type | What To Learn |
+| --- | --- | --- |
+| [ExtentReportManager.java](../../src/test/java/com/learning/tests/reports/ExtentReportManager.java) | report manager | Extent setup, current test tracking, status updates, screenshot attachment, flush |
+| [AllureReportUtils.java](../../src/test/java/com/learning/tests/reports/AllureReportUtils.java) | report adapter | Allure screenshot attachment without stream handling in listener |
+| [FrameworkTestListener.java](../../src/test/java/com/learning/tests/listeners/FrameworkTestListener.java) | TestNG listener | converts TestNG lifecycle into logging, Extent status, and Allure attachments |
+| [SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java) | test class | Allure labels and workflow steps for Page Object tests |
+| [SauceDemoDataDrivenTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java) | test class | Allure labels and data-row steps for data-driven tests |
+| [LoginScenario.java](../../src/test/java/com/learning/tests/models/LoginScenario.java) | test data model | masked `toString()` for safe parameter rendering |
+| [allure.properties](../../src/test/resources/allure.properties) | Allure runtime config | result output directory |
+| [pom.xml](../../pom.xml) | build config | reporting dependencies and Allure Maven plugin |
+
 ## What Is Intentionally Deferred
 
 - Opening `mvn allure:serve` automatically is not part of verification because
@@ -95,6 +160,25 @@ After a suite run:
   history are deferred.
 - Parallel-safe report naming will be revisited in Module 15.
 - CI artifact upload is deferred to Module 17.
+
+## What Changed From Module 13
+
+Module 13:
+
+```text
+Listener -> logs + screenshot path
+```
+
+Module 14:
+
+```text
+Listener -> logs + Extent status + Allure attachment + screenshot path
+Tests -> Allure labels and steps
+LoginScenario -> masked report parameter output
+```
+
+The reporting layer consumes the diagnostics layer. It does not replace logs,
+screenshots, or TestNG assertions.
 
 ## Quality Gate
 
@@ -115,3 +199,14 @@ Expected:
 - report artifacts do not contain raw `secret_sauce`.
 - full repository tests continue to pass.
 
+## Framework Readiness Standard
+
+Before moving to Module 15, a learner should be able to explain:
+
+- why Extent and Allure are generated differently.
+- where Extent starts, records test status, attaches screenshots, and flushes.
+- why Allure raw results are not the final HTML report.
+- why Allure is not manually registered in [testng.xml](../../testng.xml).
+- how the same screenshot file is reused by Extent and Allure.
+- why `LoginScenario.toString()` masks the password.
+- why generated report artifacts belong under `target/` and not source control.
