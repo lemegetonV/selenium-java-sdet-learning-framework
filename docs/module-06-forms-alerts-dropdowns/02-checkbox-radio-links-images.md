@@ -2,11 +2,12 @@
 
 ## Files In This Topic
 
-```text
-src/test/resources/module06/form-controls.html
-src/test/java/com/learning/tests/learning/_12_RadioImageHyperlinkTest.java
-src/test/java/com/learning/tests/learning/_13_CheckboxDropdownTest.java
-```
+This topic reads these files:
+
+- [src/test/resources/module06/form-controls.html](../../src/test/resources/module06/form-controls.html)
+- [src/test/java/com/learning/tests/learning/_12_RadioImageHyperlinkTest.java](../../src/test/java/com/learning/tests/learning/_12_RadioImageHyperlinkTest.java)
+- [src/test/java/com/learning/tests/learning/_13_CheckboxDropdownTest.java](../../src/test/java/com/learning/tests/learning/_13_CheckboxDropdownTest.java)
+
 
 ## Checkbox Actions
 

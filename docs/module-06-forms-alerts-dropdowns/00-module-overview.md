@@ -41,27 +41,42 @@ reviewed manually as well as through Selenium assertions.
 
 | File | Status | Purpose |
 | --- | --- | --- |
-| `src/test/resources/module06/form-controls.html` | added | complete local learning fixture for textarea, radio, image, hyperlink, and button examples with visible action results |
-| `src/test/java/com/learning/tests/learning/_11_TextboxTextareaButtonTest.java` | added | demonstrates textbox, textarea, button click, and reading a saved profile summary |
-| `src/test/java/com/learning/tests/learning/_12_RadioImageHyperlinkTest.java` | added | demonstrates radio buttons with visible state, image attributes, and hyperlink navigation |
-| `src/test/java/com/learning/tests/learning/_13_CheckboxDropdownTest.java` | added | demonstrates checkbox state and Selenium `Select` dropdown actions |
-| `src/test/java/com/learning/tests/learning/_14_AlertsAndAuthenticationTest.java` | added | demonstrates JavaScript alerts, confirms, prompts, and form authentication |
-| `docs/module-06-forms-alerts-dropdowns/00-module-overview.md` | added | module map, file ownership, deferred scope, and quality gate |
-| `docs/module-06-forms-alerts-dropdowns/01-textbox-textarea-buttons.md` | added | explains input, textarea, and button actions |
-| `docs/module-06-forms-alerts-dropdowns/02-checkbox-radio-links-images.md` | added | explains selected state, radio groups, hyperlinks, and images |
-| `docs/module-06-forms-alerts-dropdowns/03-dropdowns-select.md` | added | explains HTML dropdowns and Selenium `Select` |
-| `docs/module-06-forms-alerts-dropdowns/04-alerts-and-authentication.md` | added | explains alert handling and login form flow |
-| `docs/module-06-forms-alerts-dropdowns/99-interview-review.md` | added | interview-ready revision for form controls, dropdowns, alerts, and authentication |
-| `docs/module-06-forms-alerts-dropdowns/exercises.md` | added | practice tasks with hints and expected outcomes |
+| [src/test/resources/module06/form-controls.html](../../src/test/resources/module06/form-controls.html) | added | complete local learning fixture for textarea, radio, image, hyperlink, and button examples with visible action results |
+| [src/test/java/com/learning/tests/learning/_11_TextboxTextareaButtonTest.java](../../src/test/java/com/learning/tests/learning/_11_TextboxTextareaButtonTest.java) | added | demonstrates textbox, textarea, button click, and reading a saved profile summary |
+| [src/test/java/com/learning/tests/learning/_12_RadioImageHyperlinkTest.java](../../src/test/java/com/learning/tests/learning/_12_RadioImageHyperlinkTest.java) | added | demonstrates radio buttons with visible state, image attributes, and hyperlink navigation |
+| [src/test/java/com/learning/tests/learning/_13_CheckboxDropdownTest.java](../../src/test/java/com/learning/tests/learning/_13_CheckboxDropdownTest.java) | added | demonstrates checkbox state and Selenium `Select` dropdown actions |
+| [src/test/java/com/learning/tests/learning/_14_AlertsAndAuthenticationTest.java](../../src/test/java/com/learning/tests/learning/_14_AlertsAndAuthenticationTest.java) | added | demonstrates JavaScript alerts, confirms, prompts, and form authentication |
+| [docs/module-06-forms-alerts-dropdowns/00-module-overview.md](00-module-overview.md) | added | module map, file ownership, deferred scope, and quality gate |
+| [docs/module-06-forms-alerts-dropdowns/01-textbox-textarea-buttons.md](01-textbox-textarea-buttons.md) | added | explains input, textarea, and button actions |
+| [docs/module-06-forms-alerts-dropdowns/02-checkbox-radio-links-images.md](02-checkbox-radio-links-images.md) | added | explains selected state, radio groups, hyperlinks, and images |
+| [docs/module-06-forms-alerts-dropdowns/03-dropdowns-select.md](03-dropdowns-select.md) | added | explains HTML dropdowns and Selenium `Select` |
+| [docs/module-06-forms-alerts-dropdowns/04-alerts-and-authentication.md](04-alerts-and-authentication.md) | added | explains alert handling and login form flow |
+| [docs/module-06-forms-alerts-dropdowns/99-interview-review.md](99-interview-review.md) | added | interview-ready revision for form controls, dropdowns, alerts, and authentication |
+| [docs/module-06-forms-alerts-dropdowns/exercises.md](exercises.md) | added | practice tasks with hints and expected outcomes |
+
+## Module Source Links
+
+Use these links as the source-reading checklist for this checkpoint. They point only to files that exist at Module 06.
+
+| File | Status | Why It Matters |
+| --- | --- | --- |
+| [AGENTS.md](../../AGENTS.md) | Changed | Module session metadata |
+| [CLAUDE.md](../../CLAUDE.md) | Changed | Module session metadata |
+| [README.md](../../README.md) | Changed | Repository learning guide |
+| [src/test/java/com/learning/tests/learning/_11_TextboxTextareaButtonTest.java](../../src/test/java/com/learning/tests/learning/_11_TextboxTextareaButtonTest.java) | Added | Raw Selenium learning test source |
+| [src/test/java/com/learning/tests/learning/_12_RadioImageHyperlinkTest.java](../../src/test/java/com/learning/tests/learning/_12_RadioImageHyperlinkTest.java) | Added | Raw Selenium learning test source |
+| [src/test/java/com/learning/tests/learning/_13_CheckboxDropdownTest.java](../../src/test/java/com/learning/tests/learning/_13_CheckboxDropdownTest.java) | Added | Raw Selenium learning test source |
+| [src/test/java/com/learning/tests/learning/_14_AlertsAndAuthenticationTest.java](../../src/test/java/com/learning/tests/learning/_14_AlertsAndAuthenticationTest.java) | Added | Raw Selenium learning test source |
+| [src/test/resources/module06/form-controls.html](../../src/test/resources/module06/form-controls.html) | Added | Local Selenium learning fixture |
 
 ## Previous Module Files Reused
 
 Module 06 builds on these raw learning examples:
 
-- `src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java`
-- `src/test/java/com/learning/tests/learning/_06_WebElementCommandTest.java`
-- `src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java`
-- `src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java`
+- [src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java](../../src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java)
+- [src/test/java/com/learning/tests/learning/_06_WebElementCommandTest.java](../../src/test/java/com/learning/tests/learning/_06_WebElementCommandTest.java)
+- [src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java](../../src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java)
+- [src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java](../../src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java)
 
 The shared `learning/` package continues its global sequence. Module 06 owns
 `_11_` through `_14_`.
@@ -130,7 +145,7 @@ mvn test -Dheadless=false
 Expected outcome:
 
 - TestNG runs twenty-five Selenium tests.
-- local fixture tests pass from `src/test/resources/module06/form-controls.html`.
+- local fixture tests pass from [src/test/resources/module06/form-controls.html](../../src/test/resources/module06/form-controls.html).
 - The Internet checkbox, dropdown, alert, and login tests pass.
 - visible mode passes when `-Dheadless=false` is used.
 
