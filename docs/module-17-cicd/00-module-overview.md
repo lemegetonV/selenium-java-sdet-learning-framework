@@ -31,22 +31,47 @@ flowchart TD
 
 | File | Status | Ownership | Purpose |
 | --- | --- | --- | --- |
-| `.github/workflows/ui-tests.yml` | Added | CI workflow | Runs headless Selenium tests in GitHub Actions and uploads reports. |
-| `docs/module-17-cicd/00-module-overview.md` | Added | Documentation | Explains what CI adds and how it reuses earlier modules. |
-| `docs/module-17-cicd/01-github-actions-workflow.md` | Added | Documentation | Walks through triggers, jobs, actions, caching, and shell scope selection. |
-| `docs/module-17-cicd/02-headless-execution-and-artifacts.md` | Added | Documentation | Explains headless Chrome, reports, screenshots, and artifacts. |
-| `docs/module-17-cicd/99-interview-review.md` | Added | Documentation | CI/CD interview revision notes. |
-| `docs/module-17-cicd/exercises.md` | Added | Exercises | Practice tasks for test scopes, artifacts, and CI reasoning. |
+| [.github/workflows/ui-tests.yml](../../.github/workflows/ui-tests.yml) | Added | CI workflow | Runs headless Selenium tests in GitHub Actions and uploads reports. |
+| [docs/module-17-cicd/00-module-overview.md](00-module-overview.md) | Added | Documentation | Explains what CI adds and how it reuses earlier modules. |
+| [docs/module-17-cicd/01-github-actions-workflow.md](01-github-actions-workflow.md) | Added | Documentation | Walks through triggers, jobs, actions, caching, and shell scope selection. |
+| [docs/module-17-cicd/02-headless-execution-and-artifacts.md](02-headless-execution-and-artifacts.md) | Added | Documentation | Explains headless Chrome, reports, screenshots, and artifacts. |
+| [docs/module-17-cicd/99-interview-review.md](99-interview-review.md) | Added | Documentation | CI/CD interview revision notes. |
+| [docs/module-17-cicd/exercises.md](exercises.md) | Added | Exercises | Practice tasks for test scopes, artifacts, and CI reasoning. |
+
+## Module Source Links
+
+Use these links as the source-reading checklist for this checkpoint. They point only to files that exist at Module 17.
+
+| File | Status | Why It Matters |
+| --- | --- | --- |
+| [.github/workflows/ui-tests.yml](../../.github/workflows/ui-tests.yml) | Added | GitHub Actions CI workflow |
+| [AGENTS.md](../../AGENTS.md) | Changed | Module session metadata |
+| [CLAUDE.md](../../CLAUDE.md) | Changed | Module session metadata |
 
 ## Workflow Scopes
+
+Read the workflow in [.github/workflows/ui-tests.yml](../../.github/workflows/ui-tests.yml)
+with these supporting files open:
+
+- [pom.xml](../../pom.xml) explains the Maven dependencies and Surefire
+  execution used by every CI scope.
+- [testng.xml](../../testng.xml) is the main TestNG suite used by smoke and
+  regression paths.
+- [testng-parallel.xml](../../testng-parallel.xml) proves the Module 15
+  ThreadLocal driver design under concurrent execution.
+- [testng-cucumber.xml](../../testng-cucumber.xml) connects the BDD layer to
+  Maven and TestNG.
+- [src/main/java/com/learning/framework/config/ConfigReader.java](../../src/main/java/com/learning/framework/config/ConfigReader.java)
+  and [src/main/java/com/learning/framework/driver/DriverFactory.java](../../src/main/java/com/learning/framework/driver/DriverFactory.java)
+  show how the `-Dheadless=true` property reaches browser creation.
 
 | Scope | Command Path | Why It Exists |
 | --- | --- | --- |
 | `smoke` | TestNG smoke plus Cucumber `@smoke` | Fast default for push and pull request checks. |
-| `regression` | `testng.xml` plus full Cucumber suite | Stable framework regression without older raw learning tests. |
-| `bdd` | `testng-cucumber.xml` | BDD-only validation for feature/step work. |
-| `parallel` | `testng-parallel.xml` | Focused check for Module 15 parallel safety. |
-| `full` | `mvn test` plus `testng-parallel.xml` | Scheduled/manual full confidence run. |
+| `regression` | [testng.xml](../../testng.xml) plus full Cucumber suite | Stable framework regression without older raw learning tests. |
+| `bdd` | [testng-cucumber.xml](../../testng-cucumber.xml) | BDD-only validation for feature/step work. |
+| `parallel` | [testng-parallel.xml](../../testng-parallel.xml) | Focused check for Module 15 parallel safety. |
+| `full` | `mvn test` plus [testng-parallel.xml](../../testng-parallel.xml) | Scheduled/manual full confidence run. |
 
 ## What Is Intentionally Deferred
 

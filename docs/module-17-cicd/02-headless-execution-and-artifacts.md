@@ -15,10 +15,13 @@ The workflow passes:
 -Dheadless=true
 ```
 
-That system property is read by the framework through `ConfigReader`, which
-eventually affects `DriverFactory` and browser options. The CI workflow should
-not create a separate driver path. It should reuse the same framework
-configuration path that local execution uses.
+That system property is read by the framework through
+[src/main/java/com/learning/framework/config/ConfigReader.java](../../src/main/java/com/learning/framework/config/ConfigReader.java),
+which eventually affects
+[src/main/java/com/learning/framework/driver/DriverFactory.java](../../src/main/java/com/learning/framework/driver/DriverFactory.java)
+and browser options. The CI workflow should not create a separate driver path.
+It should reuse the same framework configuration path that local execution
+uses.
 
 ## Why Artifacts Matter
 
@@ -38,6 +41,27 @@ The workflow uploads:
 Every artifact step uses `if: always()`. That means reports are uploaded even
 when tests fail. This is critical for UI automation because the most valuable
 evidence is produced during failure.
+
+## Source Walkthrough
+
+Open [.github/workflows/ui-tests.yml](../../.github/workflows/ui-tests.yml)
+and read the artifact upload steps after the Maven execution step. Each upload
+maps back to a framework responsibility introduced earlier:
+
+- [src/test/java/com/learning/tests/listeners/FrameworkTestListener.java](../../src/test/java/com/learning/tests/listeners/FrameworkTestListener.java)
+  attaches TestNG failure evidence.
+- [src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java](../../src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java)
+  writes screenshots into the target directory.
+- [src/test/java/com/learning/tests/reports/ExtentReportManager.java](../../src/test/java/com/learning/tests/reports/ExtentReportManager.java)
+  owns the Extent report lifecycle.
+- [src/test/java/com/learning/tests/reports/AllureReportUtils.java](../../src/test/java/com/learning/tests/reports/AllureReportUtils.java)
+  attaches Allure-friendly evidence.
+- [src/test/java/com/learning/tests/bdd/hooks/CucumberHooks.java](../../src/test/java/com/learning/tests/bdd/hooks/CucumberHooks.java)
+  captures BDD scenario context when Cucumber runs in CI.
+
+The important design point is ownership. The workflow uploads files, but it
+does not decide what a screenshot means, how a report is structured, or when a
+browser should be closed. Those decisions stay inside the framework classes.
 
 ## Nuances
 
