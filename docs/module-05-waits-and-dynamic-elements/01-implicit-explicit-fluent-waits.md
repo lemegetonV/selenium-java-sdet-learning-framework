@@ -17,9 +17,7 @@ Without waits, tests can ask for an element before the page is ready.
 
 Module 05 introduces implicit wait in:
 
-```text
-src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java
-```
+[src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java](../../src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java)
 
 Example:
 
@@ -45,10 +43,8 @@ Nuance:
 
 Module 05 introduces explicit wait in:
 
-```text
-src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java
-src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java
-```
+- [src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java](../../src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java)
+- [src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java](../../src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java)
 
 Example:
 
@@ -70,9 +66,7 @@ is close to the action that needs it.
 
 Module 05 introduces FluentWait in:
 
-```text
-src/test/java/com/learning/tests/learning/_09_FluentWaitTest.java
-```
+[src/test/java/com/learning/tests/learning/_09_FluentWaitTest.java](../../src/test/java/com/learning/tests/learning/_09_FluentWaitTest.java)
 
 Example:
 

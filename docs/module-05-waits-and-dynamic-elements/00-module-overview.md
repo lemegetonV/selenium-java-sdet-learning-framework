@@ -23,25 +23,39 @@ utilities are intentionally deferred until the framework wrapper module.
 
 | File | Status | Purpose |
 | --- | --- | --- |
-| `README.md` | changed | updates current module status |
-| `src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java` | added | waits for hidden dynamic text to become visible |
-| `src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java` | added | waits for checkbox removal/addition and input enablement |
-| `src/test/java/com/learning/tests/learning/_09_FluentWaitTest.java` | added | demonstrates custom timeout, polling, and ignored exceptions |
-| `src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java` | added | demonstrates implicit wait setup, controlled timeout assertion, and stale element behavior |
-| `docs/module-05-waits-and-dynamic-elements/00-module-overview.md` | added | module map, file ownership, deferred scope, and quality gate |
-| `docs/module-05-waits-and-dynamic-elements/01-implicit-explicit-fluent-waits.md` | added | explains wait types and usage tradeoffs |
-| `docs/module-05-waits-and-dynamic-elements/02-expected-conditions.md` | added | explains conditions used in this module |
-| `docs/module-05-waits-and-dynamic-elements/03-dynamic-elements-and-timeouts.md` | added | explains dynamic UI, changing DOM shape, and timeout failures |
-| `docs/module-05-waits-and-dynamic-elements/99-interview-review.md` | added | interview-ready revision for synchronization, waits, timeouts, and stale elements |
-| `docs/module-05-waits-and-dynamic-elements/exercises.md` | added | practice tasks with hints and expected outcomes |
+| [README.md](../../README.md) | changed | updates current module status |
+| [src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java](../../src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java) | added | waits for hidden dynamic text to become visible |
+| [src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java](../../src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java) | added | waits for checkbox removal/addition and input enablement |
+| [src/test/java/com/learning/tests/learning/_09_FluentWaitTest.java](../../src/test/java/com/learning/tests/learning/_09_FluentWaitTest.java) | added | demonstrates custom timeout, polling, and ignored exceptions |
+| [src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java](../../src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java) | added | demonstrates implicit wait setup, controlled timeout assertion, and stale element behavior |
+| [docs/module-05-waits-and-dynamic-elements/00-module-overview.md](00-module-overview.md) | added | module map, file ownership, deferred scope, and quality gate |
+| [docs/module-05-waits-and-dynamic-elements/01-implicit-explicit-fluent-waits.md](01-implicit-explicit-fluent-waits.md) | added | explains wait types and usage tradeoffs |
+| [docs/module-05-waits-and-dynamic-elements/02-expected-conditions.md](02-expected-conditions.md) | added | explains conditions used in this module |
+| [docs/module-05-waits-and-dynamic-elements/03-dynamic-elements-and-timeouts.md](03-dynamic-elements-and-timeouts.md) | added | explains dynamic UI, changing DOM shape, and timeout failures |
+| [docs/module-05-waits-and-dynamic-elements/99-interview-review.md](99-interview-review.md) | added | interview-ready revision for synchronization, waits, timeouts, and stale elements |
+| [docs/module-05-waits-and-dynamic-elements/exercises.md](exercises.md) | added | practice tasks with hints and expected outcomes |
+
+## Module Source Links
+
+Use these links as the source-reading checklist for this checkpoint. They point only to files that exist at Module 05.
+
+| File | Status | Why It Matters |
+| --- | --- | --- |
+| [AGENTS.md](../../AGENTS.md) | Changed | Module session metadata |
+| [CLAUDE.md](../../CLAUDE.md) | Changed | Module session metadata |
+| [README.md](../../README.md) | Changed | Repository learning guide |
+| [src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java](../../src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java) | Added | Raw Selenium learning test source |
+| [src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java](../../src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java) | Added | Raw Selenium learning test source |
+| [src/test/java/com/learning/tests/learning/_09_FluentWaitTest.java](../../src/test/java/com/learning/tests/learning/_09_FluentWaitTest.java) | Added | Raw Selenium learning test source |
+| [src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java](../../src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java) | Added | Raw Selenium learning test source |
 
 ## Previous Module Files Reused
 
 Module 05 builds on raw browser and locator tests:
 
-- `src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java`
-- `src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java`
-- `src/test/java/com/learning/tests/learning/_06_WebElementCommandTest.java`
+- [src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java](../../src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java)
+- [src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java](../../src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java)
+- [src/test/java/com/learning/tests/learning/_06_WebElementCommandTest.java](../../src/test/java/com/learning/tests/learning/_06_WebElementCommandTest.java)
 
 The new wait tests still duplicate driver creation and cleanup intentionally.
 

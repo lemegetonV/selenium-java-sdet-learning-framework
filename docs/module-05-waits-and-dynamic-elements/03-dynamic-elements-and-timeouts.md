@@ -28,9 +28,7 @@ https://the-internet.herokuapp.com/dynamic_controls
 
 Module 05 uses:
 
-```text
-src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java
-```
+[src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java](../../src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java)
 
 Important nuance:
 
@@ -60,9 +58,7 @@ When a wait condition never becomes true, Selenium throws
 
 Module 05 demonstrates this without leaving the test failing:
 
-```text
-src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java
-```
+[src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java](../../src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java)
 
 The test intentionally waits for an element that does not exist and asserts
 that `TimeoutException` is thrown.
@@ -90,9 +86,7 @@ is no longer attached to the current DOM.
 
 Module 05 demonstrates the stale reference in:
 
-```text
-src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java
-```
+[src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java](../../src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java)
 
 The dynamic controls page prepares the concept:
 

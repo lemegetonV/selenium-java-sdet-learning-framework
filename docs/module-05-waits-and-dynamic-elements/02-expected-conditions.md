@@ -21,10 +21,8 @@ wait.until(...)
 
 Used in:
 
-```text
-src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java
-src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java
-```
+- [src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java](../../src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java)
+- [src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java](../../src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java)
 
 Behavior:
 
@@ -41,9 +39,7 @@ Good use:
 
 Used in:
 
-```text
-src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java
-```
+[src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java](../../src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java)
 
 Behavior:
 
@@ -63,9 +59,7 @@ Nuance:
 
 Used in:
 
-```text
-src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java
-```
+[src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java](../../src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java)
 
 Behavior:
 
@@ -81,9 +75,7 @@ Good use:
 
 Used in:
 
-```text
-src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java
-```
+[src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java](../../src/test/java/com/learning/tests/learning/_08_DynamicControlsWaitTest.java)
 
 Behavior:
 
@@ -105,9 +97,7 @@ Nuance:
 
 Module 05 introduces `stalenessOf` in:
 
-```text
-src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java
-```
+[src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java](../../src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java)
 
 The condition receives an already-located `WebElement` and waits until that
 specific object reference is detached from the DOM:
