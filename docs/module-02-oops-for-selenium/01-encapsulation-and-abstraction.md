@@ -7,9 +7,7 @@ behavior through methods.
 
 In Module 02, `_05_LoginCredentials` stores login test data:
 
-```text
-src/main/java/com/learning/examples/module02/_05_LoginCredentials.java
-```
+[src/main/java/com/learning/examples/module02/_05_LoginCredentials.java](../../src/main/java/com/learning/examples/module02/_05_LoginCredentials.java)
 
 The username and password are private. Other classes cannot rewrite those
 fields directly.
@@ -48,12 +46,8 @@ Module 02 uses this same idea in a beginner-friendly way:
 Abstraction means callers work with meaningful actions instead of low-level
 steps.
 
-`_06_LoginPageModel` is not a real Selenium page object yet, but it introduces the
-same design idea:
-
-```text
-src/main/java/com/learning/examples/module02/_06_LoginPageModel.java
-```
+[src/main/java/com/learning/examples/module02/_06_LoginPageModel.java](../../src/main/java/com/learning/examples/module02/_06_LoginPageModel.java)
+is not a real Selenium page object yet, but it introduces the same design idea:
 
 The demo does not ask callers to know every login step. It exposes:
 

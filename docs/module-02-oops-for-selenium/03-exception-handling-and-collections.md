@@ -9,10 +9,8 @@ browser failure later. It should fail near the real problem.
 
 Module 02 introduces this idea with:
 
-```text
-src/main/java/com/learning/examples/module02/_04_InvalidTestDataException.java
-src/main/java/com/learning/examples/module02/_05_LoginCredentials.java
-```
+- [src/main/java/com/learning/examples/module02/_04_InvalidTestDataException.java](../../src/main/java/com/learning/examples/module02/_04_InvalidTestDataException.java)
+- [src/main/java/com/learning/examples/module02/_05_LoginCredentials.java](../../src/main/java/com/learning/examples/module02/_05_LoginCredentials.java)
 
 `_05_LoginCredentials` validates that username and password values are present. If
 not, it throws a custom runtime exception.
@@ -37,9 +35,7 @@ browser names.
 `_09_Module02Demo` includes a small invalid-data example so the learner can see
 where an exception is caught and reported:
 
-```text
-src/main/java/com/learning/examples/module02/_09_Module02Demo.java
-```
+[src/main/java/com/learning/examples/module02/_09_Module02Demo.java](../../src/main/java/com/learning/examples/module02/_09_Module02Demo.java)
 
 This is still beginner code, so it prints a message to the console. Later,
 framework code will use Log4j2 and test reports instead of console output.

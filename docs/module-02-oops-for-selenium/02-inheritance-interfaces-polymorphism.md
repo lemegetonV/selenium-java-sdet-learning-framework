@@ -21,9 +21,7 @@ is added.
 
 `_01_BrowserDriver` is the Module 02 learning interface:
 
-```text
-src/main/java/com/learning/examples/module02/_01_BrowserDriver.java
-```
+[src/main/java/com/learning/examples/module02/_01_BrowserDriver.java](../../src/main/java/com/learning/examples/module02/_01_BrowserDriver.java)
 
 It says what browser-like objects must be able to do:
 
@@ -39,10 +37,8 @@ only defines the common contract.
 
 Two classes implement the interface:
 
-```text
-src/main/java/com/learning/examples/module02/_02_ChromeBrowserDriver.java
-src/main/java/com/learning/examples/module02/_03_FirefoxBrowserDriver.java
-```
+- [src/main/java/com/learning/examples/module02/_02_ChromeBrowserDriver.java](../../src/main/java/com/learning/examples/module02/_02_ChromeBrowserDriver.java)
+- [src/main/java/com/learning/examples/module02/_03_FirefoxBrowserDriver.java](../../src/main/java/com/learning/examples/module02/_03_FirefoxBrowserDriver.java)
 
 They are intentionally simple. They do not launch real browsers. Their purpose
 is to make this design visible:
@@ -63,9 +59,7 @@ Polymorphism means one reference type can point to different concrete objects.
 
 In `_09_Module02Demo`, a list stores both browser implementations:
 
-```text
-src/main/java/com/learning/examples/module02/_09_Module02Demo.java
-```
+[src/main/java/com/learning/examples/module02/_09_Module02Demo.java](../../src/main/java/com/learning/examples/module02/_09_Module02Demo.java)
 
 The loop can run the same learning test against Chrome-style and
 Firefox-style drivers because both implement `_01_BrowserDriver`.
@@ -80,10 +74,8 @@ class.
 
 Module 02 uses:
 
-```text
-src/main/java/com/learning/examples/module02/_07_LearningTestTemplate.java
-src/main/java/com/learning/examples/module02/_08_SauceDemoLoginLearningTest.java
-```
+- [src/main/java/com/learning/examples/module02/_07_LearningTestTemplate.java](../../src/main/java/com/learning/examples/module02/_07_LearningTestTemplate.java)
+- [src/main/java/com/learning/examples/module02/_08_SauceDemoLoginLearningTest.java](../../src/main/java/com/learning/examples/module02/_08_SauceDemoLoginLearningTest.java)
 
 `_07_LearningTestTemplate` owns the test sequence:
 

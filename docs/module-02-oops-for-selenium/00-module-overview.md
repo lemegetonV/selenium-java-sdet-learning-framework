@@ -43,33 +43,53 @@ patterns instead of understandable design.
 
 | File | Status | Purpose |
 | --- | --- | --- |
-| `pom.xml` | changed | updates `mvn exec:java` to run the Module 02 demo |
-| `README.md` | changed | updates the current module status and commands |
-| `src/main/java/com/learning/examples/module02/_01_BrowserDriver.java` | added | interface that models the future `WebDriver` abstraction |
-| `src/main/java/com/learning/examples/module02/_02_ChromeBrowserDriver.java` | added | concrete browser implementation, similar in role to `ChromeDriver` |
-| `src/main/java/com/learning/examples/module02/_03_FirefoxBrowserDriver.java` | added | second implementation to make polymorphism visible |
-| `src/main/java/com/learning/examples/module02/_05_LoginCredentials.java` | added | encapsulated test data object with validation |
-| `src/main/java/com/learning/examples/module02/_06_LoginPageModel.java` | added | page-style class that hides login mechanics behind public methods |
-| `src/main/java/com/learning/examples/module02/_07_LearningTestTemplate.java` | added | small abstract template showing inheritance without building `BaseTest` yet |
-| `src/main/java/com/learning/examples/module02/_08_SauceDemoLoginLearningTest.java` | added | concrete learning test that extends the template |
-| `src/main/java/com/learning/examples/module02/_04_InvalidTestDataException.java` | added | custom exception for invalid learning test data |
-| `src/main/java/com/learning/examples/module02/_09_Module02Demo.java` | added | runnable demo for interfaces, polymorphism, inheritance, exceptions, and collections |
-| `docs/module-02-oops-for-selenium/00-module-overview.md` | added | module map, file ownership, deferred scope, and quality gate |
-| `docs/module-02-oops-for-selenium/01-encapsulation-and-abstraction.md` | added | explains private data and public actions in Selenium-style design |
-| `docs/module-02-oops-for-selenium/02-inheritance-interfaces-polymorphism.md` | added | explains Selenium's `WebDriver driver = new ChromeDriver()` pattern |
-| `docs/module-02-oops-for-selenium/03-exception-handling-and-collections.md` | added | explains validation, custom exceptions, and lists in automation |
-| `docs/module-02-oops-for-selenium/99-interview-review.md` | added | interview-ready OOP and Selenium-design revision notes |
-| `docs/module-02-oops-for-selenium/exercises.md` | added | practice tasks with hints and expected outcomes |
+| [pom.xml](../../pom.xml) | changed | updates `mvn exec:java` to run the Module 02 demo |
+| [README.md](../../README.md) | changed | updates the current module status and commands |
+| [src/main/java/com/learning/examples/module02/_01_BrowserDriver.java](../../src/main/java/com/learning/examples/module02/_01_BrowserDriver.java) | added | interface that models the future `WebDriver` abstraction |
+| [src/main/java/com/learning/examples/module02/_02_ChromeBrowserDriver.java](../../src/main/java/com/learning/examples/module02/_02_ChromeBrowserDriver.java) | added | concrete browser implementation, similar in role to `ChromeDriver` |
+| [src/main/java/com/learning/examples/module02/_03_FirefoxBrowserDriver.java](../../src/main/java/com/learning/examples/module02/_03_FirefoxBrowserDriver.java) | added | second implementation to make polymorphism visible |
+| [src/main/java/com/learning/examples/module02/_05_LoginCredentials.java](../../src/main/java/com/learning/examples/module02/_05_LoginCredentials.java) | added | encapsulated test data object with validation |
+| [src/main/java/com/learning/examples/module02/_06_LoginPageModel.java](../../src/main/java/com/learning/examples/module02/_06_LoginPageModel.java) | added | page-style class that hides login mechanics behind public methods |
+| [src/main/java/com/learning/examples/module02/_07_LearningTestTemplate.java](../../src/main/java/com/learning/examples/module02/_07_LearningTestTemplate.java) | added | small abstract template showing inheritance without building `BaseTest` yet |
+| [src/main/java/com/learning/examples/module02/_08_SauceDemoLoginLearningTest.java](../../src/main/java/com/learning/examples/module02/_08_SauceDemoLoginLearningTest.java) | added | concrete learning test that extends the template |
+| [src/main/java/com/learning/examples/module02/_04_InvalidTestDataException.java](../../src/main/java/com/learning/examples/module02/_04_InvalidTestDataException.java) | added | custom exception for invalid learning test data |
+| [src/main/java/com/learning/examples/module02/_09_Module02Demo.java](../../src/main/java/com/learning/examples/module02/_09_Module02Demo.java) | added | runnable demo for interfaces, polymorphism, inheritance, exceptions, and collections |
+| [docs/module-02-oops-for-selenium/00-module-overview.md](00-module-overview.md) | added | module map, file ownership, deferred scope, and quality gate |
+| [docs/module-02-oops-for-selenium/01-encapsulation-and-abstraction.md](01-encapsulation-and-abstraction.md) | added | explains private data and public actions in Selenium-style design |
+| [docs/module-02-oops-for-selenium/02-inheritance-interfaces-polymorphism.md](02-inheritance-interfaces-polymorphism.md) | added | explains Selenium's `WebDriver driver = new ChromeDriver()` pattern |
+| [docs/module-02-oops-for-selenium/03-exception-handling-and-collections.md](03-exception-handling-and-collections.md) | added | explains validation, custom exceptions, and lists in automation |
+| [docs/module-02-oops-for-selenium/99-interview-review.md](99-interview-review.md) | added | interview-ready OOP and Selenium-design revision notes |
+| [docs/module-02-oops-for-selenium/exercises.md](exercises.md) | added | practice tasks with hints and expected outcomes |
+
+## Module Source Links
+
+Use these links as the source-reading checklist for this checkpoint. They point only to files that exist at Module 02.
+
+| File | Status | Why It Matters |
+| --- | --- | --- |
+| [AGENTS.md](../../AGENTS.md) | Changed | Module session metadata |
+| [CLAUDE.md](../../CLAUDE.md) | Changed | Module session metadata |
+| [README.md](../../README.md) | Changed | Repository learning guide |
+| [pom.xml](../../pom.xml) | Changed | Maven build and dependency configuration |
+| [src/main/java/com/learning/examples/module02/_01_BrowserDriver.java](../../src/main/java/com/learning/examples/module02/_01_BrowserDriver.java) | Added | Learning Java example source |
+| [src/main/java/com/learning/examples/module02/_02_ChromeBrowserDriver.java](../../src/main/java/com/learning/examples/module02/_02_ChromeBrowserDriver.java) | Added | Learning Java example source |
+| [src/main/java/com/learning/examples/module02/_03_FirefoxBrowserDriver.java](../../src/main/java/com/learning/examples/module02/_03_FirefoxBrowserDriver.java) | Added | Learning Java example source |
+| [src/main/java/com/learning/examples/module02/_04_InvalidTestDataException.java](../../src/main/java/com/learning/examples/module02/_04_InvalidTestDataException.java) | Added | Learning Java example source |
+| [src/main/java/com/learning/examples/module02/_05_LoginCredentials.java](../../src/main/java/com/learning/examples/module02/_05_LoginCredentials.java) | Added | Learning Java example source |
+| [src/main/java/com/learning/examples/module02/_06_LoginPageModel.java](../../src/main/java/com/learning/examples/module02/_06_LoginPageModel.java) | Added | Learning Java example source |
+| [src/main/java/com/learning/examples/module02/_07_LearningTestTemplate.java](../../src/main/java/com/learning/examples/module02/_07_LearningTestTemplate.java) | Added | Learning Java example source |
+| [src/main/java/com/learning/examples/module02/_08_SauceDemoLoginLearningTest.java](../../src/main/java/com/learning/examples/module02/_08_SauceDemoLoginLearningTest.java) | Added | Learning Java example source |
+| [src/main/java/com/learning/examples/module02/_09_Module02Demo.java](../../src/main/java/com/learning/examples/module02/_09_Module02Demo.java) | Added | Learning Java example source |
 
 ## Previous Module Files Reused
 
 Module 02 does not import Module 01 classes directly. It builds on the same
 concepts and keeps the old examples available for comparison:
 
-- `src/main/java/com/learning/examples/module01/_01_BrowserSession.java`
-- `src/main/java/com/learning/examples/module01/_02_LoginAttempt.java`
-- `src/main/java/com/learning/examples/module01/_03_TestCaseSummary.java`
-- `src/main/java/com/learning/examples/module01/_04_Module01Demo.java`
+- [src/main/java/com/learning/examples/module01/_01_BrowserSession.java](../../src/main/java/com/learning/examples/module01/_01_BrowserSession.java)
+- [src/main/java/com/learning/examples/module01/_02_LoginAttempt.java](../../src/main/java/com/learning/examples/module01/_02_LoginAttempt.java)
+- [src/main/java/com/learning/examples/module01/_03_TestCaseSummary.java](../../src/main/java/com/learning/examples/module01/_03_TestCaseSummary.java)
+- [src/main/java/com/learning/examples/module01/_04_Module01Demo.java](../../src/main/java/com/learning/examples/module01/_04_Module01Demo.java)
 
 ## Source Ownership
 
