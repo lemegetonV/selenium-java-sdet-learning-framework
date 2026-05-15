@@ -12,9 +12,7 @@ the learner does not manually manage driver binaries in this module.
 
 Module 03 uses this directly:
 
-```text
-src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java
-```
+[src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java](../../src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java)
 
 Nuance:
 
@@ -128,6 +126,12 @@ Nuance:
 ## Why Setup Is Repeated
 
 Each Module 03 test class has its own `createChromeDriver()` method.
+
+Read that repeated helper in:
+
+- [src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java](../../src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java)
+- [src/test/java/com/learning/tests/learning/_02_NavigationTest.java](../../src/test/java/com/learning/tests/learning/_02_NavigationTest.java)
+- [src/test/java/com/learning/tests/learning/_03_SauceDemoPageLoadTest.java](../../src/test/java/com/learning/tests/learning/_03_SauceDemoPageLoadTest.java)
 
 That repetition is intentional.
 

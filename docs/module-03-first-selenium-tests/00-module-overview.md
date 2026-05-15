@@ -44,17 +44,32 @@ until the logging module.
 
 | File | Status | Purpose |
 | --- | --- | --- |
-| `pom.xml` | changed | adds Selenium, TestNG, Surefire, and test-scope SLF4J provider |
-| `README.md` | changed | updates current module status and Selenium test commands |
-| `src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java` | added | first raw ChromeDriver test using The Internet |
-| `src/test/java/com/learning/tests/learning/_02_NavigationTest.java` | added | demonstrates `get`, `navigate().to`, back, forward, and refresh |
-| `src/test/java/com/learning/tests/learning/_03_SauceDemoPageLoadTest.java` | added | opens SauceDemo and asserts page title/URL without locators |
-| `docs/module-03-first-selenium-tests/00-module-overview.md` | added | module map, file ownership, deferred scope, and quality gate |
-| `docs/module-03-first-selenium-tests/01-selenium-manager-and-chromedriver.md` | added | explains Selenium Manager, WebDriverManager comparison, ChromeDriver, and headless mode |
-| `docs/module-03-first-selenium-tests/02-testng-raw-test-structure.md` | added | explains minimal TestNG usage and intentional duplication |
-| `docs/module-03-first-selenium-tests/03-navigation-and-assertions.md` | added | explains browser navigation and assertions |
-| `docs/module-03-first-selenium-tests/99-interview-review.md` | added | interview-ready revision for first WebDriver, TestNG, and lifecycle concepts |
-| `docs/module-03-first-selenium-tests/exercises.md` | added | practice tasks with hints and expected outcomes |
+| [pom.xml](../../pom.xml) | changed | adds Selenium, TestNG, Surefire, and test-scope SLF4J provider |
+| [README.md](../../README.md) | changed | updates current module status and Selenium test commands |
+| [src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java](../../src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java) | added | first raw ChromeDriver test using The Internet |
+| [src/test/java/com/learning/tests/learning/_02_NavigationTest.java](../../src/test/java/com/learning/tests/learning/_02_NavigationTest.java) | added | demonstrates `get`, `navigate().to`, back, forward, and refresh |
+| [src/test/java/com/learning/tests/learning/_03_SauceDemoPageLoadTest.java](../../src/test/java/com/learning/tests/learning/_03_SauceDemoPageLoadTest.java) | added | opens SauceDemo and asserts page title/URL without locators |
+| [docs/module-03-first-selenium-tests/00-module-overview.md](00-module-overview.md) | added | module map, file ownership, deferred scope, and quality gate |
+| [docs/module-03-first-selenium-tests/01-selenium-manager-and-chromedriver.md](01-selenium-manager-and-chromedriver.md) | added | explains Selenium Manager, WebDriverManager comparison, ChromeDriver, and headless mode |
+| [docs/module-03-first-selenium-tests/02-testng-raw-test-structure.md](02-testng-raw-test-structure.md) | added | explains minimal TestNG usage and intentional duplication |
+| [docs/module-03-first-selenium-tests/03-navigation-and-assertions.md](03-navigation-and-assertions.md) | added | explains browser navigation and assertions |
+| [docs/module-03-first-selenium-tests/99-interview-review.md](99-interview-review.md) | added | interview-ready revision for first WebDriver, TestNG, and lifecycle concepts |
+| [docs/module-03-first-selenium-tests/exercises.md](exercises.md) | added | practice tasks with hints and expected outcomes |
+
+## Module Source Links
+
+Use these links as the source-reading checklist for this checkpoint. They point only to files that exist at Module 03.
+
+| File | Status | Why It Matters |
+| --- | --- | --- |
+| [AGENTS.md](../../AGENTS.md) | Changed | Module session metadata |
+| [CLAUDE.md](../../CLAUDE.md) | Changed | Module session metadata |
+| [README.md](../../README.md) | Changed | Repository learning guide |
+| [plan.md](../../plan.md) | Changed | Curriculum blueprint |
+| [pom.xml](../../pom.xml) | Changed | Maven build and dependency configuration |
+| [src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java](../../src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java) | Added | Raw Selenium learning test source |
+| [src/test/java/com/learning/tests/learning/_02_NavigationTest.java](../../src/test/java/com/learning/tests/learning/_02_NavigationTest.java) | Added | Raw Selenium learning test source |
+| [src/test/java/com/learning/tests/learning/_03_SauceDemoPageLoadTest.java](../../src/test/java/com/learning/tests/learning/_03_SauceDemoPageLoadTest.java) | Added | Raw Selenium learning test source |
 
 ## Previous Module Files Reused
 

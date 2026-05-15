@@ -44,9 +44,9 @@ This structure is intentionally direct:
 
 | File | Focus |
 | --- | --- |
-| `src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java` | first browser launch, title, current URL |
-| `src/test/java/com/learning/tests/learning/_02_NavigationTest.java` | navigation commands |
-| `src/test/java/com/learning/tests/learning/_03_SauceDemoPageLoadTest.java` | first SauceDemo page load |
+| [src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java](../../src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java) | first browser launch, title, current URL |
+| [src/test/java/com/learning/tests/learning/_02_NavigationTest.java](../../src/test/java/com/learning/tests/learning/_02_NavigationTest.java) | navigation commands |
+| [src/test/java/com/learning/tests/learning/_03_SauceDemoPageLoadTest.java](../../src/test/java/com/learning/tests/learning/_03_SauceDemoPageLoadTest.java) | first SauceDemo page load |
 
 ## Why There Is No Base Class
 

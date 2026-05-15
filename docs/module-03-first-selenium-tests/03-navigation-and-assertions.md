@@ -6,10 +6,8 @@
 
 Module 03 uses it in:
 
-```text
-src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java
-src/test/java/com/learning/tests/learning/_03_SauceDemoPageLoadTest.java
-```
+- [src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java](../../src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java)
+- [src/test/java/com/learning/tests/learning/_03_SauceDemoPageLoadTest.java](../../src/test/java/com/learning/tests/learning/_03_SauceDemoPageLoadTest.java)
 
 Example:
 
@@ -60,9 +58,7 @@ Nuance:
 
 `_02_NavigationTest` demonstrates:
 
-```text
-src/test/java/com/learning/tests/learning/_02_NavigationTest.java
-```
+[src/test/java/com/learning/tests/learning/_02_NavigationTest.java](../../src/test/java/com/learning/tests/learning/_02_NavigationTest.java)
 
 Commands:
 
