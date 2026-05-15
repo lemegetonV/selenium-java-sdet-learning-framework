@@ -13,6 +13,19 @@ You should now be able to explain:
 - thread-safe report and screenshot handling.
 - isolated test data.
 
+Use these files as your interview source map:
+
+| Topic | Source |
+| --- | --- |
+| TestNG method-level parallelism | [testng-parallel.xml](../../testng-parallel.xml) |
+| Sequential comparison suite | [testng.xml](../../testng.xml) |
+| Thread-local browser ownership | [DriverFactory.java](../../src/main/java/com/learning/framework/driver/DriverFactory.java) |
+| Thread-local test services | [BaseTest.java](../../src/test/java/com/learning/tests/base/BaseTest.java) |
+| Local vs Grid switch | [config.properties](../../src/test/resources/config/config.properties) and [ConfigReader.java](../../src/main/java/com/learning/framework/config/ConfigReader.java) |
+| Parallel-safe reporting | [ExtentReportManager.java](../../src/test/java/com/learning/tests/reports/ExtentReportManager.java) |
+| Parallel-safe screenshots | [ScreenshotUtils.java](../../src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java) |
+| Test method usage pattern | [SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java) and [SauceDemoDataDrivenTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java) |
+
 ## Strong Answer Framing
 
 ### Does Selenium support parallel execution by itself?
@@ -79,3 +92,53 @@ or reuse global objects should not be made parallel until the design is fixed.
 
 If you can explain that flow, you understand the module.
 
+## Scenario-Based Questions
+
+### The test passes sequentially but fails in the parallel suite. What do you check first?
+
+Start with shared state. Compare [testng.xml](../../testng.xml) and
+[testng-parallel.xml](../../testng-parallel.xml) to confirm the only major
+change is scheduling. Then inspect [BaseTest.java](../../src/test/java/com/learning/tests/base/BaseTest.java),
+[DriverFactory.java](../../src/main/java/com/learning/framework/driver/DriverFactory.java),
+and the test class for mutable fields, static page objects, shared waits, or
+stateful report variables.
+
+### Why is `ThreadLocal<WebDriver>` in `DriverFactory` not enough by itself?
+
+Because a later class can accidentally copy the current driver into a normal
+field. Module 15 fixes this in [BaseTest.java](../../src/test/java/com/learning/tests/base/BaseTest.java)
+by making the driver, raw wait, `WaitUtils`, and `ElementActions` thread-local
+too. Tests must read those values through accessors.
+
+### What is the difference between a shared report object and shared test state?
+
+[ExtentReportManager.java](../../src/test/java/com/learning/tests/reports/ExtentReportManager.java)
+has one shared `ExtentReports` object because the suite writes one HTML report.
+But each active test needs its own `ExtentTest`, so the current test node is
+stored in `ThreadLocal<ExtentTest>`.
+
+### What makes Grid different from local parallel execution?
+
+Local parallel execution creates multiple browsers on the same machine.
+Grid execution creates browser sessions through `RemoteWebDriver` at the
+configured Grid URL. TestNG still decides concurrency; Grid provides remote
+browser capacity.
+
+### Why does screenshot naming include a thread ID?
+
+[ScreenshotUtils.java](../../src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java)
+already includes a timestamp and test name. Module 15 adds the thread ID so a
+failure artifact can be traced back to a specific parallel worker in logs.
+
+## One-Minute Whiteboard Answer
+
+"Module 15 makes the framework parallel-safe. TestNG controls concurrency with
+`parallel="methods"` in `testng-parallel.xml`. `DriverFactory` stores one
+`WebDriver` per worker thread using `ThreadLocal`, and `BaseTest` also stores
+the related wait and action services in thread-local variables. Tests create
+page objects inside the method from those accessors, so page objects stay tied
+to the correct browser. Reports and screenshots need the same care: Extent has
+a shared report engine but a thread-local current test node, screenshots include
+thread IDs, and logs use thread context. Grid is separate: it changes where the
+browser is created through `RemoteWebDriver`, while TestNG still controls how
+many tests run at once."

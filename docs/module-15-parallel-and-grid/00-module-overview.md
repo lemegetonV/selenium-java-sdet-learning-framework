@@ -6,6 +6,13 @@ Sequential UI tests are easier to reason about, but they become slow as the
 suite grows. Module 15 teaches controlled parallel execution and prepares the
 framework for Selenium Grid.
 
+This is the first module where the framework must be correct under concurrent
+load. Earlier modules could hide shared-state mistakes because only one test
+was usually active at a time. In this module, TestNG can run multiple test
+methods at once, which means the framework must prove that browser sessions,
+waits, wrapper services, logs, screenshots, and reports stay attached to the
+correct test.
+
 The module is deliberately conservative:
 
 - [testng.xml](../../testng.xml) remains a sequential suite.
@@ -13,6 +20,30 @@ The module is deliberately conservative:
 - local browser execution remains the default.
 - Grid execution is available through configuration, but it is not required for
   local verification.
+
+## How To Study This Module
+
+Read the module in this order:
+
+1. Start with [testng-parallel.xml](../../testng-parallel.xml). This file is
+   the trigger that changes the execution model from one test at a time to
+   multiple test methods at once.
+2. Read [DriverFactory.java](../../src/main/java/com/learning/framework/driver/DriverFactory.java).
+   This class owns one browser session per TestNG worker thread.
+3. Read [BaseTest.java](../../src/test/java/com/learning/tests/base/BaseTest.java).
+   This is where the subtle Module 15 bug is fixed: framework services cannot
+   remain normal instance fields when TestNG can run methods from the same test
+   class instance on different threads.
+4. Read [SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java)
+   and [SauceDemoDataDrivenTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java).
+   Notice that tests now call `driver()`, `elementActions()`, and `waits()`
+   instead of reading shared fields.
+5. Read [ExtentReportManager.java](../../src/test/java/com/learning/tests/reports/ExtentReportManager.java)
+   and [ScreenshotUtils.java](../../src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java).
+   Parallel execution affects artifacts too, not only browser sessions.
+6. Read [config.properties](../../src/test/resources/config/config.properties)
+   and [ConfigReader.java](../../src/main/java/com/learning/framework/config/ConfigReader.java)
+   to understand how `executionMode` switches between local browsers and Grid.
 
 ## How It Builds On Previous Modules
 
@@ -34,6 +65,23 @@ flowchart TD
     DriverFactory --> Grid[RemoteWebDriver to Selenium Grid]
     Listener[FrameworkTestListener] --> Reports[Extent and Allure artifacts]
 ```
+
+The key learning point is that parallel safety is not one feature. It is a
+chain:
+
+```mermaid
+flowchart LR
+    Suite["testng-parallel.xml"] --> Thread["TestNG worker thread"]
+    Thread --> Driver["DriverFactory ThreadLocal WebDriver"]
+    Driver --> Base["BaseTest ThreadLocal services"]
+    Base --> Test["Test method page objects"]
+    Test --> Listener["FrameworkTestListener callbacks"]
+    Listener --> Artifact["Logs, screenshots, Extent, Allure"]
+```
+
+If any link in that chain stores test-specific state in a normal shared field,
+the parallel suite can become flaky even when every individual Selenium command
+is correct.
 
 ## Files Added Or Changed
 
@@ -85,6 +133,47 @@ Module 15 fixes that by using thread-local accessors:
 - `waits()`
 - `elementActions()`
 
+### Why This Matters In Practice
+
+Before this module, a `BaseTest` field such as `protected WebDriver driver`
+looked harmless because only one method used it at a time. Under
+`parallel="methods"`, two methods from [SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java)
+or [SauceDemoDataDrivenTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java)
+can overlap.
+
+The failure mode is difficult for beginners because the code still compiles
+and the tests may pass sometimes. A race can look like:
+
+1. Thread A creates browser A and stores it in a normal `driver` field.
+2. Thread B creates browser B and overwrites the same normal `driver` field.
+3. Thread A continues and builds a page object using browser B.
+4. Thread A later tears down what it thinks is its driver while Thread B is
+   still using it.
+
+That is why [BaseTest.java](../../src/test/java/com/learning/tests/base/BaseTest.java)
+stores the current driver, wait, `WaitUtils`, and `ElementActions` in
+`ThreadLocal` variables and exposes them through accessor methods.
+
+Not every field is automatically wrong in a parallel class. The username and
+password fields in [SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java)
+are initialized once in `@BeforeClass` and only read by tests. The dangerous
+objects are per-test mutable services such as browser sessions, waits, page
+objects, and report test nodes.
+
+## Source Ownership Model
+
+| Source | Ownership Type | Parallel Rule |
+| --- | --- | --- |
+| [testng-parallel.xml](../../testng-parallel.xml) | suite configuration | controls how TestNG schedules methods |
+| [DriverFactory.java](../../src/main/java/com/learning/framework/driver/DriverFactory.java) | framework service | one `WebDriver` per thread |
+| [BaseTest.java](../../src/test/java/com/learning/tests/base/BaseTest.java) | test lifecycle support | one set of driver/wait/action references per thread |
+| [SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java) | test class | creates page objects inside each test method |
+| [SauceDemoDataDrivenTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java) | test class | passes immutable `LoginScenario` rows into each invocation |
+| [ExtentReportManager.java](../../src/test/java/com/learning/tests/reports/ExtentReportManager.java) | reporting support | shared report object, thread-local current test node |
+| [ScreenshotUtils.java](../../src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java) | framework utility | unique screenshot names include timestamp, thread ID, and test name |
+| [config.properties](../../src/test/resources/config/config.properties) | test configuration | defaults to local execution and defines the Grid endpoint |
+| [ConfigReader.java](../../src/main/java/com/learning/framework/config/ConfigReader.java) | framework configuration reader | lets Maven `-D` values override local defaults |
+
 ## What Is Intentionally Deferred
 
 - Docker Grid setup is documented conceptually but not required locally.
@@ -111,3 +200,13 @@ Expected:
 - Extent and Allure artifacts are generated without cross-test contamination.
 - full repository tests continue to pass.
 
+Practical verification notes:
+
+- Use `mvn clean test -DsuiteXmlFile=testng-parallel.xml` when checking
+  artifacts so stale files from older runs do not confuse the result.
+- `target/logs/test-execution.log` should contain browser creation lines with
+  different thread IDs from [DriverFactory.java](../../src/main/java/com/learning/framework/driver/DriverFactory.java).
+- `target/extent-report/extent.html` should show the same logical tests that
+  ran in the suite, not duplicated or mixed entries.
+- `target/allure-results` should contain one set of result artifacts for the
+  current clean run.
