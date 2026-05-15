@@ -24,6 +24,10 @@ Test class -> BaseTest -> WebDriver
 Page Objects, wrapper actions, config readers, driver factories, screenshots,
 logs, and reports are intentionally still deferred.
 
+The module should be studied as the first "framework boundary" module. It does
+not make the tests fully abstract. It teaches where browser lifecycle belongs
+before the project starts moving page behavior out of test classes.
+
 ## Why This Module Exists Now
 
 By the end of Module 07, every raw Selenium class repeated some version of:
@@ -119,6 +123,52 @@ flowchart TD
 
 The important direction is that test classes depend on `BaseTest`; `BaseTest`
 does not know any SauceDemo locators or test assertions.
+
+## Execution Walkthrough
+
+When a learner runs:
+
+```bash
+mvn test -DsuiteXmlFile=testng.xml
+```
+
+the checkpoint works like this:
+
+```text
+Maven Surefire loads testng.xml
+        |
+        v
+TestNG finds LoginFoundationTest
+        |
+        v
+@BeforeClass prepares loginUrl
+        |
+        v
+@BeforeMethod in BaseTest creates Chrome and WebDriverWait
+        |
+        v
+@Test uses inherited driver and wait to test SauceDemo login
+        |
+        v
+@AfterMethod in BaseTest quits Chrome
+        |
+        v
+@AfterClass clears loginUrl
+```
+
+That flow is the core of Module 08. If you can trace it from command line to
+browser cleanup, the rest of the module becomes easier.
+
+## Code Concepts To Master
+
+| Concept | Where To Read | What To Understand |
+| --- | --- | --- |
+| TestNG lifecycle | [BaseTest.java](../../src/test/java/com/learning/tests/base/BaseTest.java), [LoginFoundationTest.java](../../src/test/java/com/learning/tests/saucedemo/LoginFoundationTest.java) | which annotations run once, which run per test method, and why browser setup is per method |
+| Inheritance | [LoginFoundationTest.java](../../src/test/java/com/learning/tests/saucedemo/LoginFoundationTest.java) | how `extends BaseTest` gives the child class access to `driver` and `wait` |
+| Protected fields | [BaseTest.java](../../src/test/java/com/learning/tests/base/BaseTest.java) | why this module allows child tests to use framework-owned browser objects |
+| TestNG groups | [testng.xml](../../testng.xml), [LoginFoundationTest.java](../../src/test/java/com/learning/tests/saucedemo/LoginFoundationTest.java) | how `smoke` and `regression` labels control suite selection |
+| Maven Surefire profile | [pom.xml](../../pom.xml) | how `-DsuiteXmlFile=testng.xml` switches from default discovery to named suite execution |
+| Deferred Page Object Model | [LoginFoundationTest.java](../../src/test/java/com/learning/tests/saucedemo/LoginFoundationTest.java) | why locators stay in the test for one more module |
 
 ## What Is Intentionally Deferred
 

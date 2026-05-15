@@ -53,6 +53,19 @@ setUpClassData -> setUpBrowser -> test method -> tearDownBrowser -> clearClassDa
 For multiple test methods, `setUpBrowser` and `tearDownBrowser` repeat for
 each test method.
 
+Add this command-level trace to your explanation:
+
+```text
+Maven/Surefire -> TestNG suite -> @BeforeClass -> @BeforeMethod -> @Test -> @AfterMethod -> @AfterClass
+```
+
+Then answer:
+
+- which steps happen once per class?
+- which steps happen once per test method?
+- which class owns browser setup?
+- which class owns SauceDemo assertions?
+
 ## Exercise 4 - Identify What Should Not Go In BaseTest
 
 List five things that should not be added to `BaseTest`.
@@ -67,3 +80,45 @@ Expected outcome:
 Examples include locators, usernames, product names, checkout actions,
 Page Object methods, screenshot code before Module 13, and browser selection
 before `DriverFactory` is introduced.
+
+## Exercise 5 - Trace The Suite Command
+
+Explain what happens when this command runs:
+
+```bash
+mvn test -DsuiteXmlFile=testng.xml
+```
+
+Your answer should mention:
+
+- Maven `test` phase.
+- Maven Surefire.
+- the `testng-suite` profile.
+- [testng.xml](../../testng.xml).
+- TestNG `regression` group filtering.
+- [LoginFoundationTest.java](../../src/test/java/com/learning/tests/saucedemo/LoginFoundationTest.java).
+
+Hint:
+
+Start from [pom.xml](../../pom.xml), then open [testng.xml](../../testng.xml),
+then open the test class.
+
+Expected outcome:
+
+You can explain why the suite command is different from plain `mvn test`.
+
+## Exercise 6 - Defend The Missing Page Object
+
+In one paragraph, explain why Module 08 does not introduce a `LoginPage` class
+yet.
+
+Your answer should include:
+
+- what `BaseTest` solves.
+- what problem Page Objects will solve later.
+- why teaching both at the same time would make the boundary harder to see.
+
+Expected outcome:
+
+You can explain the learning sequence instead of treating the missing Page
+Object as a mistake.
