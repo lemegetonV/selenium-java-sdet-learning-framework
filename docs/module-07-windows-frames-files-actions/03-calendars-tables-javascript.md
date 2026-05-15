@@ -2,11 +2,12 @@
 
 ## Files In This Topic
 
-```text
-src/test/java/com/learning/tests/learning/_18_CalendarAndWebTableTest.java
-src/test/java/com/learning/tests/learning/_19_JavaScriptAndExceptionsTest.java
-src/test/resources/module07/advanced-interactions.html
-```
+This topic reads these files:
+
+- [src/test/java/com/learning/tests/learning/_18_CalendarAndWebTableTest.java](../../src/test/java/com/learning/tests/learning/_18_CalendarAndWebTableTest.java)
+- [src/test/java/com/learning/tests/learning/_19_JavaScriptAndExceptionsTest.java](../../src/test/java/com/learning/tests/learning/_19_JavaScriptAndExceptionsTest.java)
+- [src/test/resources/module07/advanced-interactions.html](../../src/test/resources/module07/advanced-interactions.html)
+
 
 This topic uses The Internet for web table reading, JavaScript page-state
 reading, and broken images:

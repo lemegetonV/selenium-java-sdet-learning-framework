@@ -2,9 +2,10 @@
 
 ## Files In This Topic
 
-```text
-src/test/java/com/learning/tests/learning/_19_JavaScriptAndExceptionsTest.java
-```
+This topic reads these files:
+
+- [src/test/java/com/learning/tests/learning/_19_JavaScriptAndExceptionsTest.java](../../src/test/java/com/learning/tests/learning/_19_JavaScriptAndExceptionsTest.java)
+
 
 Module 07 completes the raw Selenium exception map before framework
 abstractions begin.

@@ -45,30 +45,47 @@ drag state, selected date text, selected-row highlighting, and sort status.
 
 | File | Status | Purpose |
 | --- | --- | --- |
-| `src/test/resources/module07/advanced-interactions.html` | added | complete local learning fixture for exact download content, visible drag/drop, calendar feedback, row selection, sorting status, Shadow DOM, and controlled exceptions |
-| `src/test/resources/module07/upload-sample.txt` | added | file uploaded through `<input type="file">` |
-| `src/test/java/com/learning/tests/learning/_15_WindowsAndFramesTest.java` | added | demonstrates window handles and nested frame switching |
-| `src/test/java/com/learning/tests/learning/_16_FileUploadDownloadTest.java` | added | demonstrates file upload and download validation |
-| `src/test/java/com/learning/tests/learning/_17_MouseKeyboardShadowDomTest.java` | added | demonstrates hover, keyboard keys, drag/drop, and Shadow DOM |
-| `src/test/java/com/learning/tests/learning/_18_CalendarAndWebTableTest.java` | added | demonstrates date picker strategies, table extraction, row actions, and sorting |
-| `src/test/java/com/learning/tests/learning/_19_JavaScriptAndExceptionsTest.java` | added | demonstrates JavaScriptExecutor, broken image detection, and advanced Selenium exceptions |
-| `docs/module-07-windows-frames-files-actions/00-module-overview.md` | added | module map, file ownership, deferred scope, and quality gate |
-| `docs/module-07-windows-frames-files-actions/01-windows-and-frames.md` | added | explains window handles, frame switching, and nested frames |
-| `docs/module-07-windows-frames-files-actions/02-files-actions-shadow-dom.md` | added | explains file upload/download, mouse/keyboard actions, drag/drop, and Shadow DOM |
-| `docs/module-07-windows-frames-files-actions/03-calendars-tables-javascript.md` | added | explains date pickers, web tables, sortable tables, JavaScriptExecutor, and broken images |
-| `docs/module-07-windows-frames-files-actions/04-selenium-exceptions-map.md` | added | maps advanced Selenium exceptions to causes and later framework handling |
-| `docs/module-07-windows-frames-files-actions/99-interview-review.md` | added | interview-ready final raw Selenium mechanics review before framework modules |
-| `docs/module-07-windows-frames-files-actions/exercises.md` | added | practice tasks with hints and expected outcomes |
+| [src/test/resources/module07/advanced-interactions.html](../../src/test/resources/module07/advanced-interactions.html) | added | complete local learning fixture for exact download content, visible drag/drop, calendar feedback, row selection, sorting status, Shadow DOM, and controlled exceptions |
+| [src/test/resources/module07/upload-sample.txt](../../src/test/resources/module07/upload-sample.txt) | added | file uploaded through `<input type="file">` |
+| [src/test/java/com/learning/tests/learning/_15_WindowsAndFramesTest.java](../../src/test/java/com/learning/tests/learning/_15_WindowsAndFramesTest.java) | added | demonstrates window handles and nested frame switching |
+| [src/test/java/com/learning/tests/learning/_16_FileUploadDownloadTest.java](../../src/test/java/com/learning/tests/learning/_16_FileUploadDownloadTest.java) | added | demonstrates file upload and download validation |
+| [src/test/java/com/learning/tests/learning/_17_MouseKeyboardShadowDomTest.java](../../src/test/java/com/learning/tests/learning/_17_MouseKeyboardShadowDomTest.java) | added | demonstrates hover, keyboard keys, drag/drop, and Shadow DOM |
+| [src/test/java/com/learning/tests/learning/_18_CalendarAndWebTableTest.java](../../src/test/java/com/learning/tests/learning/_18_CalendarAndWebTableTest.java) | added | demonstrates date picker strategies, table extraction, row actions, and sorting |
+| [src/test/java/com/learning/tests/learning/_19_JavaScriptAndExceptionsTest.java](../../src/test/java/com/learning/tests/learning/_19_JavaScriptAndExceptionsTest.java) | added | demonstrates JavaScriptExecutor, broken image detection, and advanced Selenium exceptions |
+| [docs/module-07-windows-frames-files-actions/00-module-overview.md](00-module-overview.md) | added | module map, file ownership, deferred scope, and quality gate |
+| [docs/module-07-windows-frames-files-actions/01-windows-and-frames.md](01-windows-and-frames.md) | added | explains window handles, frame switching, and nested frames |
+| [docs/module-07-windows-frames-files-actions/02-files-actions-shadow-dom.md](02-files-actions-shadow-dom.md) | added | explains file upload/download, mouse/keyboard actions, drag/drop, and Shadow DOM |
+| [docs/module-07-windows-frames-files-actions/03-calendars-tables-javascript.md](03-calendars-tables-javascript.md) | added | explains date pickers, web tables, sortable tables, JavaScriptExecutor, and broken images |
+| [docs/module-07-windows-frames-files-actions/04-selenium-exceptions-map.md](04-selenium-exceptions-map.md) | added | maps advanced Selenium exceptions to causes and later framework handling |
+| [docs/module-07-windows-frames-files-actions/99-interview-review.md](99-interview-review.md) | added | interview-ready final raw Selenium mechanics review before framework modules |
+| [docs/module-07-windows-frames-files-actions/exercises.md](exercises.md) | added | practice tasks with hints and expected outcomes |
+
+## Module Source Links
+
+Use these links as the source-reading checklist for this checkpoint. They point only to files that exist at Module 07.
+
+| File | Status | Why It Matters |
+| --- | --- | --- |
+| [AGENTS.md](../../AGENTS.md) | Changed | Module session metadata |
+| [CLAUDE.md](../../CLAUDE.md) | Changed | Module session metadata |
+| [README.md](../../README.md) | Changed | Repository learning guide |
+| [src/test/java/com/learning/tests/learning/_15_WindowsAndFramesTest.java](../../src/test/java/com/learning/tests/learning/_15_WindowsAndFramesTest.java) | Added | Raw Selenium learning test source |
+| [src/test/java/com/learning/tests/learning/_16_FileUploadDownloadTest.java](../../src/test/java/com/learning/tests/learning/_16_FileUploadDownloadTest.java) | Added | Raw Selenium learning test source |
+| [src/test/java/com/learning/tests/learning/_17_MouseKeyboardShadowDomTest.java](../../src/test/java/com/learning/tests/learning/_17_MouseKeyboardShadowDomTest.java) | Added | Raw Selenium learning test source |
+| [src/test/java/com/learning/tests/learning/_18_CalendarAndWebTableTest.java](../../src/test/java/com/learning/tests/learning/_18_CalendarAndWebTableTest.java) | Added | Raw Selenium learning test source |
+| [src/test/java/com/learning/tests/learning/_19_JavaScriptAndExceptionsTest.java](../../src/test/java/com/learning/tests/learning/_19_JavaScriptAndExceptionsTest.java) | Added | Raw Selenium learning test source |
+| [src/test/resources/module07/advanced-interactions.html](../../src/test/resources/module07/advanced-interactions.html) | Added | Local Selenium learning fixture |
+| [src/test/resources/module07/upload-sample.txt](../../src/test/resources/module07/upload-sample.txt) | Added | Local Selenium learning fixture |
 
 ## Previous Module Files Reused
 
 Module 07 builds on these raw learning examples:
 
-- `src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java`
-- `src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java`
-- `src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java`
-- `src/test/java/com/learning/tests/learning/_13_CheckboxDropdownTest.java`
-- `src/test/java/com/learning/tests/learning/_14_AlertsAndAuthenticationTest.java`
+- [src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java](../../src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java)
+- [src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java](../../src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java)
+- [src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java](../../src/test/java/com/learning/tests/learning/_10_ImplicitWaitAndTimeoutTest.java)
+- [src/test/java/com/learning/tests/learning/_13_CheckboxDropdownTest.java](../../src/test/java/com/learning/tests/learning/_13_CheckboxDropdownTest.java)
+- [src/test/java/com/learning/tests/learning/_14_AlertsAndAuthenticationTest.java](../../src/test/java/com/learning/tests/learning/_14_AlertsAndAuthenticationTest.java)
 
 The shared `learning/` package continues its global sequence. Module 07 owns
 `_15_` through `_19_`.

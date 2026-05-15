@@ -21,11 +21,11 @@ to code you have written:
 
 | Topic | File |
 | --- | --- |
-| Windows and nested frames | `src/test/java/com/learning/tests/learning/_15_WindowsAndFramesTest.java` |
-| Upload and download | `src/test/java/com/learning/tests/learning/_16_FileUploadDownloadTest.java` |
-| Mouse, keyboard, drag/drop, Shadow DOM | `src/test/java/com/learning/tests/learning/_17_MouseKeyboardShadowDomTest.java` |
-| Calendars and tables | `src/test/java/com/learning/tests/learning/_18_CalendarAndWebTableTest.java` |
-| JavaScript and exception mapping | `src/test/java/com/learning/tests/learning/_19_JavaScriptAndExceptionsTest.java` |
+| Windows and nested frames | [src/test/java/com/learning/tests/learning/_15_WindowsAndFramesTest.java](../../src/test/java/com/learning/tests/learning/_15_WindowsAndFramesTest.java) |
+| Upload and download | [src/test/java/com/learning/tests/learning/_16_FileUploadDownloadTest.java](../../src/test/java/com/learning/tests/learning/_16_FileUploadDownloadTest.java) |
+| Mouse, keyboard, drag/drop, Shadow DOM | [src/test/java/com/learning/tests/learning/_17_MouseKeyboardShadowDomTest.java](../../src/test/java/com/learning/tests/learning/_17_MouseKeyboardShadowDomTest.java) |
+| Calendars and tables | [src/test/java/com/learning/tests/learning/_18_CalendarAndWebTableTest.java](../../src/test/java/com/learning/tests/learning/_18_CalendarAndWebTableTest.java) |
+| JavaScript and exception mapping | [src/test/java/com/learning/tests/learning/_19_JavaScriptAndExceptionsTest.java](../../src/test/java/com/learning/tests/learning/_19_JavaScriptAndExceptionsTest.java) |
 
 ## Strong Answers
 
