@@ -39,8 +39,8 @@ You can prove from logs that tests ran concurrently.
 
 Read:
 
-- `src/test/java/com/learning/tests/base/BaseTest.java`
-- `src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java`
+- [src/test/java/com/learning/tests/base/BaseTest.java](../../src/test/java/com/learning/tests/base/BaseTest.java)
+- [src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java)
 
 Answer:
 

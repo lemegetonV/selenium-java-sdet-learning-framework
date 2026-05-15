@@ -13,7 +13,7 @@ often used together, but they are not the same concept.
 
 Configuration:
 
-`src/test/resources/config/config.properties`
+[src/test/resources/config/config.properties](../../src/test/resources/config/config.properties)
 
 ```properties
 executionMode=local
@@ -22,7 +22,7 @@ gridUrl=http://localhost:4444
 
 Driver factory:
 
-`src/main/java/com/learning/framework/driver/DriverFactory.java`
+[src/main/java/com/learning/framework/driver/DriverFactory.java](../../src/main/java/com/learning/framework/driver/DriverFactory.java)
 
 Local path:
 

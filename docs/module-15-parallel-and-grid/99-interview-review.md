@@ -70,7 +70,7 @@ or reuse global objects should not be made parallel until the design is fixed.
 
 ## Practical Walkthrough
 
-1. `testng-parallel.xml` starts three method threads.
+1. [testng-parallel.xml](../../testng-parallel.xml) starts three method threads.
 2. Each thread runs `BaseTest.setUpBrowser`.
 3. `DriverFactory` creates one WebDriver per thread.
 4. Tests call `driver()`, `elementActions()`, and `waits()`.

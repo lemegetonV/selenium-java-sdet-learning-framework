@@ -10,7 +10,7 @@ page objects all need isolation rules.
 
 Report current test:
 
-`src/test/java/com/learning/tests/reports/ExtentReportManager.java`
+[src/test/java/com/learning/tests/reports/ExtentReportManager.java](../../src/test/java/com/learning/tests/reports/ExtentReportManager.java)
 
 ```java
 private static final ThreadLocal<ExtentTest> CURRENT_TEST = new ThreadLocal<>();
@@ -20,7 +20,7 @@ This keeps each test thread connected to its own Extent test node.
 
 Screenshot filenames:
 
-`src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java`
+[src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java](../../src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java)
 
 ```java
 "-thread-" + Thread.currentThread().threadId()
@@ -31,7 +31,7 @@ in parallel.
 
 DataProvider model:
 
-`src/test/java/com/learning/tests/models/LoginScenario.java`
+[src/test/java/com/learning/tests/models/LoginScenario.java](../../src/test/java/com/learning/tests/models/LoginScenario.java)
 
 `LoginScenario` is immutable because it is a Java record. Immutable data rows
 are safer in parallel tests because one test cannot modify the row being used

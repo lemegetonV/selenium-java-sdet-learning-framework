@@ -8,8 +8,8 @@ framework for Selenium Grid.
 
 The module is deliberately conservative:
 
-- `testng.xml` remains a sequential suite.
-- `testng-parallel.xml` is the explicit parallel suite.
+- [testng.xml](../../testng.xml) remains a sequential suite.
+- [testng-parallel.xml](../../testng-parallel.xml) is the explicit parallel suite.
 - local browser execution remains the default.
 - Grid execution is available through configuration, but it is not required for
   local verification.
@@ -39,17 +39,36 @@ flowchart TD
 
 | File path | Status | Purpose |
 | --- | --- | --- |
-| `testng.xml` | changed | renamed as the Module 15 sequential suite |
-| `testng-parallel.xml` | added | runs the SauceDemo regression with `parallel="methods"` and `thread-count="3"` |
-| `src/test/resources/config/config.properties` | changed | adds `executionMode=local` and `gridUrl=http://localhost:4444` |
-| `src/main/java/com/learning/framework/config/ConfigReader.java` | changed | exposes execution mode and Grid URL |
-| `src/main/java/com/learning/framework/driver/DriverFactory.java` | changed | supports local and Grid execution, logs thread IDs, and keeps one driver per thread |
-| `src/test/java/com/learning/tests/base/BaseTest.java` | changed | moves driver, wait, and action references to ThreadLocal accessors |
-| `src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java` | changed | adds thread ID to screenshot filenames |
-| `src/test/java/com/learning/tests/reports/ExtentReportManager.java` | changed | synchronizes report writes and keeps current `ExtentTest` thread-local |
-| `src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java` | changed | uses thread-local framework accessors |
-| `src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java` | changed | uses thread-local framework accessors |
-| `CLAUDE.md` and `AGENTS.md` | changed | mark Module 15 as the active module |
+| [testng.xml](../../testng.xml) | changed | renamed as the Module 15 sequential suite |
+| [testng-parallel.xml](../../testng-parallel.xml) | added | runs the SauceDemo regression with `parallel="methods"` and `thread-count="3"` |
+| [src/test/resources/config/config.properties](../../src/test/resources/config/config.properties) | changed | adds `executionMode=local` and `gridUrl=http://localhost:4444` |
+| [src/main/java/com/learning/framework/config/ConfigReader.java](../../src/main/java/com/learning/framework/config/ConfigReader.java) | changed | exposes execution mode and Grid URL |
+| [src/main/java/com/learning/framework/driver/DriverFactory.java](../../src/main/java/com/learning/framework/driver/DriverFactory.java) | changed | supports local and Grid execution, logs thread IDs, and keeps one driver per thread |
+| [src/test/java/com/learning/tests/base/BaseTest.java](../../src/test/java/com/learning/tests/base/BaseTest.java) | changed | moves driver, wait, and action references to ThreadLocal accessors |
+| [src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java](../../src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java) | changed | adds thread ID to screenshot filenames |
+| [src/test/java/com/learning/tests/reports/ExtentReportManager.java](../../src/test/java/com/learning/tests/reports/ExtentReportManager.java) | changed | synchronizes report writes and keeps current `ExtentTest` thread-local |
+| [src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java) | changed | uses thread-local framework accessors |
+| [src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java) | changed | uses thread-local framework accessors |
+| [CLAUDE.md](../../CLAUDE.md) and [AGENTS.md](../../AGENTS.md) | changed | mark Module 15 as the active module |
+
+## Module Source Links
+
+Use these links as the source-reading checklist for this checkpoint. They point only to files that exist at Module 15.
+
+| File | Status | Why It Matters |
+| --- | --- | --- |
+| [AGENTS.md](../../AGENTS.md) | Changed | Module session metadata |
+| [CLAUDE.md](../../CLAUDE.md) | Changed | Module session metadata |
+| [src/main/java/com/learning/framework/config/ConfigReader.java](../../src/main/java/com/learning/framework/config/ConfigReader.java) | Changed | Framework configuration source |
+| [src/main/java/com/learning/framework/driver/DriverFactory.java](../../src/main/java/com/learning/framework/driver/DriverFactory.java) | Changed | Framework driver lifecycle source |
+| [src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java](../../src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java) | Changed | Framework screenshot utility source |
+| [src/test/java/com/learning/tests/base/BaseTest.java](../../src/test/java/com/learning/tests/base/BaseTest.java) | Changed | Test framework base class |
+| [src/test/java/com/learning/tests/reports/ExtentReportManager.java](../../src/test/java/com/learning/tests/reports/ExtentReportManager.java) | Changed | Reporting test support |
+| [src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java) | Changed | SauceDemo TestNG test source |
+| [src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java) | Changed | SauceDemo TestNG test source |
+| [src/test/resources/config/config.properties](../../src/test/resources/config/config.properties) | Changed | Runtime test configuration |
+| [testng-parallel.xml](../../testng-parallel.xml) | Added | TestNG suite configuration |
+| [testng.xml](../../testng.xml) | Changed | TestNG suite configuration |
 
 ## The Important Bug This Module Exposes
 

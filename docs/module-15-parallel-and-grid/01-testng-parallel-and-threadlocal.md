@@ -12,7 +12,7 @@ and its own framework service references. Shared mutable fields are dangerous.
 
 Parallel suite:
 
-`testng-parallel.xml`
+[testng-parallel.xml](../../testng-parallel.xml)
 
 ```xml
 <suite name="Module 15 Parallel Regression" parallel="methods" thread-count="3">
@@ -24,7 +24,7 @@ methods.
 
 Driver ownership:
 
-`src/main/java/com/learning/framework/driver/DriverFactory.java`
+[src/main/java/com/learning/framework/driver/DriverFactory.java](../../src/main/java/com/learning/framework/driver/DriverFactory.java)
 
 ```java
 private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
@@ -32,7 +32,7 @@ private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
 
 Test-level service ownership:
 
-`src/test/java/com/learning/tests/base/BaseTest.java`
+[src/test/java/com/learning/tests/base/BaseTest.java](../../src/test/java/com/learning/tests/base/BaseTest.java)
 
 ```java
 private final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
