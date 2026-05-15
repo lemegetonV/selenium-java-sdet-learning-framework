@@ -2,11 +2,12 @@
 
 ## Files In This Topic
 
-```text
-src/main/java/com/learning/framework/config/ConfigReader.java
-src/test/resources/config/config.properties
-src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java
-```
+This topic reads these files:
+
+- [src/main/java/com/learning/framework/config/ConfigReader.java](../../src/main/java/com/learning/framework/config/ConfigReader.java)
+- [src/test/resources/config/config.properties](../../src/test/resources/config/config.properties)
+- [src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java)
+
 
 ## Why ConfigReader Exists
 
@@ -81,11 +82,8 @@ framework behavior confusing.
 
 ## Why The Config File Is Under Test Resources
 
-This learning project is a test framework. The runtime config lives under:
-
-```text
-src/test/resources/config/config.properties
-```
+This learning project is a test framework. The runtime config lives at
+[src/test/resources/config/config.properties](../../src/test/resources/config/config.properties).
 
 Maven copies it to the test classpath during `mvn test`, so `ConfigReader` can
 load it with the class loader.
