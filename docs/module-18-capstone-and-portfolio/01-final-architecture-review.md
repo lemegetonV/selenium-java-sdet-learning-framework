@@ -47,19 +47,38 @@ reuse the same Page Objects and framework services that TestNG tests use.
 
 | Class Or File | Responsibility |
 | --- | --- |
-| `DriverFactory` | browser creation, local/Grid execution, cleanup |
-| `ConfigReader` | typed access to framework configuration |
-| `ElementActions` | reusable Selenium interaction wrapper |
-| `WaitUtils` | centralized explicit wait behavior |
-| `LoginPage`, `ProductsPage`, `CartPage`, `CheckoutPage` | SauceDemo page behavior |
-| `BaseTest` | TestNG browser lifecycle and framework service setup |
-| `FrameworkTestListener` | diagnostics, screenshots, reporting hooks |
-| `ExtentReportManager` | Extent report lifecycle |
-| `AllureReportUtils` | Allure attachment helpers |
-| `CucumberTest` | TestNG runner for feature files |
-| `CucumberHooks` | Cucumber scenario browser lifecycle |
-| `SauceDemoSteps` | Gherkin-to-Page-Object bindings |
-| `.github/workflows/ui-tests.yml` | CI execution and artifact upload |
+| [DriverFactory](../../src/main/java/com/learning/framework/driver/DriverFactory.java) | browser creation, local/Grid execution, cleanup |
+| [ConfigReader](../../src/main/java/com/learning/framework/config/ConfigReader.java) | typed access to framework configuration |
+| [ElementActions](../../src/main/java/com/learning/framework/actions/ElementActions.java) | reusable Selenium interaction wrapper |
+| [WaitUtils](../../src/main/java/com/learning/framework/waits/WaitUtils.java) | centralized explicit wait behavior |
+| [LoginPage](../../src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java), [ProductsPage](../../src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java), [CartPage](../../src/main/java/com/learning/framework/pages/saucedemo/CartPage.java), [CheckoutPage](../../src/main/java/com/learning/framework/pages/saucedemo/CheckoutPage.java) | SauceDemo page behavior |
+| [BaseTest](../../src/test/java/com/learning/tests/base/BaseTest.java) | TestNG browser lifecycle and framework service setup |
+| [FrameworkTestListener](../../src/test/java/com/learning/tests/listeners/FrameworkTestListener.java) | diagnostics, screenshots, reporting hooks |
+| [ExtentReportManager](../../src/test/java/com/learning/tests/reports/ExtentReportManager.java) | Extent report lifecycle |
+| [AllureReportUtils](../../src/test/java/com/learning/tests/reports/AllureReportUtils.java) | Allure attachment helpers |
+| [CucumberTest](../../src/test/java/com/learning/tests/bdd/runners/CucumberTest.java) | TestNG runner for feature files |
+| [CucumberHooks](../../src/test/java/com/learning/tests/bdd/hooks/CucumberHooks.java) | Cucumber scenario browser lifecycle |
+| [SauceDemoSteps](../../src/test/java/com/learning/tests/bdd/steps/SauceDemoSteps.java) | Gherkin-to-Page-Object bindings |
+| [.github/workflows/ui-tests.yml](../../.github/workflows/ui-tests.yml) | CI execution and artifact upload |
+
+## Final Code Reading Path
+
+Read the framework from the outside in:
+
+1. [src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java)
+   shows the TestNG user flow at the highest level.
+2. [src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java)
+   shows how tests talk to page behavior instead of raw locators.
+3. [src/main/java/com/learning/framework/actions/ElementActions.java](../../src/main/java/com/learning/framework/actions/ElementActions.java)
+   and [src/main/java/com/learning/framework/waits/WaitUtils.java](../../src/main/java/com/learning/framework/waits/WaitUtils.java)
+   show where repeated Selenium mechanics are centralized.
+4. [src/main/java/com/learning/framework/driver/DriverFactory.java](../../src/main/java/com/learning/framework/driver/DriverFactory.java)
+   and [src/main/java/com/learning/framework/config/ConfigReader.java](../../src/main/java/com/learning/framework/config/ConfigReader.java)
+   show how browser sessions are created from configuration.
+5. [src/test/java/com/learning/tests/bdd/steps/SauceDemoSteps.java](../../src/test/java/com/learning/tests/bdd/steps/SauceDemoSteps.java)
+   and [src/test/resources/features/saucedemo_login.feature](../../src/test/resources/features/saucedemo_login.feature)
+   show how Cucumber reuses the same Page Objects instead of creating a second
+   automation design.
 
 ## Maintenance Rules
 

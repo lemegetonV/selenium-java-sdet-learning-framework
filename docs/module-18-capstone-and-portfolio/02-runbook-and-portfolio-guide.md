@@ -39,14 +39,29 @@ mvn allure:report
 
 For a portfolio walkthrough, use this sequence:
 
-1. Open `README.md` and explain the final framework snapshot.
-2. Open `docs/README.md` and show the module-by-module learning path.
-3. Open `LoginPage.java` and explain Page Object encapsulation.
-4. Open `ElementActions.java` and explain wrapper methods.
-5. Open `DriverFactory.java` and explain config-driven local/Grid execution.
-6. Open `BaseTest.java` and explain TestNG lifecycle plus ThreadLocal.
-7. Open `saucedemo_login.feature` and explain Cucumber as a top layer.
-8. Open `.github/workflows/ui-tests.yml` and explain CI scopes and artifacts.
+1. Open [README.md](../../README.md) and explain the final framework snapshot.
+2. Open [docs/README.md](../README.md) and show the module-by-module learning path.
+3. Open [src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java) and explain Page Object encapsulation.
+4. Open [src/main/java/com/learning/framework/actions/ElementActions.java](../../src/main/java/com/learning/framework/actions/ElementActions.java) and explain wrapper methods.
+5. Open [src/main/java/com/learning/framework/driver/DriverFactory.java](../../src/main/java/com/learning/framework/driver/DriverFactory.java) and explain config-driven local/Grid execution.
+6. Open [src/test/java/com/learning/tests/base/BaseTest.java](../../src/test/java/com/learning/tests/base/BaseTest.java) and explain TestNG lifecycle plus ThreadLocal.
+7. Open [src/test/resources/features/saucedemo_login.feature](../../src/test/resources/features/saucedemo_login.feature) and explain Cucumber as a top layer.
+8. Open [.github/workflows/ui-tests.yml](../../.github/workflows/ui-tests.yml) and explain CI scopes and artifacts.
+
+## Evidence To Show
+
+A strong portfolio walkthrough shows both code structure and execution
+evidence:
+
+- [testng.xml](../../testng.xml) for the main TestNG suite.
+- [testng-parallel.xml](../../testng-parallel.xml) for parallel execution.
+- [testng-cucumber.xml](../../testng-cucumber.xml) for the BDD suite.
+- [src/test/java/com/learning/tests/reports/ExtentReportManager.java](../../src/test/java/com/learning/tests/reports/ExtentReportManager.java)
+  and [src/test/java/com/learning/tests/reports/AllureReportUtils.java](../../src/test/java/com/learning/tests/reports/AllureReportUtils.java)
+  for report ownership.
+- [src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java](../../src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java)
+  and [src/test/java/com/learning/tests/listeners/FrameworkTestListener.java](../../src/test/java/com/learning/tests/listeners/FrameworkTestListener.java)
+  for failure diagnostics.
 
 ## Resume Bullets
 

@@ -26,14 +26,26 @@ review, interview notes, known limitations, and verified run commands.
 
 | File | Status | Purpose |
 | --- | --- | --- |
-| `README.md` | Changed | Replaces the stale early-module README with the final framework overview. |
-| `docs/README.md` | Added | Adds final documentation navigation and source map. |
-| `src/main/java/com/learning/framework/pages/saucedemo/CartPage.java` | Changed | Hardens the cart-to-checkout transition after the final parallel audit exposed an intermittent public-site click miss. |
-| `docs/module-18-capstone-and-portfolio/00-module-overview.md` | Added | Explains final packaging scope and quality gate. |
-| `docs/module-18-capstone-and-portfolio/01-final-architecture-review.md` | Added | Reviews final framework layering and design decisions. |
-| `docs/module-18-capstone-and-portfolio/02-runbook-and-portfolio-guide.md` | Added | Gives run commands, report paths, resume bullets, and demo flow. |
-| `docs/module-18-capstone-and-portfolio/99-interview-review.md` | Added | Final interview talking points. |
-| `docs/module-18-capstone-and-portfolio/exercises.md` | Added | Capstone revision exercises. |
+| [README.md](../../README.md) | Changed | Replaces the stale early-module README with the final framework overview. |
+| [docs/README.md](../README.md) | Added | Adds final documentation navigation and source map. |
+| [src/main/java/com/learning/framework/pages/saucedemo/CartPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/CartPage.java) | Changed | Hardens the cart-to-checkout transition after the final parallel audit exposed an intermittent public-site click miss. |
+| [docs/module-18-capstone-and-portfolio/00-module-overview.md](00-module-overview.md) | Added | Explains final packaging scope and quality gate. |
+| [docs/module-18-capstone-and-portfolio/01-final-architecture-review.md](01-final-architecture-review.md) | Added | Reviews final framework layering and design decisions. |
+| [docs/module-18-capstone-and-portfolio/02-runbook-and-portfolio-guide.md](02-runbook-and-portfolio-guide.md) | Added | Gives run commands, report paths, resume bullets, and demo flow. |
+| [docs/module-18-capstone-and-portfolio/99-interview-review.md](99-interview-review.md) | Added | Final interview talking points. |
+| [docs/module-18-capstone-and-portfolio/exercises.md](exercises.md) | Added | Capstone revision exercises. |
+
+## Module Source Links
+
+Use these links as the source-reading checklist for this checkpoint. They point only to files that exist at Module 18.
+
+| File | Status | Why It Matters |
+| --- | --- | --- |
+| [AGENTS.md](../../AGENTS.md) | Changed | Module session metadata |
+| [CLAUDE.md](../../CLAUDE.md) | Changed | Module session metadata |
+| [README.md](../../README.md) | Changed | Repository learning guide |
+| [docs/README.md](../README.md) | Added | Repository learning guide |
+| [src/main/java/com/learning/framework/pages/saucedemo/CartPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/CartPage.java) | Changed | Framework Page Object source |
 
 ## Quality Gate
 
