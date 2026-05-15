@@ -2,9 +2,7 @@
 
 The step definitions are:
 
-```text
-src/test/java/com/learning/tests/bdd/steps/SauceDemoSteps.java
-```
+[src/test/java/com/learning/tests/bdd/steps/SauceDemoSteps.java](../../src/test/java/com/learning/tests/bdd/steps/SauceDemoSteps.java)
 
 This class is intentionally thin. It stores page objects for the current
 scenario, calls page methods, and performs assertions. It does not own locators,
@@ -54,12 +52,10 @@ data table types.
 The step definition never calls Selenium directly. For example, cart behavior
 is expressed through:
 
-```text
-ProductsPage.addProductToCart(...)
-ProductsPage.openCart()
-CartPage.containsProduct(...)
-CartPage.checkout()
-```
+- [ProductsPage.addProductToCart(...)](../../src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java)
+- [ProductsPage.openCart()](../../src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java)
+- [CartPage.containsProduct(...)](../../src/main/java/com/learning/framework/pages/saucedemo/CartPage.java)
+- [CartPage.checkout()](../../src/main/java/com/learning/framework/pages/saucedemo/CartPage.java)
 
 That keeps BDD stable when locator details change. If SauceDemo changes a cart
 selector, `CartPage` should change, not every Gherkin step.

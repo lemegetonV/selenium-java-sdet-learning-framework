@@ -30,23 +30,39 @@ flowchart TD
 
 | File | Status | Ownership | Purpose |
 | --- | --- | --- | --- |
-| `pom.xml` | Changed | Build configuration | Adds `cucumber-java`, `cucumber-testng`, and `allure-cucumber7-jvm`. |
-| `testng-cucumber.xml` | Added | Suite configuration | Runs the Cucumber runner through TestNG. |
-| `src/test/resources/features/saucedemo_login.feature` | Added | BDD feature | Defines login and checkout scenarios in Gherkin. |
-| `src/test/java/com/learning/tests/bdd/runners/CucumberTest.java` | Added | Cucumber runner | Connects feature files, glue packages, tags, and Cucumber plugins. |
-| `src/test/java/com/learning/tests/bdd/hooks/CucumberHooks.java` | Added | Cucumber lifecycle | Opens and closes one browser per scenario and attaches failure screenshots. |
-| `src/test/java/com/learning/tests/bdd/context/CucumberScenarioContext.java` | Added | Test support | Holds scenario-scoped framework services with `ThreadLocal`. |
-| `src/test/java/com/learning/tests/bdd/steps/SauceDemoSteps.java` | Added | Step definitions | Maps Gherkin steps to existing Page Object methods and assertions. |
+| [pom.xml](../../pom.xml) | Changed | Build configuration | Adds `cucumber-java`, `cucumber-testng`, and `allure-cucumber7-jvm`. |
+| [testng-cucumber.xml](../../testng-cucumber.xml) | Added | Suite configuration | Runs the Cucumber runner through TestNG. |
+| [src/test/resources/features/saucedemo_login.feature](../../src/test/resources/features/saucedemo_login.feature) | Added | BDD feature | Defines login and checkout scenarios in Gherkin. |
+| [src/test/java/com/learning/tests/bdd/runners/CucumberTest.java](../../src/test/java/com/learning/tests/bdd/runners/CucumberTest.java) | Added | Cucumber runner | Connects feature files, glue packages, tags, and Cucumber plugins. |
+| [src/test/java/com/learning/tests/bdd/hooks/CucumberHooks.java](../../src/test/java/com/learning/tests/bdd/hooks/CucumberHooks.java) | Added | Cucumber lifecycle | Opens and closes one browser per scenario and attaches failure screenshots. |
+| [src/test/java/com/learning/tests/bdd/context/CucumberScenarioContext.java](../../src/test/java/com/learning/tests/bdd/context/CucumberScenarioContext.java) | Added | Test support | Holds scenario-scoped framework services with `ThreadLocal`. |
+| [src/test/java/com/learning/tests/bdd/steps/SauceDemoSteps.java](../../src/test/java/com/learning/tests/bdd/steps/SauceDemoSteps.java) | Added | Step definitions | Maps Gherkin steps to existing Page Object methods and assertions. |
+
+## Module Source Links
+
+Use these links as the source-reading checklist for this checkpoint. They point only to files that exist at Module 16.
+
+| File | Status | Why It Matters |
+| --- | --- | --- |
+| [AGENTS.md](../../AGENTS.md) | Changed | Module session metadata |
+| [CLAUDE.md](../../CLAUDE.md) | Changed | Module session metadata |
+| [pom.xml](../../pom.xml) | Changed | Maven build and dependency configuration |
+| [src/test/java/com/learning/tests/bdd/context/CucumberScenarioContext.java](../../src/test/java/com/learning/tests/bdd/context/CucumberScenarioContext.java) | Added | Cucumber BDD test support |
+| [src/test/java/com/learning/tests/bdd/hooks/CucumberHooks.java](../../src/test/java/com/learning/tests/bdd/hooks/CucumberHooks.java) | Added | Cucumber BDD test support |
+| [src/test/java/com/learning/tests/bdd/runners/CucumberTest.java](../../src/test/java/com/learning/tests/bdd/runners/CucumberTest.java) | Added | Cucumber BDD test support |
+| [src/test/java/com/learning/tests/bdd/steps/SauceDemoSteps.java](../../src/test/java/com/learning/tests/bdd/steps/SauceDemoSteps.java) | Added | Cucumber BDD test support |
+| [src/test/resources/features/saucedemo_login.feature](../../src/test/resources/features/saucedemo_login.feature) | Added | Cucumber feature file |
+| [testng-cucumber.xml](../../testng-cucumber.xml) | Added | TestNG suite configuration |
 
 ## Previous Files Reused
 
 | File | Why It Matters In This Module |
 | --- | --- |
-| `src/main/java/com/learning/framework/driver/DriverFactory.java` | Cucumber hooks reuse the same local/Grid driver creation rules. |
-| `src/main/java/com/learning/framework/actions/ElementActions.java` | Step definitions stay clean because Page Objects still use wrapper actions. |
-| `src/main/java/com/learning/framework/waits/WaitUtils.java` | Cucumber does not add raw sleeps or duplicate wait logic. |
+| [src/main/java/com/learning/framework/driver/DriverFactory.java](../../src/main/java/com/learning/framework/driver/DriverFactory.java) | Cucumber hooks reuse the same local/Grid driver creation rules. |
+| [src/main/java/com/learning/framework/actions/ElementActions.java](../../src/main/java/com/learning/framework/actions/ElementActions.java) | Step definitions stay clean because Page Objects still use wrapper actions. |
+| [src/main/java/com/learning/framework/waits/WaitUtils.java](../../src/main/java/com/learning/framework/waits/WaitUtils.java) | Cucumber does not add raw sleeps or duplicate wait logic. |
 | `src/main/java/com/learning/framework/pages/saucedemo/*.java` | BDD scenarios exercise the same application model used by TestNG tests. |
-| `src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java` | Failed Cucumber scenarios reuse the screenshot service from Module 13. |
+| [src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java](../../src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java) | Failed Cucumber scenarios reuse the screenshot service from Module 13. |
 
 ## What This Module Adds
 

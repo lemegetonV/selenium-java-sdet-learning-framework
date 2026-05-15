@@ -6,9 +6,7 @@ to executable automation through step definitions.
 
 The feature file for this module is:
 
-```text
-src/test/resources/features/saucedemo_login.feature
-```
+[src/test/resources/features/saucedemo_login.feature](../../src/test/resources/features/saucedemo_login.feature)
 
 ## Mental Model
 

@@ -12,9 +12,7 @@ This module adds three Cucumber Java packages:
 
 The runner is:
 
-```text
-src/test/java/com/learning/tests/bdd/runners/CucumberTest.java
-```
+[src/test/java/com/learning/tests/bdd/runners/CucumberTest.java](../../src/test/java/com/learning/tests/bdd/runners/CucumberTest.java)
 
 `CucumberTest` extends `AbstractTestNGCucumberTests`. That base class adapts
 Cucumber scenarios into TestNG-executable rows. This is why Maven Surefire can
@@ -37,9 +35,7 @@ sessions can safely revisit parallel Cucumber execution.
 
 The hooks file is:
 
-```text
-src/test/java/com/learning/tests/bdd/hooks/CucumberHooks.java
-```
+[src/test/java/com/learning/tests/bdd/hooks/CucumberHooks.java](../../src/test/java/com/learning/tests/bdd/hooks/CucumberHooks.java)
 
 `@Before` runs before every scenario. It opens a browser through
 `CucumberScenarioContext.openBrowser()`.
@@ -55,9 +51,7 @@ resource cleanup and test isolation.
 
 The scenario context is:
 
-```text
-src/test/java/com/learning/tests/bdd/context/CucumberScenarioContext.java
-```
+[src/test/java/com/learning/tests/bdd/context/CucumberScenarioContext.java](../../src/test/java/com/learning/tests/bdd/context/CucumberScenarioContext.java)
 
 TestNG classes use `BaseTest`, but Cucumber step classes are created by
 Cucumber. They do not inherit TestNG `@BeforeMethod` setup. This is why the BDD
