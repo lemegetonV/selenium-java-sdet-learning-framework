@@ -17,6 +17,19 @@ flowchart LR
 Module 09 keeps raw Selenium calls inside page objects on purpose. Module 10
 will introduce wrapper methods around those Selenium calls.
 
+The key learning shift is:
+
+```text
+Module 08:
+test class owns browser lifecycle through BaseTest and still owns page details.
+
+Module 09:
+test class owns scenario and assertions; page objects own page details.
+```
+
+That means the test should read like a user workflow, while the page classes
+absorb SauceDemo selectors, waits, and page transitions.
+
 ## Why This Module Exists Now
 
 `LoginFoundationTest` from Module 08 proved that shared browser setup works,
@@ -132,6 +145,76 @@ Important direction:
 - page objects depend on Selenium.
 - page objects do not depend on tests.
 - `BaseTest` does not know SauceDemo locators.
+
+## Execution Walkthrough
+
+When `standardUserCanStartCheckoutForSingleProduct` runs, the flow is:
+
+```text
+BaseTest creates Chrome and WebDriverWait
+        |
+        v
+SauceDemoPageObjectTest creates LoginPage(driver, wait)
+        |
+        v
+LoginPage.open() opens SauceDemo and waits for the login button
+        |
+        v
+LoginPage.loginAs(...) enters credentials and clicks login
+        |
+        v
+LoginPage returns ProductsPage after products page is loaded
+        |
+        v
+ProductsPage.addProductToCart(...) finds the matching product card
+        |
+        v
+ProductsPage.openCart() returns CartPage
+        |
+        v
+CartPage.checkout() returns CheckoutPage
+        |
+        v
+SauceDemoPageObjectTest performs assertions
+        |
+        v
+BaseTest quits Chrome
+```
+
+This is the code path to understand before Module 10. Page Objects do not
+remove Selenium; they move Selenium mechanics out of the test class and into
+classes that represent pages.
+
+## Code Reading Path
+
+Read the Module 09 source in this order:
+
+1. [src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java)
+   to see how the tests read after POM.
+2. [src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java)
+   to see private locators, constructor injection, `open()`, successful login,
+   and negative login.
+3. [src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java)
+   to see page-loaded waits, product-card lookup, cart badge reading, and cart
+   navigation.
+4. [src/main/java/com/learning/framework/pages/saucedemo/CartPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/CartPage.java)
+   to see cart state queries and checkout navigation.
+5. [src/main/java/com/learning/framework/pages/saucedemo/CheckoutPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/CheckoutPage.java)
+   to see the first checkout screen boundary.
+6. [testng.xml](../../testng.xml) to confirm the suite now runs
+   `SauceDemoPageObjectTest`.
+
+## Code Concepts To Master
+
+| Concept | Where To Read | What To Understand |
+| --- | --- | --- |
+| Page object constructor | [LoginPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java) | page objects receive `WebDriver` and `WebDriverWait`; they do not create browsers |
+| Private locators | all page classes | selectors are page implementation details, not test API |
+| Page actions | `loginAs`, `addProductToCart`, `openCart`, `checkout` | public methods describe user intent |
+| Page state reads | `getTitle`, `getInventoryItemCount`, `containsProduct` | page objects expose state; tests decide expected values |
+| Page transitions | `loginAs` returns `ProductsPage`; `checkout` returns `CheckoutPage` | Java return types should match browser state |
+| Scoped lookup | `ProductsPage.findProductCard` | find a specific card first, then search inside it |
+| Deferred wrappers | raw `driver.findElement` calls inside pages | Module 10 will centralize these repeated mechanics |
 
 ## What Is Intentionally Deferred
 
