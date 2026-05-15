@@ -8,9 +8,7 @@ fix weak locator thinking.
 
 The examples in this doc refer to:
 
-```text
-src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java
-```
+[src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java](../../src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java)
 
 ## XPath Basics
 

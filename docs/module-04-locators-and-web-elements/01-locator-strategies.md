@@ -18,10 +18,8 @@ WebElement element = driver.findElement(By.id("user-name"));
 
 Module 04 introduces locators in:
 
-```text
-src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java
-src/test/java/com/learning/tests/learning/_05_LinkLocatorTest.java
-```
+- [src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java](../../src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java)
+- [src/test/java/com/learning/tests/learning/_05_LinkLocatorTest.java](../../src/test/java/com/learning/tests/learning/_05_LinkLocatorTest.java)
 
 Because `src/test/java/com/learning/tests/learning/` is a shared package, the
 class prefixes continue from Module 03. Module 04 starts at `_04_`, not
@@ -130,7 +128,8 @@ choices.
 
 ## Chained Locators
 
-`_04_LocatorStrategyTest` also introduces chained or scoped locators:
+[src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java](../../src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java)
+also introduces chained or scoped locators:
 
 ```java
 WebElement loginContainer = driver.findElement(By.id("login_button_container"));

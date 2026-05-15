@@ -20,25 +20,38 @@ flowchart LR
 
 | File | Status | Purpose |
 | --- | --- | --- |
-| `README.md` | changed | updates current module status |
-| `src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java` | added | demonstrates locator strategies, locator templates, chained locators, XPath axes, and locator exceptions |
-| `src/test/java/com/learning/tests/learning/_05_LinkLocatorTest.java` | added | demonstrates `By.linkText`, `By.partialLinkText`, and click navigation |
-| `src/test/java/com/learning/tests/learning/_06_WebElementCommandTest.java` | added | demonstrates `sendKeys`, `clear`, `click`, `getText`, and `getAttribute` |
-| `docs/module-04-locators-and-web-elements/00-module-overview.md` | added | module map, file ownership, deferred scope, and quality gate |
-| `docs/module-04-locators-and-web-elements/01-locator-strategies.md` | added | explains locator strategies, templates, best practices, and stability rules |
-| `docs/module-04-locators-and-web-elements/02-findelement-vs-findelements.md` | added | explains single vs list element lookup behavior |
-| `docs/module-04-locators-and-web-elements/03-webelement-commands.md` | added | explains first element commands and gotchas |
-| `docs/module-04-locators-and-web-elements/04-xpath-chained-locators-and-exceptions.md` | added | explains XPath syntax, chained XPath, axes, scoped lookups, and locator exceptions |
-| `docs/module-04-locators-and-web-elements/99-interview-review.md` | added | interview-ready revision for locator and WebElement concepts |
-| `docs/module-04-locators-and-web-elements/exercises.md` | added | practice tasks with hints and expected outcomes |
+| [README.md](../../README.md) | changed | updates current module status |
+| [src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java](../../src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java) | added | demonstrates locator strategies, locator templates, chained locators, XPath axes, and locator exceptions |
+| [src/test/java/com/learning/tests/learning/_05_LinkLocatorTest.java](../../src/test/java/com/learning/tests/learning/_05_LinkLocatorTest.java) | added | demonstrates `By.linkText`, `By.partialLinkText`, and click navigation |
+| [src/test/java/com/learning/tests/learning/_06_WebElementCommandTest.java](../../src/test/java/com/learning/tests/learning/_06_WebElementCommandTest.java) | added | demonstrates `sendKeys`, `clear`, `click`, `getText`, and `getAttribute` |
+| [docs/module-04-locators-and-web-elements/00-module-overview.md](00-module-overview.md) | added | module map, file ownership, deferred scope, and quality gate |
+| [docs/module-04-locators-and-web-elements/01-locator-strategies.md](01-locator-strategies.md) | added | explains locator strategies, templates, best practices, and stability rules |
+| [docs/module-04-locators-and-web-elements/02-findelement-vs-findelements.md](02-findelement-vs-findelements.md) | added | explains single vs list element lookup behavior |
+| [docs/module-04-locators-and-web-elements/03-webelement-commands.md](03-webelement-commands.md) | added | explains first element commands and gotchas |
+| [docs/module-04-locators-and-web-elements/04-xpath-chained-locators-and-exceptions.md](04-xpath-chained-locators-and-exceptions.md) | added | explains XPath syntax, chained XPath, axes, scoped lookups, and locator exceptions |
+| [docs/module-04-locators-and-web-elements/99-interview-review.md](99-interview-review.md) | added | interview-ready revision for locator and WebElement concepts |
+| [docs/module-04-locators-and-web-elements/exercises.md](exercises.md) | added | practice tasks with hints and expected outcomes |
+
+## Module Source Links
+
+Use these links as the source-reading checklist for this checkpoint. They point only to files that exist at Module 04.
+
+| File | Status | Why It Matters |
+| --- | --- | --- |
+| [AGENTS.md](../../AGENTS.md) | Changed | Module session metadata |
+| [CLAUDE.md](../../CLAUDE.md) | Changed | Module session metadata |
+| [README.md](../../README.md) | Changed | Repository learning guide |
+| [src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java](../../src/test/java/com/learning/tests/learning/_04_LocatorStrategyTest.java) | Added | Raw Selenium learning test source |
+| [src/test/java/com/learning/tests/learning/_05_LinkLocatorTest.java](../../src/test/java/com/learning/tests/learning/_05_LinkLocatorTest.java) | Added | Raw Selenium learning test source |
+| [src/test/java/com/learning/tests/learning/_06_WebElementCommandTest.java](../../src/test/java/com/learning/tests/learning/_06_WebElementCommandTest.java) | Added | Raw Selenium learning test source |
 
 ## Previous Module Files Reused
 
 Module 04 builds directly on the raw Selenium tests from Module 03:
 
-- `src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java`
-- `src/test/java/com/learning/tests/learning/_02_NavigationTest.java`
-- `src/test/java/com/learning/tests/learning/_03_SauceDemoPageLoadTest.java`
+- [src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java](../../src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java)
+- [src/test/java/com/learning/tests/learning/_02_NavigationTest.java](../../src/test/java/com/learning/tests/learning/_02_NavigationTest.java)
+- [src/test/java/com/learning/tests/learning/_03_SauceDemoPageLoadTest.java](../../src/test/java/com/learning/tests/learning/_03_SauceDemoPageLoadTest.java)
 
 The setup duplication remains intentional. This module still does not add a
 base class.
