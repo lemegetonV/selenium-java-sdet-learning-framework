@@ -19,7 +19,7 @@ events. TestNG calls listener methods automatically:
 
 Main file:
 
-`src/test/java/com/learning/tests/listeners/FrameworkTestListener.java`
+[src/test/java/com/learning/tests/listeners/FrameworkTestListener.java](../../src/test/java/com/learning/tests/listeners/FrameworkTestListener.java)
 
 The class implements:
 
@@ -32,7 +32,7 @@ the class promises that it can receive TestNG lifecycle callbacks.
 
 The listener is registered in:
 
-`testng.xml`
+[testng.xml](../../testng.xml)
 
 ```xml
 <listeners>
@@ -74,7 +74,7 @@ lifecycle and avoids hidden driver creation inside diagnostics.
 ## Common Mistakes
 
 - Registering a listener but running a command that does not use the suite XML.
-  The module listener registration is in `testng.xml`, so use
+  The module listener registration is in [testng.xml](../../testng.xml), so use
   `mvn test -DsuiteXmlFile=testng.xml` when verifying listener behavior.
 - Taking screenshots in `@AfterMethod` after the driver has already quit.
 - Logging full data-provider objects. Module 13 avoids this for

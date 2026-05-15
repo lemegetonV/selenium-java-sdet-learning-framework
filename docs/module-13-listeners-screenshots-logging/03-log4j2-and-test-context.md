@@ -12,14 +12,14 @@ messages instead of using `System.out.println`.
 
 Configuration file:
 
-`src/test/resources/log4j2.xml`
+[src/test/resources/log4j2.xml](../../src/test/resources/log4j2.xml)
 
 Framework logging appears in:
 
-- `src/main/java/com/learning/framework/driver/DriverFactory.java`
-- `src/main/java/com/learning/framework/actions/ElementActions.java`
-- `src/test/java/com/learning/tests/listeners/FrameworkTestListener.java`
-- `src/test/java/com/learning/tests/listeners/FrameworkRetryAnalyzer.java`
+- [src/main/java/com/learning/framework/driver/DriverFactory.java](../../src/main/java/com/learning/framework/driver/DriverFactory.java)
+- [src/main/java/com/learning/framework/actions/ElementActions.java](../../src/main/java/com/learning/framework/actions/ElementActions.java)
+- [src/test/java/com/learning/tests/listeners/FrameworkTestListener.java](../../src/test/java/com/learning/tests/listeners/FrameworkTestListener.java)
+- [src/test/java/com/learning/tests/listeners/FrameworkRetryAnalyzer.java](../../src/test/java/com/learning/tests/listeners/FrameworkRetryAnalyzer.java)
 
 The pattern includes:
 

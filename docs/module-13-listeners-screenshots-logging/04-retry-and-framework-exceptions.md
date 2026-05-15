@@ -15,13 +15,13 @@ glitches, but they can also hide real bugs if enabled casually.
 
 Retry files:
 
-- `src/test/java/com/learning/tests/listeners/FrameworkRetryAnalyzer.java`
-- `src/test/java/com/learning/tests/listeners/RetryAnnotationTransformer.java`
+- [src/test/java/com/learning/tests/listeners/FrameworkRetryAnalyzer.java](../../src/test/java/com/learning/tests/listeners/FrameworkRetryAnalyzer.java)
+- [src/test/java/com/learning/tests/listeners/RetryAnnotationTransformer.java](../../src/test/java/com/learning/tests/listeners/RetryAnnotationTransformer.java)
 
 Configuration:
 
-- `src/test/resources/config/config.properties`
-- `src/main/java/com/learning/framework/config/ConfigReader.java`
+- [src/test/resources/config/config.properties](../../src/test/resources/config/config.properties)
+- [src/main/java/com/learning/framework/config/ConfigReader.java](../../src/main/java/com/learning/framework/config/ConfigReader.java)
 
 Default:
 
@@ -39,12 +39,12 @@ if (ConfigReader.getRetryCount() > 0 && annotation.getRetryAnalyzerClass() == nu
 
 Framework exception file:
 
-`src/main/java/com/learning/framework/exceptions/FrameworkException.java`
+[src/main/java/com/learning/framework/exceptions/FrameworkException.java](../../src/main/java/com/learning/framework/exceptions/FrameworkException.java)
 
 Current users:
 
-- `src/main/java/com/learning/framework/driver/DriverFactory.java`
-- `src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java`
+- [src/main/java/com/learning/framework/driver/DriverFactory.java](../../src/main/java/com/learning/framework/driver/DriverFactory.java)
+- [src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java](../../src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java)
 
 ## Java Syntax To Notice
 

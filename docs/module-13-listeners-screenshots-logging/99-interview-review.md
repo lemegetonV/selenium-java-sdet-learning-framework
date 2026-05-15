@@ -67,7 +67,7 @@ data, or product defects.
 
 Follow this path in the code:
 
-1. `testng.xml` registers `FrameworkTestListener`.
+1. [testng.xml](../../testng.xml) registers `FrameworkTestListener`.
 2. `FrameworkTestListener.onTestStart` writes `testName` to `ThreadContext`.
 3. `DriverFactory.createDriver` logs browser creation.
 4. `ElementActions` logs clicks and typing length.

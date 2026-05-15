@@ -41,8 +41,8 @@ to explain that a retry analyzer is only consulted after a failure.
 
 Read:
 
-- `src/test/java/com/learning/tests/listeners/FrameworkTestListener.java`
-- `src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java`
+- [src/test/java/com/learning/tests/listeners/FrameworkTestListener.java](../../src/test/java/com/learning/tests/listeners/FrameworkTestListener.java)
+- [src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java](../../src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java)
 
 Write down the method call chain from `onTestFailure` to the final screenshot
 file path.
@@ -56,8 +56,8 @@ Look for `DriverFactory.getDriver()`, `ScreenshotUtils.capture(...)`, and
 
 Read:
 
-- `src/test/java/com/learning/tests/listeners/FrameworkTestListener.java`
-- `src/main/java/com/learning/framework/actions/ElementActions.java`
+- [src/test/java/com/learning/tests/listeners/FrameworkTestListener.java](../../src/test/java/com/learning/tests/listeners/FrameworkTestListener.java)
+- [src/main/java/com/learning/framework/actions/ElementActions.java](../../src/main/java/com/learning/framework/actions/ElementActions.java)
 
 Answer:
 
@@ -73,7 +73,7 @@ You can explain diagnostic value and data-safety tradeoffs.
 
 Read:
 
-`src/main/java/com/learning/framework/exceptions/FrameworkException.java`
+[src/main/java/com/learning/framework/exceptions/FrameworkException.java](../../src/main/java/com/learning/framework/exceptions/FrameworkException.java)
 
 Classify each failure as either test assertion failure or framework exception:
 

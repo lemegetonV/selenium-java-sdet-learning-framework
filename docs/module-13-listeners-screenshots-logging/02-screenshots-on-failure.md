@@ -13,7 +13,7 @@ where screenshots are saved or how filenames are built.
 
 Main file:
 
-`src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java`
+[src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java](../../src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java)
 
 Important Selenium API:
 
@@ -35,7 +35,7 @@ Selenium returns a temporary file. The framework copies it to:
 
 The listener calls the utility from:
 
-`src/test/java/com/learning/tests/listeners/FrameworkTestListener.java`
+[src/test/java/com/learning/tests/listeners/FrameworkTestListener.java](../../src/test/java/com/learning/tests/listeners/FrameworkTestListener.java)
 
 ## Java Syntax To Notice
 
