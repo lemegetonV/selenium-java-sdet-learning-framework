@@ -17,7 +17,7 @@ directly from `target/extent-report/extent.html`.
 
 Main file:
 
-`src/test/java/com/learning/tests/reports/ExtentReportManager.java`
+[src/test/java/com/learning/tests/reports/ExtentReportManager.java](../../src/test/java/com/learning/tests/reports/ExtentReportManager.java)
 
 The setup flow:
 

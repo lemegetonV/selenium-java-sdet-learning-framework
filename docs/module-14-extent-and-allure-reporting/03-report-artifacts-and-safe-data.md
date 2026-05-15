@@ -23,7 +23,7 @@ safe reporting as part of framework design.
 
 Sensitive data protection is currently visible in:
 
-`src/test/java/com/learning/tests/models/LoginScenario.java`
+[src/test/java/com/learning/tests/models/LoginScenario.java](../../src/test/java/com/learning/tests/models/LoginScenario.java)
 
 The record still stores the real password so tests can use it:
 

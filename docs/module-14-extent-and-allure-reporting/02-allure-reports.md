@@ -15,11 +15,11 @@ artifact workflows.
 
 Dependency and plugin:
 
-`pom.xml`
+[pom.xml](../../pom.xml)
 
 Configuration:
 
-`src/test/resources/allure.properties`
+[src/test/resources/allure.properties](../../src/test/resources/allure.properties)
 
 ```properties
 allure.results.directory=target/allure-results
@@ -27,8 +27,8 @@ allure.results.directory=target/allure-results
 
 Allure labels and steps are demonstrated in:
 
-- `src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java`
-- `src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java`
+- [src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java)
+- [src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java)
 
 Example labels:
 
@@ -47,7 +47,7 @@ Allure.step("Open SauceDemo login page");
 
 Screenshot attachment helper:
 
-`src/test/java/com/learning/tests/reports/AllureReportUtils.java`
+[src/test/java/com/learning/tests/reports/AllureReportUtils.java](../../src/test/java/com/learning/tests/reports/AllureReportUtils.java)
 
 ## Java Syntax To Notice
 
@@ -62,7 +62,7 @@ style.
 ## Framework Nuances
 
 The `allure-testng` dependency can register its TestNG integration through
-service loading. Adding the same listener explicitly in `testng.xml` can create
+service loading. Adding the same listener explicitly in [testng.xml](../../testng.xml) can create
 duplicate listener warnings, so Module 14 keeps Allure out of the XML and lets
 the dependency integration handle result collection.
 

@@ -32,32 +32,51 @@ flowchart TD
 
 Module 14 reuses Module 13's listener position instead of adding a second
 custom listener for Extent. Allure's TestNG integration is provided by the
-`allure-testng` dependency, so `testng.xml` does not explicitly list the Allure
+`allure-testng` dependency, so [testng.xml](../../testng.xml) does not explicitly list the Allure
 listener. Listing it manually creates duplicate listener warnings.
 
 ## Files Added Or Changed
 
 | File path | Status | Purpose |
 | --- | --- | --- |
-| `pom.xml` | changed | adds ExtentReports, Allure TestNG, and Allure Maven plugin versions |
-| `testng.xml` | changed | renames the suite for Module 14 and keeps the framework listener active |
-| `src/test/resources/allure.properties` | added | sets Allure results output to `target/allure-results` |
-| `src/test/java/com/learning/tests/reports/ExtentReportManager.java` | added | owns Extent setup, current test tracking, status logging, screenshot attachment, and flush |
-| `src/test/java/com/learning/tests/reports/AllureReportUtils.java` | added | attaches screenshot files to Allure without exposing stream handling in the listener |
-| `src/test/java/com/learning/tests/listeners/FrameworkTestListener.java` | changed | sends pass/fail/skip status and screenshots to Extent and Allure |
-| `src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java` | changed | adds Allure labels and safe no-op steps |
-| `src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java` | changed | adds Allure labels and scenario-level steps |
-| `src/test/java/com/learning/tests/models/LoginScenario.java` | changed | masks password in `toString()` so reports do not leak credentials |
-| `CLAUDE.md` and `AGENTS.md` | changed | mark Module 14 as the active module |
+| [pom.xml](../../pom.xml) | changed | adds ExtentReports, Allure TestNG, and Allure Maven plugin versions |
+| [testng.xml](../../testng.xml) | changed | renames the suite for Module 14 and keeps the framework listener active |
+| [src/test/resources/allure.properties](../../src/test/resources/allure.properties) | added | sets Allure results output to `target/allure-results` |
+| [src/test/java/com/learning/tests/reports/ExtentReportManager.java](../../src/test/java/com/learning/tests/reports/ExtentReportManager.java) | added | owns Extent setup, current test tracking, status logging, screenshot attachment, and flush |
+| [src/test/java/com/learning/tests/reports/AllureReportUtils.java](../../src/test/java/com/learning/tests/reports/AllureReportUtils.java) | added | attaches screenshot files to Allure without exposing stream handling in the listener |
+| [src/test/java/com/learning/tests/listeners/FrameworkTestListener.java](../../src/test/java/com/learning/tests/listeners/FrameworkTestListener.java) | changed | sends pass/fail/skip status and screenshots to Extent and Allure |
+| [src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java) | changed | adds Allure labels and safe no-op steps |
+| [src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java) | changed | adds Allure labels and scenario-level steps |
+| [src/test/java/com/learning/tests/models/LoginScenario.java](../../src/test/java/com/learning/tests/models/LoginScenario.java) | changed | masks password in `toString()` so reports do not leak credentials |
+| [CLAUDE.md](../../CLAUDE.md) and [AGENTS.md](../../AGENTS.md) | changed | mark Module 14 as the active module |
+
+## Module Source Links
+
+Use these links as the source-reading checklist for this checkpoint. They point only to files that exist at Module 14.
+
+| File | Status | Why It Matters |
+| --- | --- | --- |
+| [.gitignore](../../.gitignore) | Changed | Generated artifact hygiene |
+| [AGENTS.md](../../AGENTS.md) | Changed | Module session metadata |
+| [CLAUDE.md](../../CLAUDE.md) | Changed | Module session metadata |
+| [pom.xml](../../pom.xml) | Changed | Maven build and dependency configuration |
+| [src/test/java/com/learning/tests/listeners/FrameworkTestListener.java](../../src/test/java/com/learning/tests/listeners/FrameworkTestListener.java) | Changed | TestNG listener or retry support |
+| [src/test/java/com/learning/tests/models/LoginScenario.java](../../src/test/java/com/learning/tests/models/LoginScenario.java) | Changed | Test data model source |
+| [src/test/java/com/learning/tests/reports/AllureReportUtils.java](../../src/test/java/com/learning/tests/reports/AllureReportUtils.java) | Added | Reporting test support |
+| [src/test/java/com/learning/tests/reports/ExtentReportManager.java](../../src/test/java/com/learning/tests/reports/ExtentReportManager.java) | Added | Reporting test support |
+| [src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java) | Changed | SauceDemo TestNG test source |
+| [src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java) | Changed | SauceDemo TestNG test source |
+| [src/test/resources/allure.properties](../../src/test/resources/allure.properties) | Added | Test runtime resource |
+| [testng.xml](../../testng.xml) | Changed | TestNG suite configuration |
 
 ## Previous Files Reused
 
 | File path | Why it matters here |
 | --- | --- |
-| `src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java` | still creates the screenshot file that reports attach |
-| `src/test/java/com/learning/tests/listeners/FrameworkTestListener.java` | central place where TestNG status becomes report status |
-| `src/test/java/com/learning/tests/models/LoginScenario.java` | shows why data model string output matters in reports |
-| `src/test/resources/log4j2.xml` | still controls log output while reports are generated |
+| [src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java](../../src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java) | still creates the screenshot file that reports attach |
+| [src/test/java/com/learning/tests/listeners/FrameworkTestListener.java](../../src/test/java/com/learning/tests/listeners/FrameworkTestListener.java) | central place where TestNG status becomes report status |
+| [src/test/java/com/learning/tests/models/LoginScenario.java](../../src/test/java/com/learning/tests/models/LoginScenario.java) | shows why data model string output matters in reports |
+| [src/test/resources/log4j2.xml](../../src/test/resources/log4j2.xml) | still controls log output while reports are generated |
 
 ## Report Outputs
 

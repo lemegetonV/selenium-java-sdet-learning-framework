@@ -37,9 +37,9 @@ You can compare tools instead of saying one is always better.
 
 Read:
 
-- `src/test/java/com/learning/tests/listeners/FrameworkTestListener.java`
-- `src/test/java/com/learning/tests/reports/ExtentReportManager.java`
-- `src/test/java/com/learning/tests/reports/AllureReportUtils.java`
+- [src/test/java/com/learning/tests/listeners/FrameworkTestListener.java](../../src/test/java/com/learning/tests/listeners/FrameworkTestListener.java)
+- [src/test/java/com/learning/tests/reports/ExtentReportManager.java](../../src/test/java/com/learning/tests/reports/ExtentReportManager.java)
+- [src/test/java/com/learning/tests/reports/AllureReportUtils.java](../../src/test/java/com/learning/tests/reports/AllureReportUtils.java)
 
 Write the flow from `onTestFailure` to Extent and Allure attachment.
 
@@ -64,8 +64,8 @@ There should be no matches. If a future change leaks the password, inspect
 
 Open:
 
-- `src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java`
-- `src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java`
+- [src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java)
+- [src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoDataDrivenTest.java)
 
 Explain:
 
