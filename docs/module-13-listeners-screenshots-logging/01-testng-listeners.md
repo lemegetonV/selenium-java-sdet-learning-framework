@@ -15,6 +15,11 @@ events. TestNG calls listener methods automatically:
 - `onTestSkipped` when TestNG skips a test.
 - `onFinish` when the context ends.
 
+In this project, the listener is
+[FrameworkTestListener.java](../../src/test/java/com/learning/tests/listeners/FrameworkTestListener.java).
+It is diagnostic infrastructure. It does not decide whether SauceDemo behavior
+is correct; it records what happened around the test.
+
 ## Code Walkthrough
 
 Main file:
@@ -44,6 +49,34 @@ The listener is registered in:
 This keeps the tests clean. `SauceDemoPageObjectTest` and
 `SauceDemoDataDrivenTest` do not need listener code inside each test method.
 
+## Runtime Callback Flow
+
+For each test method, TestNG and the framework interact like this:
+
+```text
+TestNG context starts
+    -> onStart(context)
+Test method is about to run
+    -> onTestStart(result)
+    -> ThreadContext.put("testName", displayName)
+BaseTest creates browser
+Test method executes
+    -> page objects and wrappers log activity
+Test passes/fails/skips
+    -> onTestSuccess/onTestFailure/onTestSkipped
+    -> listener logs status
+    -> on failure, listener captures screenshot
+    -> ThreadContext.clearMap()
+BaseTest quits browser
+TestNG context finishes
+    -> onFinish(context)
+```
+
+The ordering matters. `onTestFailure(...)` runs while the browser from
+[DriverFactory.java](../../src/main/java/com/learning/framework/driver/DriverFactory.java)
+is still available. After `BaseTest` teardown, screenshot capture would be too
+late.
+
 ## Java Syntax To Notice
 
 `@Override` means the method is implementing a method declared by the TestNG
@@ -61,6 +94,23 @@ fails. That is valuable because listener method signatures must be exact.
 on the test result. Module 14 can read this same value when adding report
 attachments.
 
+## Display Names And Safe Parameters
+
+The listener builds log names with:
+
+```java
+private String displayName(ITestResult result)
+```
+
+For tests without parameters, the display name is just the method name. For
+data-driven tests, the listener reads `result.getParameters()` and converts
+each parameter through `safeParameterName(...)`.
+
+[LoginScenario.java](../../src/test/java/com/learning/tests/models/LoginScenario.java)
+contains a password, so the listener logs only `scenario.scenarioName()`.
+That gives useful row identity without dumping credentials into logs, reports,
+or CI artifacts.
+
 ## Selenium Or Framework Nuances
 
 The listener captures screenshots in `onTestFailure`, before `BaseTest` quits
@@ -71,6 +121,20 @@ The listener does not own driver creation. It asks `DriverFactory.getDriver()`
 for the current test thread's browser. This keeps one owner for browser
 lifecycle and avoids hidden driver creation inside diagnostics.
 
+The listener catches screenshot failures inside `captureFailureScreenshot(...)`.
+That prevents a secondary diagnostics problem, such as disk write failure, from
+masking the original test failure. It logs a warning instead.
+
+## What The Listener Stores For Later
+
+```java
+public static final String SCREENSHOT_PATH_ATTRIBUTE = "screenshotPath";
+```
+
+This constant is the contract between Module 13 and Module 14. Module 13 stores
+the screenshot path on `ITestResult`; Module 14 reporting code can read the
+same attribute and attach the image to Extent or Allure.
+
 ## Common Mistakes
 
 - Registering a listener but running a command that does not use the suite XML.
@@ -80,6 +144,9 @@ lifecycle and avoids hidden driver creation inside diagnostics.
 - Logging full data-provider objects. Module 13 avoids this for
   `LoginScenario` because the record contains a password field.
 - Adding assertion logic inside the listener. Assertions belong in tests.
+- Forgetting to clear `ThreadContext` after pass, fail, or skip.
+- Creating a new driver inside the listener when `DriverFactory.getDriver()`
+  fails.
 
 ## Interview Readiness
 
@@ -92,17 +159,16 @@ focused on business assertions while framework behavior stays centralized."
 
 Be ready to explain why listener code is framework code, not page-object code.
 
+## Revision Checklist
+
+- Can you trace `onTestFailure(...)` from log entry to screenshot attribute?
+- Can you explain why `safeParameterName(...)` treats `LoginScenario`
+  specially?
+- Can you explain why listener registration is in [testng.xml](../../testng.xml)?
+- Can you explain what would happen if `ThreadContext.clearMap()` were omitted?
+
 ## How This Connects To Later Framework Design
 
 Module 14 will use the same listener position to attach screenshots and status
 details to Extent and Allure reports. Module 15 will make the ThreadLocal driver
 and per-test log context more important when tests run in parallel.
-
-## Revision Checklist
-
-- Can you explain why a listener is better than adding screenshot code to every
-  test method?
-- Can you identify which listener method captures screenshots?
-- Can you explain why screenshot capture must happen before driver cleanup?
-- Can you show where the listener is registered?
-
