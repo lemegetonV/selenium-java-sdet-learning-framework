@@ -2,14 +2,15 @@
 
 ## Files In This Topic
 
-```text
-src/main/java/com/learning/framework/data/JsonDataReader.java
-src/main/java/com/learning/framework/data/CsvDataReader.java
-src/main/java/com/learning/framework/data/ExcelDataReader.java
-src/test/resources/testdata/login-data.json
-src/test/resources/testdata/login-data.csv
-src/test/resources/testdata/login-data.xlsx
-```
+This topic reads these files:
+
+- [src/main/java/com/learning/framework/data/JsonDataReader.java](../../src/main/java/com/learning/framework/data/JsonDataReader.java)
+- [src/main/java/com/learning/framework/data/CsvDataReader.java](../../src/main/java/com/learning/framework/data/CsvDataReader.java)
+- [src/main/java/com/learning/framework/data/ExcelDataReader.java](../../src/main/java/com/learning/framework/data/ExcelDataReader.java)
+- [src/test/resources/testdata/login-data.json](../../src/test/resources/testdata/login-data.json)
+- [src/test/resources/testdata/login-data.csv](../../src/test/resources/testdata/login-data.csv)
+- [src/test/resources/testdata/login-data.xlsx](../../src/test/resources/testdata/login-data.xlsx)
+
 
 ## JSON Reader
 
@@ -67,11 +68,8 @@ Excel is useful when:
 - data is reviewed manually.
 - teams already maintain spreadsheets.
 
-Module 12 reads the `login` sheet from:
-
-```text
-src/test/resources/testdata/login-data.xlsx
-```
+Module 12 reads the `login` sheet from
+[src/test/resources/testdata/login-data.xlsx](../../src/test/resources/testdata/login-data.xlsx).
 
 ## Why Different Readers Return A Common Shape
 
@@ -100,6 +98,8 @@ Module 12 adds:
 - Jackson for JSON parsing.
 - Apache POI for Excel parsing.
 - Log4j-to-SLF4J bridge because Apache POI uses Log4j APIs internally.
+
+The dependency changes are in [pom.xml](../../pom.xml).
 
 This does not introduce framework logging yet. Real logging design remains in
 Module 13.
