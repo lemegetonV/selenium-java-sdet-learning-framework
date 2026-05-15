@@ -2,18 +2,19 @@
 
 ## Files In This Topic
 
-```text
-testng.xml
-pom.xml
-src/test/java/com/learning/tests/saucedemo/LoginFoundationTest.java
-```
+This topic reads these files:
 
-## Why `testng.xml` Exists
+- [testng.xml](../../testng.xml)
+- [pom.xml](../../pom.xml)
+- [src/test/java/com/learning/tests/saucedemo/LoginFoundationTest.java](../../src/test/java/com/learning/tests/saucedemo/LoginFoundationTest.java)
+
+
+## Why [testng.xml](../../testng.xml) Exists
 
 Earlier modules let Maven discover every `*Test.java` class automatically.
 That is useful for small learning tests, but frameworks need more control.
 
-`testng.xml` lets the project define:
+[testng.xml](../../testng.xml) lets the project define:
 
 - which test classes belong to a suite.
 - which groups should run.
@@ -89,7 +90,7 @@ mvn test -DsuiteXmlFile=testng.xml
 
 The profile tells Surefire to use the provided TestNG XML suite.
 
-Why use a profile instead of making `testng.xml` the default?
+Why use a profile instead of making [testng.xml](../../testng.xml) the default?
 
 - full `mvn test` should still verify the whole learning repo.
 - named suites are useful when you want focused framework execution.
@@ -97,7 +98,7 @@ Why use a profile instead of making `testng.xml` the default?
 
 ## Java and XML Concepts
 
-XML is configuration, not Java code. The class name in `testng.xml` must be the
+XML is configuration, not Java code. The class name in [testng.xml](../../testng.xml) must be the
 fully qualified Java class name:
 
 ```text
@@ -113,10 +114,10 @@ If the package or class is renamed, the XML must be updated.
 
 ## Common Beginner Mistakes
 
-- forgetting to include the full package name in `testng.xml`.
+- forgetting to include the full package name in [testng.xml](../../testng.xml).
 - expecting a test to run when its group is not included.
 - putting every possible suite into one giant XML file.
-- making Maven run only `testng.xml` by default and accidentally skipping raw
+- making Maven run only [testng.xml](../../testng.xml) by default and accidentally skipping raw
   learning tests.
 - confusing Maven profiles with TestNG groups. Maven chooses execution
   configuration; TestNG groups choose tests inside that configuration.
@@ -131,5 +132,5 @@ testng-regression.xml
 testng-parallel.xml
 ```
 
-Module 08 starts with one `testng.xml` so the learner understands the mechanism
+Module 08 starts with one [testng.xml](../../testng.xml) so the learner understands the mechanism
 before the suite strategy grows.

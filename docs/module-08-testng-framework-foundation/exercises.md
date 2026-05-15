@@ -7,7 +7,7 @@ Create a second TestNG XML file named `testng-smoke.xml` that runs only the
 
 Hint:
 
-- copy the structure of `testng.xml`.
+- copy the structure of [testng.xml](../../testng.xml).
 - change the included group from `regression` to `smoke`.
 - keep the same fully qualified class name.
 

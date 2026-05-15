@@ -11,7 +11,7 @@ should be able to explain:
 - what `alwaysRun = true` protects.
 - why `driver` and `wait` are `protected`.
 - how a child test class inherits setup from `BaseTest`.
-- what `testng.xml` controls.
+- what [testng.xml](../../testng.xml) controls.
 - how TestNG groups support smoke and regression suites.
 - why the locators still live in `LoginFoundationTest`.
 
@@ -40,7 +40,7 @@ Module 08 prioritizes isolation and clarity.
 The parent class and child classes can access the field, but unrelated classes
 cannot use it as public global state.
 
-**What does `testng.xml` add?**
+**What does [testng.xml](../../testng.xml) add?**
 
 It lets the project define a named suite, choose test classes, include groups,
 and prepare for future suite-level settings such as browser, environment, and

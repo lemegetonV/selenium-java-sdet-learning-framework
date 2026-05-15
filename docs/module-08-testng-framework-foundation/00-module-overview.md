@@ -43,28 +43,41 @@ inherit common setup behavior instead of copying it into every test class.
 
 | File | Status | Purpose |
 | --- | --- | --- |
-| `CLAUDE.md` | changed | marks Module 08 as the active module and keeps future sessions aligned |
-| `AGENTS.md` | changed | exact mirror of `CLAUDE.md` |
-| `pom.xml` | changed | adds a Maven profile so `-DsuiteXmlFile=testng.xml` can run a named TestNG suite |
-| `testng.xml` | added | defines the Module 08 SauceDemo regression suite and group selection |
-| `src/test/java/com/learning/tests/base/BaseTest.java` | added | owns per-test Chrome setup, `WebDriverWait`, and browser cleanup |
-| `src/test/java/com/learning/tests/saucedemo/LoginFoundationTest.java` | added | first SauceDemo framework-style tests using inherited setup |
-| `docs/module-08-testng-framework-foundation/00-module-overview.md` | added | module purpose, file map, deferred scope, and quality gate |
-| `docs/module-08-testng-framework-foundation/01-testng-lifecycle-and-basetest.md` | added | explains TestNG annotations and browser lifecycle |
-| `docs/module-08-testng-framework-foundation/02-suite-xml-groups-and-maven.md` | added | explains `testng.xml`, groups, and Maven Surefire execution |
-| `docs/module-08-testng-framework-foundation/03-inheritance-and-framework-boundaries.md` | added | explains inheritance, `protected`, and why this is not POM yet |
-| `docs/module-08-testng-framework-foundation/99-interview-review.md` | added | interview-ready Module 08 revision guide |
-| `docs/module-08-testng-framework-foundation/exercises.md` | added | practice tasks with hints and expected outcomes |
+| [CLAUDE.md](../../CLAUDE.md) | changed | marks Module 08 as the active module and keeps future sessions aligned |
+| [AGENTS.md](../../AGENTS.md) | changed | exact mirror of [CLAUDE.md](../../CLAUDE.md) |
+| [pom.xml](../../pom.xml) | changed | adds a Maven profile so `-DsuiteXmlFile=testng.xml` can run a named TestNG suite |
+| [testng.xml](../../testng.xml) | added | defines the Module 08 SauceDemo regression suite and group selection |
+| [src/test/java/com/learning/tests/base/BaseTest.java](../../src/test/java/com/learning/tests/base/BaseTest.java) | added | owns per-test Chrome setup, `WebDriverWait`, and browser cleanup |
+| [src/test/java/com/learning/tests/saucedemo/LoginFoundationTest.java](../../src/test/java/com/learning/tests/saucedemo/LoginFoundationTest.java) | added | first SauceDemo framework-style tests using inherited setup |
+| [docs/module-08-testng-framework-foundation/00-module-overview.md](00-module-overview.md) | added | module purpose, file map, deferred scope, and quality gate |
+| [docs/module-08-testng-framework-foundation/01-testng-lifecycle-and-basetest.md](01-testng-lifecycle-and-basetest.md) | added | explains TestNG annotations and browser lifecycle |
+| [docs/module-08-testng-framework-foundation/02-suite-xml-groups-and-maven.md](02-suite-xml-groups-and-maven.md) | added | explains [testng.xml](../../testng.xml), groups, and Maven Surefire execution |
+| [docs/module-08-testng-framework-foundation/03-inheritance-and-framework-boundaries.md](03-inheritance-and-framework-boundaries.md) | added | explains inheritance, `protected`, and why this is not POM yet |
+| [docs/module-08-testng-framework-foundation/99-interview-review.md](99-interview-review.md) | added | interview-ready Module 08 revision guide |
+| [docs/module-08-testng-framework-foundation/exercises.md](exercises.md) | added | practice tasks with hints and expected outcomes |
+
+## Module Source Links
+
+Use these links as the source-reading checklist for this checkpoint. They point only to files that exist at Module 08.
+
+| File | Status | Why It Matters |
+| --- | --- | --- |
+| [AGENTS.md](../../AGENTS.md) | Changed | Module session metadata |
+| [CLAUDE.md](../../CLAUDE.md) | Changed | Module session metadata |
+| [pom.xml](../../pom.xml) | Changed | Maven build and dependency configuration |
+| [src/test/java/com/learning/tests/base/BaseTest.java](../../src/test/java/com/learning/tests/base/BaseTest.java) | Added | Test framework base class |
+| [src/test/java/com/learning/tests/saucedemo/LoginFoundationTest.java](../../src/test/java/com/learning/tests/saucedemo/LoginFoundationTest.java) | Added | SauceDemo TestNG test source |
+| [testng.xml](../../testng.xml) | Added | TestNG suite configuration |
 
 ## Previous Module Files Reused
 
 Module 08 does not modify the raw Selenium learning tests. It uses them as the
 reason for the new abstraction:
 
-- `src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java`
-- `src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java`
-- `src/test/java/com/learning/tests/learning/_15_WindowsAndFramesTest.java`
-- `src/test/java/com/learning/tests/learning/_19_JavaScriptAndExceptionsTest.java`
+- [src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java](../../src/test/java/com/learning/tests/learning/_01_FirstBrowserTest.java)
+- [src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java](../../src/test/java/com/learning/tests/learning/_07_ExplicitWaitTest.java)
+- [src/test/java/com/learning/tests/learning/_15_WindowsAndFramesTest.java](../../src/test/java/com/learning/tests/learning/_15_WindowsAndFramesTest.java)
+- [src/test/java/com/learning/tests/learning/_19_JavaScriptAndExceptionsTest.java](../../src/test/java/com/learning/tests/learning/_19_JavaScriptAndExceptionsTest.java)
 
 Those classes remain useful revision material because they show what the
 framework layer is replacing.
@@ -138,7 +151,7 @@ mvn test
 Expected outcome:
 
 - `LoginFoundationTest` passes with two SauceDemo tests.
-- `testng.xml` runs the `regression` group from the SauceDemo framework test.
+- [testng.xml](../../testng.xml) runs the `regression` group from the SauceDemo framework test.
 - full `mvn test` still runs the previous raw learning tests plus Module 08.
 - browser setup and cleanup happen through `BaseTest`, not inside the new test
   methods.
@@ -152,6 +165,6 @@ Before moving to Module 09, a learner should be able to explain:
 - why `@AfterMethod` uses `quit()`.
 - why `driver` and `wait` are `protected`.
 - why `@BeforeClass` is not used for browser setup here.
-- how `testng.xml` selects classes and groups.
+- how [testng.xml](../../testng.xml) selects classes and groups.
 - why locators still remain in `LoginFoundationTest` until Page Objects are
   introduced.
