@@ -4,7 +4,8 @@
 
 A `List` stores ordered values.
 
-In `_04_Module01Demo`:
+In
+[src/main/java/com/learning/examples/module01/_04_Module01Demo.java](../../src/main/java/com/learning/examples/module01/_04_Module01Demo.java):
 
 ```java
 List<String> smokeTests = List.of("valid login", "product list loads", "cart opens");
@@ -20,7 +21,8 @@ This is useful in test automation because we often work with groups of things:
 
 ## Mutable Lists
 
-`_03_TestCaseSummary` uses an `ArrayList` because steps are added one by one:
+[src/main/java/com/learning/examples/module01/_03_TestCaseSummary.java](../../src/main/java/com/learning/examples/module01/_03_TestCaseSummary.java)
+uses an `ArrayList` because steps are added one by one:
 
 ```java
 private final List<String> steps;
@@ -42,7 +44,8 @@ That prevents outside code from directly changing the internal list.
 
 A `Map` stores key-value pairs.
 
-In `_04_Module01Demo`:
+In
+[src/main/java/com/learning/examples/module01/_04_Module01Demo.java](../../src/main/java/com/learning/examples/module01/_04_Module01Demo.java):
 
 ```java
 Map<String, String> environment = new LinkedHashMap<>();
@@ -62,7 +65,8 @@ Later, this idea will become `config.properties` and `ConfigReader`.
 
 ## If Statements
 
-`_02_LoginAttempt` uses if-style checks through boolean methods:
+[src/main/java/com/learning/examples/module01/_02_LoginAttempt.java](../../src/main/java/com/learning/examples/module01/_02_LoginAttempt.java)
+uses if-style checks through boolean methods:
 
 ```java
 public boolean hasUsername() {
@@ -77,7 +81,8 @@ reading its text.
 
 ## Loops
 
-`_04_Module01Demo` prints each step:
+[src/main/java/com/learning/examples/module01/_04_Module01Demo.java](../../src/main/java/com/learning/examples/module01/_04_Module01Demo.java)
+prints each step:
 
 ```java
 for (String step : testCase.getSteps()) {

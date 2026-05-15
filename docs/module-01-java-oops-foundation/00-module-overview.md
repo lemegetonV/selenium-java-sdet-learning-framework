@@ -40,7 +40,7 @@ flowchart TD
 
 | Concept | Where to Study |
 | --- | --- |
-| Maven project structure | `pom.xml` |
+| Maven project structure | [pom.xml](../../pom.xml) |
 | Class and object | `_01_BrowserSession`, `_02_LoginAttempt` |
 | Fields and methods | all Module 01 classes |
 | Constructor | `_01_BrowserSession`, `_02_LoginAttempt`, `_03_TestCaseSummary` |
@@ -54,13 +54,28 @@ flowchart TD
 
 | File | Status | Purpose |
 | --- | --- | --- |
-| `pom.xml` | added | Java 21 Maven project setup and `exec:java` entrypoint |
-| `README.md` | added | Project entrypoint and current module commands |
-| `src/main/java/com/learning/examples/module01/_01_BrowserSession.java` | added | class, fields, constructors, static members |
-| `src/main/java/com/learning/examples/module01/_02_LoginAttempt.java` | added | form-style object with simple validation methods |
-| `src/main/java/com/learning/examples/module01/_03_TestCaseSummary.java` | added | list usage and defensive copy |
-| `src/main/java/com/learning/examples/module01/_04_Module01Demo.java` | added | runnable demo for objects, collections, and loops |
-| `docs/module-01-java-oops-foundation/99-interview-review.md` | added | interview-ready Java/OOP revision notes for this module |
+| [pom.xml](../../pom.xml) | added | Java 21 Maven project setup and `exec:java` entrypoint |
+| [README.md](../../README.md) | added | Project entrypoint and current module commands |
+| [src/main/java/com/learning/examples/module01/_01_BrowserSession.java](../../src/main/java/com/learning/examples/module01/_01_BrowserSession.java) | added | class, fields, constructors, static members |
+| [src/main/java/com/learning/examples/module01/_02_LoginAttempt.java](../../src/main/java/com/learning/examples/module01/_02_LoginAttempt.java) | added | form-style object with simple validation methods |
+| [src/main/java/com/learning/examples/module01/_03_TestCaseSummary.java](../../src/main/java/com/learning/examples/module01/_03_TestCaseSummary.java) | added | list usage and defensive copy |
+| [src/main/java/com/learning/examples/module01/_04_Module01Demo.java](../../src/main/java/com/learning/examples/module01/_04_Module01Demo.java) | added | runnable demo for objects, collections, and loops |
+| [docs/module-01-java-oops-foundation/99-interview-review.md](99-interview-review.md) | added | interview-ready Java/OOP revision notes for this module |
+
+## Module Source Links
+
+Use these links as the source-reading checklist for this checkpoint. They point only to files that exist at Module 01.
+
+| File | Status | Why It Matters |
+| --- | --- | --- |
+| [AGENTS.md](../../AGENTS.md) | Changed | Module session metadata |
+| [CLAUDE.md](../../CLAUDE.md) | Changed | Module session metadata |
+| [plan.md](../../plan.md) | Changed | Curriculum blueprint |
+| [pom.xml](../../pom.xml) | Changed | Maven build and dependency configuration |
+| [src/main/java/com/learning/examples/module01/_01_BrowserSession.java](../../src/main/java/com/learning/examples/module01/_01_BrowserSession.java) | Renamed | Learning Java example source |
+| [src/main/java/com/learning/examples/module01/_02_LoginAttempt.java](../../src/main/java/com/learning/examples/module01/_02_LoginAttempt.java) | Renamed | Learning Java example source |
+| [src/main/java/com/learning/examples/module01/_03_TestCaseSummary.java](../../src/main/java/com/learning/examples/module01/_03_TestCaseSummary.java) | Renamed | Learning Java example source |
+| [src/main/java/com/learning/examples/module01/_04_Module01Demo.java](../../src/main/java/com/learning/examples/module01/_04_Module01Demo.java) | Renamed | Learning Java example source |
 
 ## Source Organization Note
 

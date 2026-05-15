@@ -2,6 +2,9 @@
 
 ## Class
 
+Source file for this topic:
+[src/main/java/com/learning/examples/module01/_01_BrowserSession.java](../../src/main/java/com/learning/examples/module01/_01_BrowserSession.java).
+
 A class is a blueprint. It defines what data an object has and what behavior
 the object can perform.
 
@@ -13,8 +16,9 @@ public class _01_BrowserSession {
 }
 ```
 
-`_01_BrowserSession` is not a real browser. It is a Java model that helps explain
-how a future Selenium browser session will be represented.
+[src/main/java/com/learning/examples/module01/_01_BrowserSession.java](../../src/main/java/com/learning/examples/module01/_01_BrowserSession.java)
+is not a real browser. It is a Java model that helps explain how a future
+Selenium browser session will be represented.
 
 ## Object
 
@@ -42,7 +46,8 @@ The syntax is the same idea: create an object from a class.
 
 Fields store object state.
 
-In `_01_BrowserSession`:
+In
+[src/main/java/com/learning/examples/module01/_01_BrowserSession.java](../../src/main/java/com/learning/examples/module01/_01_BrowserSession.java):
 
 ```java
 private final String browserName;
@@ -60,7 +65,8 @@ These fields answer: what does this object know about itself?
 
 Methods define object behavior.
 
-In `_01_BrowserSession`:
+In
+[src/main/java/com/learning/examples/module01/_01_BrowserSession.java](../../src/main/java/com/learning/examples/module01/_01_BrowserSession.java):
 
 ```java
 public void open() {

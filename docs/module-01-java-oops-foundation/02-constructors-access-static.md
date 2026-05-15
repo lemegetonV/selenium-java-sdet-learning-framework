@@ -4,7 +4,8 @@
 
 A constructor prepares a new object.
 
-`_01_BrowserSession` has two constructors:
+[src/main/java/com/learning/examples/module01/_01_BrowserSession.java](../../src/main/java/com/learning/examples/module01/_01_BrowserSession.java)
+has two constructors:
 
 ```java
 public _01_BrowserSession(String baseUrl) {
@@ -54,7 +55,8 @@ Access modifiers control what other code can reach.
 | `public` | reachable from other classes |
 | `private` | reachable only inside the same class |
 
-In `_02_LoginAttempt`:
+In
+[src/main/java/com/learning/examples/module01/_02_LoginAttempt.java](../../src/main/java/com/learning/examples/module01/_02_LoginAttempt.java):
 
 ```java
 private final String username;
@@ -78,7 +80,8 @@ offers controlled behavior.
 
 Static members belong to the class, not to one object.
 
-In `_01_BrowserSession`:
+In
+[src/main/java/com/learning/examples/module01/_01_BrowserSession.java](../../src/main/java/com/learning/examples/module01/_01_BrowserSession.java):
 
 ```java
 public static final String DEFAULT_BROWSER = "chrome";
