@@ -47,29 +47,44 @@ ProductsPage productsPage = new LoginPage(driver, wait)
 
 | File | Status | Purpose |
 | --- | --- | --- |
-| `CLAUDE.md` | changed | marks Module 09 as the active module and keeps future sessions aligned |
-| `AGENTS.md` | changed | exact mirror of `CLAUDE.md` |
-| `testng.xml` | changed | points the suite at the new Page Object based SauceDemo test |
-| `src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java` | added | owns login-page locators and login actions |
-| `src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java` | added | owns product inventory interactions and cart navigation |
-| `src/main/java/com/learning/framework/pages/saucedemo/CartPage.java` | added | owns cart assertions and checkout navigation |
-| `src/main/java/com/learning/framework/pages/saucedemo/CheckoutPage.java` | added | owns the first checkout screen boundary and information-form state |
+| [CLAUDE.md](../../CLAUDE.md) | changed | marks Module 09 as the active module and keeps future sessions aligned |
+| [AGENTS.md](../../AGENTS.md) | changed | exact mirror of [CLAUDE.md](../../CLAUDE.md) |
+| [testng.xml](../../testng.xml) | changed | points the suite at the new Page Object based SauceDemo test |
+| [src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java) | added | owns login-page locators and login actions |
+| [src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java) | added | owns product inventory interactions and cart navigation |
+| [src/main/java/com/learning/framework/pages/saucedemo/CartPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/CartPage.java) | added | owns cart assertions and checkout navigation |
+| [src/main/java/com/learning/framework/pages/saucedemo/CheckoutPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/CheckoutPage.java) | added | owns the first checkout screen boundary and information-form state |
 | `src/test/java/com/learning/tests/saucedemo/LoginFoundationTest.java` | removed | replaced by the Page Object based test class |
-| `src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java` | added | verifies SauceDemo workflows through Page Objects |
-| `docs/module-09-page-object-model/00-module-overview.md` | added | module purpose, file map, dependency map, and quality gate |
-| `docs/module-09-page-object-model/01-pom-concepts-and-boundaries.md` | added | explains Page Object responsibilities and boundaries |
-| `docs/module-09-page-object-model/02-page-transitions-and-test-flow.md` | added | explains page-to-page returns and readable workflow tests |
-| `docs/module-09-page-object-model/03-pagefactory-vs-by-locators.md` | added | explains PageFactory as context and why this framework uses `By` locators |
-| `docs/module-09-page-object-model/99-interview-review.md` | added | interview-ready Module 09 revision guide |
-| `docs/module-09-page-object-model/exercises.md` | added | practice tasks with hints and expected outcomes |
+| [src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java) | added | verifies SauceDemo workflows through Page Objects |
+| [docs/module-09-page-object-model/00-module-overview.md](00-module-overview.md) | added | module purpose, file map, dependency map, and quality gate |
+| [docs/module-09-page-object-model/01-pom-concepts-and-boundaries.md](01-pom-concepts-and-boundaries.md) | added | explains Page Object responsibilities and boundaries |
+| [docs/module-09-page-object-model/02-page-transitions-and-test-flow.md](02-page-transitions-and-test-flow.md) | added | explains page-to-page returns and readable workflow tests |
+| [docs/module-09-page-object-model/03-pagefactory-vs-by-locators.md](03-pagefactory-vs-by-locators.md) | added | explains PageFactory as context and why this framework uses `By` locators |
+| [docs/module-09-page-object-model/99-interview-review.md](99-interview-review.md) | added | interview-ready Module 09 revision guide |
+| [docs/module-09-page-object-model/exercises.md](exercises.md) | added | practice tasks with hints and expected outcomes |
+
+## Module Source Links
+
+Use these links as the source-reading checklist for this checkpoint. They point only to files that exist at Module 09.
+
+| File | Status | Why It Matters |
+| --- | --- | --- |
+| [AGENTS.md](../../AGENTS.md) | Changed | Module session metadata |
+| [CLAUDE.md](../../CLAUDE.md) | Changed | Module session metadata |
+| [src/main/java/com/learning/framework/pages/saucedemo/CartPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/CartPage.java) | Added | Framework Page Object source |
+| [src/main/java/com/learning/framework/pages/saucedemo/CheckoutPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/CheckoutPage.java) | Added | Framework Page Object source |
+| [src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java) | Added | Framework Page Object source |
+| [src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java) | Added | Framework Page Object source |
+| [src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java) | Added | SauceDemo TestNG test source |
+| [testng.xml](../../testng.xml) | Changed | TestNG suite configuration |
 
 ## Previous Module Files Reused
 
 Module 09 builds directly on:
 
-- `src/test/java/com/learning/tests/base/BaseTest.java`
-- `testng.xml`
-- `pom.xml`
+- [src/test/java/com/learning/tests/base/BaseTest.java](../../src/test/java/com/learning/tests/base/BaseTest.java)
+- [testng.xml](../../testng.xml)
+- [pom.xml](../../pom.xml)
 
 `BaseTest` still owns browser setup and cleanup. The new page objects receive
 the active `driver` and `wait` from the test class.

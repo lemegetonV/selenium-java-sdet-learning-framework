@@ -2,13 +2,14 @@
 
 ## Files In This Topic
 
-```text
-src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java
-src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java
-src/main/java/com/learning/framework/pages/saucedemo/CartPage.java
-src/main/java/com/learning/framework/pages/saucedemo/CheckoutPage.java
-src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java
-```
+This topic reads these files:
+
+- [src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java)
+- [src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java)
+- [src/main/java/com/learning/framework/pages/saucedemo/CartPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/CartPage.java)
+- [src/main/java/com/learning/framework/pages/saucedemo/CheckoutPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/CheckoutPage.java)
+- [src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java)
+
 
 ## Tests Should Read Like User Workflows
 
@@ -66,7 +67,8 @@ variables when assertions or debugging clarity matter.
 
 ## Row And Card Scoped Lookup
 
-`ProductsPage` finds a specific product card before clicking its button:
+[src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java)
+finds a specific product card before clicking its button:
 
 ```java
 WebElement productCard = findProductCard(productName);
@@ -84,7 +86,9 @@ This pattern builds on Module 07 table lessons:
 
 ## What Page Objects Wait For
 
-Each page object waits for the page state it needs:
+Each page object waits for the page state it needs. For example,
+[src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java)
+waits for the products title:
 
 ```java
 wait.until(ExpectedConditions.visibilityOfElementLocated(PAGE_TITLE));

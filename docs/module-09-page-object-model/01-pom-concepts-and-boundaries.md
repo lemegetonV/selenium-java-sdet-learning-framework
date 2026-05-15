@@ -2,13 +2,14 @@
 
 ## Files In This Topic
 
-```text
-src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java
-src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java
-src/main/java/com/learning/framework/pages/saucedemo/CartPage.java
-src/main/java/com/learning/framework/pages/saucedemo/CheckoutPage.java
-src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java
-```
+This topic reads these files:
+
+- [src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java)
+- [src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java)
+- [src/main/java/com/learning/framework/pages/saucedemo/CartPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/CartPage.java)
+- [src/main/java/com/learning/framework/pages/saucedemo/CheckoutPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/CheckoutPage.java)
+- [src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java](../../src/test/java/com/learning/tests/saucedemo/SauceDemoPageObjectTest.java)
+
 
 ## What A Page Object Is
 
@@ -33,7 +34,9 @@ It should not own:
 
 ## Encapsulation Of Locators
 
-Module 09 moves SauceDemo locators out of the test class:
+Module 09 moves SauceDemo locators out of the test class and into page classes
+such as
+[src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java):
 
 ```java
 private static final By USERNAME_INPUT = By.id("user-name");
@@ -88,11 +91,8 @@ scenario.
 
 ## Why Page Objects Are In `src/main`
 
-The page objects live under:
-
-```text
-src/main/java/com/learning/framework/pages/saucedemo/
-```
+The page objects live under
+[src/main/java/com/learning/framework/pages/saucedemo/](../../src/main/java/com/learning/framework/pages/saucedemo/).
 
 They are reusable framework classes, not raw learning tests. This matches the
 source-organization rule that real framework code belongs under
