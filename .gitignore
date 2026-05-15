@@ -20,3 +20,8 @@ logs/
 # Local environment files
 .env
 *.local
+
+# Local agent and curriculum planning files
+AGENTS.md
+CLAUDE.md
+plan.md
