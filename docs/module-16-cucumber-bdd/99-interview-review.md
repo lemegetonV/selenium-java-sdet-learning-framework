@@ -13,6 +13,18 @@
 - Tag: scenario metadata used for filtering and organization.
 - DataTable: structured step input passed from Gherkin to Java.
 
+## Source Map
+
+| Topic | Source |
+| --- | --- |
+| Gherkin scenarios | [saucedemo_login.feature](../../src/test/resources/features/saucedemo_login.feature) |
+| TestNG runner bridge | [CucumberTest.java](../../src/test/java/com/learning/tests/bdd/runners/CucumberTest.java) |
+| Suite entry point | [testng-cucumber.xml](../../testng-cucumber.xml) |
+| Scenario setup/teardown | [CucumberHooks.java](../../src/test/java/com/learning/tests/bdd/hooks/CucumberHooks.java) |
+| Scenario service access | [CucumberScenarioContext.java](../../src/test/java/com/learning/tests/bdd/context/CucumberScenarioContext.java) |
+| Step bindings | [SauceDemoSteps.java](../../src/test/java/com/learning/tests/bdd/steps/SauceDemoSteps.java) |
+| Cucumber dependencies | [pom.xml](../../pom.xml) |
+
 ## Strong Answers
 
 What is Cucumber?
@@ -46,6 +58,70 @@ If non-technical stakeholders do not read feature files, Cucumber can become an
 extra maintenance layer. It is valuable when scenarios express business rules
 clearly and step definitions remain reusable.
 
+How does a feature file reach Selenium code?
+
+[CucumberTest.java](../../src/test/java/com/learning/tests/bdd/runners/CucumberTest.java)
+selects the feature and glue. Cucumber matches each Gherkin step to a method in
+[SauceDemoSteps.java](../../src/test/java/com/learning/tests/bdd/steps/SauceDemoSteps.java).
+The step calls existing page objects, which use wrapper services and WebDriver.
+
+Why does this module have [CucumberScenarioContext.java](../../src/test/java/com/learning/tests/bdd/context/CucumberScenarioContext.java)?
+
+TestNG tests inherit [BaseTest.java](../../src/test/java/com/learning/tests/base/BaseTest.java),
+but Cucumber step classes are called by Cucumber glue, not by TestNG class
+inheritance. The scenario context gives hooks and steps access to the same
+framework services while keeping state scenario/thread scoped.
+
+Why are step definitions thin?
+
+Thin steps keep Gherkin stable and readable. The step should coordinate page
+objects and assertions. Locators, waits, and Selenium details belong in page
+objects, wrappers, and driver services.
+
+How do Cucumber tags differ from TestNG groups?
+
+Both can select tests, but they live at different layers. Cucumber tags select
+feature scenarios such as `@smoke` or `@checkout`. TestNG groups select Java
+test methods. In this module, Cucumber scenarios are selected with
+`-Dcucumber.filter.tags`.
+
+## Scenario Walkthrough
+
+For `Standard user can start checkout for a selected product`:
+
+1. [saucedemo_login.feature](../../src/test/resources/features/saucedemo_login.feature)
+   defines the scenario and product table.
+2. [CucumberHooks.java](../../src/test/java/com/learning/tests/bdd/hooks/CucumberHooks.java)
+   opens a browser before the scenario.
+3. The background step creates [LoginPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/LoginPage.java).
+4. The login step stores [ProductsPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/ProductsPage.java).
+5. The DataTable step calls `ProductsPage.addProductToCart(...)`.
+6. Cart and checkout steps move through [CartPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/CartPage.java)
+   and [CheckoutPage.java](../../src/main/java/com/learning/framework/pages/saucedemo/CheckoutPage.java).
+7. Assertions in [SauceDemoSteps.java](../../src/test/java/com/learning/tests/bdd/steps/SauceDemoSteps.java)
+   verify business outcomes.
+8. The after hook closes the browser and attaches a screenshot only if needed.
+
+## One-Minute Whiteboard Answer
+
+"Cucumber adds a BDD layer above the existing Selenium framework. The feature
+file describes behavior in Gherkin. The runner extends
+`AbstractTestNGCucumberTests`, so TestNG and Maven can execute Cucumber
+scenarios. Hooks open and close a browser per scenario through a scenario
+context. Step definitions are thin adapters: they match Gherkin sentences,
+call existing page objects, and assert outcomes. Selenium remains in page
+objects, wrapper actions, waits, and DriverFactory. Tags let us select scenario
+subsets, and Cucumber/Allure plugins produce BDD reports."
+
+## Red Flags In Interviews
+
+- "Cucumber replaces Selenium."
+- "I put locators directly in every step definition."
+- "One static driver is enough for all scenarios."
+- "Feature files should describe every click and field interaction."
+- "Cucumber tags and TestNG groups are the same thing."
+- "Hooks are optional, so browser cleanup can happen later."
+
 ## Revision Checklist
 
 - I can explain how a feature file reaches Selenium code.
@@ -55,3 +131,6 @@ clearly and step definitions remain reusable.
 - I can explain why hooks are needed for browser lifecycle.
 - I can explain why scenario state must not be stored in one static driver.
 - I can explain how tags help CI/CD select test subsets.
+- I can explain why this module keeps Cucumber execution sequential.
+- I can explain which reports are produced by Cucumber plugins.
+- I can explain why Cucumber needs a context class instead of `BaseTest`.
