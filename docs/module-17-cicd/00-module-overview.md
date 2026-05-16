@@ -6,6 +6,12 @@ teach how a UI automation framework becomes a repeatable pipeline with clear
 triggers, headless browser execution, selected test scopes, and downloadable
 failure evidence.
 
+This module is about operationalizing the framework. A local framework proves
+that the code can run on your machine. A CI workflow proves that the same
+project can run from a clean checkout, with declared Java/Maven dependencies,
+without a visible desktop, and still preserve enough evidence to debug a
+failure after the runner has disappeared.
+
 ## Why This Module Exists Now
 
 CI/CD belongs near the end because the framework now has enough real behavior
@@ -25,6 +31,46 @@ flowchart TD
     Chrome --> Scope[Selected test scope]
     Scope --> Reports[Surefire Extent Cucumber Allure screenshots]
     Reports --> Artifacts[GitHub Actions artifacts]
+```
+
+## How To Study This Module
+
+Read the files in this order:
+
+1. [.github/workflows/ui-tests.yml](../../.github/workflows/ui-tests.yml)
+   because it is the only implementation file introduced by this module.
+2. [pom.xml](../../pom.xml) to connect the workflow commands to Maven Surefire,
+   `suiteXmlFile`, Java 21, Selenium, TestNG, Cucumber, and report plugins.
+3. [testng.xml](../../testng.xml), [testng-parallel.xml](../../testng-parallel.xml),
+   and [testng-cucumber.xml](../../testng-cucumber.xml) to understand each
+   suite that CI can run.
+4. [ConfigReader.java](../../src/main/java/com/learning/framework/config/ConfigReader.java)
+   and [DriverFactory.java](../../src/main/java/com/learning/framework/driver/DriverFactory.java)
+   to trace how `-Dheadless=true` reaches browser options.
+5. [FrameworkTestListener.java](../../src/test/java/com/learning/tests/listeners/FrameworkTestListener.java),
+   [ExtentReportManager.java](../../src/test/java/com/learning/tests/reports/ExtentReportManager.java),
+   [AllureReportUtils.java](../../src/test/java/com/learning/tests/reports/AllureReportUtils.java),
+   and [CucumberHooks.java](../../src/test/java/com/learning/tests/bdd/hooks/CucumberHooks.java)
+   to connect CI artifacts to the framework services that produce them.
+
+The important path is:
+
+```mermaid
+sequenceDiagram
+    participant Event as GitHub event
+    participant Workflow as ui-tests.yml
+    participant Maven as Maven/Surefire
+    participant Tests as TestNG/Cucumber
+    participant Framework as Framework services
+    participant Artifacts as Uploaded artifacts
+
+    Event->>Workflow: push, PR, manual, or schedule
+    Workflow->>Workflow: resolve test_scope
+    Workflow->>Maven: run selected commands
+    Maven->>Tests: execute suite XML or default tests
+    Tests->>Framework: browser, waits, reports, screenshots
+    Workflow->>Maven: mvn allure:report
+    Workflow->>Artifacts: upload target outputs if present
 ```
 
 ## Files Added Or Changed
@@ -47,6 +93,20 @@ Use these links as the source-reading checklist for this checkpoint. They point 
 | [.github/workflows/ui-tests.yml](../../.github/workflows/ui-tests.yml) | Added | GitHub Actions CI workflow |
 | [AGENTS.md](../../AGENTS.md) | Changed | Module session metadata |
 | [CLAUDE.md](../../CLAUDE.md) | Changed | Module session metadata |
+
+## Workflow Implementation Map
+
+| Workflow Section | Source | What It Teaches |
+| --- | --- | --- |
+| `on` | [.github/workflows/ui-tests.yml](../../.github/workflows/ui-tests.yml) | which GitHub events run UI automation |
+| `permissions` | [.github/workflows/ui-tests.yml](../../.github/workflows/ui-tests.yml) | least-privilege read-only repository access |
+| `concurrency` | [.github/workflows/ui-tests.yml](../../.github/workflows/ui-tests.yml) | cancel older runs on the same ref to avoid wasting CI time |
+| `runs-on` | [.github/workflows/ui-tests.yml](../../.github/workflows/ui-tests.yml) | GitHub-hosted Ubuntu runner selection |
+| `actions/checkout` | [.github/workflows/ui-tests.yml](../../.github/workflows/ui-tests.yml) | make repository files available to Maven |
+| `actions/setup-java` | [.github/workflows/ui-tests.yml](../../.github/workflows/ui-tests.yml) | install Java 21 and enable Maven dependency caching |
+| `Resolve test scope` | [.github/workflows/ui-tests.yml](../../.github/workflows/ui-tests.yml) | choose smoke, regression, BDD, parallel, or full execution |
+| `Run selected UI test scope` | [.github/workflows/ui-tests.yml](../../.github/workflows/ui-tests.yml) | map each scope to exact Maven commands |
+| artifact upload steps | [.github/workflows/ui-tests.yml](../../.github/workflows/ui-tests.yml) | preserve diagnostics after the runner is gone |
 
 ## Workflow Scopes
 
@@ -72,6 +132,34 @@ with these supporting files open:
 | `bdd` | [testng-cucumber.xml](../../testng-cucumber.xml) | BDD-only validation for feature/step work. |
 | `parallel` | [testng-parallel.xml](../../testng-parallel.xml) | Focused check for Module 15 parallel safety. |
 | `full` | `mvn test` plus [testng-parallel.xml](../../testng-parallel.xml) | Scheduled/manual full confidence run. |
+
+### Scope Strategy
+
+The workflow intentionally does not run the same command for every event.
+
+- Pull requests and pushes default to `smoke` because that gives fast feedback
+  on critical TestNG and Cucumber paths.
+- Manual runs can choose any scope through `workflow_dispatch`.
+- Scheduled runs default to `full` because they are meant to catch wider
+  regression, browser drift, dependency drift, and external-site behavior
+  changes.
+
+This is a realistic UI automation tradeoff. Running everything on every PR
+sounds safer, but if checks take too long, teams start ignoring them. A layered
+scope strategy keeps CI useful.
+
+## Source Ownership Model
+
+| Source | Ownership Type | CI Responsibility |
+| --- | --- | --- |
+| [.github/workflows/ui-tests.yml](../../.github/workflows/ui-tests.yml) | workflow | triggers, environment setup, scope selection, artifacts |
+| [pom.xml](../../pom.xml) | build configuration | Java version, dependencies, Surefire, Allure Maven plugin |
+| [testng.xml](../../testng.xml) | TestNG suite | smoke/regression framework tests |
+| [testng-parallel.xml](../../testng-parallel.xml) | TestNG suite | parallel safety verification |
+| [testng-cucumber.xml](../../testng-cucumber.xml) | TestNG suite | BDD scenario execution through Cucumber runner |
+| [ConfigReader.java](../../src/main/java/com/learning/framework/config/ConfigReader.java) | framework config | reads `-Dheadless=true` and other Maven overrides |
+| [DriverFactory.java](../../src/main/java/com/learning/framework/driver/DriverFactory.java) | framework driver service | creates headless local browser sessions in CI |
+| [ScreenshotUtils.java](../../src/main/java/com/learning/framework/screenshots/ScreenshotUtils.java) | framework evidence | writes failure screenshots under `target/screenshots` |
 
 ## What Is Intentionally Deferred
 
@@ -120,3 +208,9 @@ Expected result:
 - `target/extent-report/` exists after TestNG framework runs.
 - `target/cucumber-report/` exists after BDD runs.
 - `target/allure-results/` and `target/allure-report/` exist after report generation.
+
+Do not confuse local verification with a real GitHub-hosted run. Local checks
+prove that the workflow commands and suites are valid. The actual CI value is
+confirmed after pushing to GitHub and observing the Actions run, which is
+intentionally outside this module-rewrite step because no push happens until
+explicit confirmation.
